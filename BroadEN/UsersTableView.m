@@ -399,11 +399,6 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,nil]];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
-    self.navigationController.navigationBar.hidden = NO;
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
-    backItem.title = @"back";
-    self.navigationItem.backBarButtonItem = backItem;
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated

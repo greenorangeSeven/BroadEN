@@ -322,6 +322,16 @@
     return [NSString stringWithFormat:@"GreenOrange.com/%@/%@/%@/%@",AppVersion,[UIDevice currentDevice].systemName,[UIDevice currentDevice].systemVersion, [UIDevice currentDevice].model];
 }
 
++ (BOOL)isStringExist:(NSString *)str{
+    if (str != nil && [str length] > 0) {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
 //利用正则表达式验证
 + (BOOL)isValidateEmail:(NSString *)email {
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";

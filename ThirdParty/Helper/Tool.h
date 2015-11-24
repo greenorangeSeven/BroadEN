@@ -58,6 +58,7 @@
 + (UIColor *)getBackgroundColor;
 + (UIColor *)getCellBackgroundColor;
 
++ (BOOL)isStringExist:(NSString *)str;
 + (BOOL)isValidateEmail:(NSString *)email;
 
 + (void)saveCache:(int)type andID:(int)_id andString:(NSString *)str;

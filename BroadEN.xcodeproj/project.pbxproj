@@ -84,10 +84,15 @@
 		142CF3371C019E27009FAE0A /* Satisfa.m in Sources */ = {isa = PBXBuildFile; fileRef = 142CF3361C019E27009FAE0A /* Satisfa.m */; };
 		142CF33B1C01A329009FAE0A /* ItemTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142CF3391C01A329009FAE0A /* ItemTableCell.m */; };
 		142CF33C1C01A329009FAE0A /* ItemTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142CF33A1C01A329009FAE0A /* ItemTableCell.xib */; };
+		1437FE7A1C03E9AE003126D3 /* UserBasicInfoUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1437FE781C03E9AE003126D3 /* UserBasicInfoUpdateView.m */; };
+		1437FE7B1C03E9AE003126D3 /* UserBasicInfoUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1437FE791C03E9AE003126D3 /* UserBasicInfoUpdateView.xib */; };
+		14967EED1C037E5F00F97916 /* UserBasicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 14967EEC1C037E5F00F97916 /* UserBasicInfo.m */; };
 		14B6DD621BBA41FF002E90DF /* UserListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B6DD601BBA41FF002E90DF /* UserListView.m */; };
 		14B6DD631BBA41FF002E90DF /* UserListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B6DD611BBA41FF002E90DF /* UserListView.xib */; };
 		14B6DD681BBA449D002E90DF /* UserSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B6DD661BBA449D002E90DF /* UserSearchView.m */; };
 		14B6DD691BBA449D002E90DF /* UserSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B6DD671BBA449D002E90DF /* UserSearchView.xib */; };
+		14F7741B1C02F8E000F55042 /* UserBasicInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F774191C02F8E000F55042 /* UserBasicInfoView.m */; };
+		14F7741C1C02F8E000F55042 /* UserBasicInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F7741A1C02F8E000F55042 /* UserBasicInfoView.xib */; };
 		B70194461B9716A1008F77F7 /* DepartDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = B70194451B9716A1008F77F7 /* DepartDetails.m */; };
 		B701944C1B97E12F008F77F7 /* UserInfoUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B701944A1B97E12F008F77F7 /* UserInfoUpdateView.m */; };
 		B701944D1B97E12F008F77F7 /* UserInfoUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B701944B1B97E12F008F77F7 /* UserInfoUpdateView.xib */; };
@@ -413,12 +418,20 @@
 		142CF3381C01A329009FAE0A /* ItemTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemTableCell.h; sourceTree = "<group>"; };
 		142CF3391C01A329009FAE0A /* ItemTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemTableCell.m; sourceTree = "<group>"; };
 		142CF33A1C01A329009FAE0A /* ItemTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemTableCell.xib; sourceTree = "<group>"; };
+		1437FE771C03E9AE003126D3 /* UserBasicInfoUpdateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserBasicInfoUpdateView.h; sourceTree = "<group>"; };
+		1437FE781C03E9AE003126D3 /* UserBasicInfoUpdateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserBasicInfoUpdateView.m; sourceTree = "<group>"; };
+		1437FE791C03E9AE003126D3 /* UserBasicInfoUpdateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserBasicInfoUpdateView.xib; sourceTree = "<group>"; };
+		14967EEB1C037E5F00F97916 /* UserBasicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserBasicInfo.h; sourceTree = "<group>"; };
+		14967EEC1C037E5F00F97916 /* UserBasicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserBasicInfo.m; sourceTree = "<group>"; };
 		14B6DD5F1BBA41FF002E90DF /* UserListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListView.h; sourceTree = "<group>"; };
 		14B6DD601BBA41FF002E90DF /* UserListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListView.m; sourceTree = "<group>"; };
 		14B6DD611BBA41FF002E90DF /* UserListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserListView.xib; sourceTree = "<group>"; };
 		14B6DD651BBA449D002E90DF /* UserSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSearchView.h; sourceTree = "<group>"; };
 		14B6DD661BBA449D002E90DF /* UserSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSearchView.m; sourceTree = "<group>"; };
 		14B6DD671BBA449D002E90DF /* UserSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSearchView.xib; sourceTree = "<group>"; };
+		14F774181C02F8E000F55042 /* UserBasicInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserBasicInfoView.h; sourceTree = "<group>"; };
+		14F774191C02F8E000F55042 /* UserBasicInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserBasicInfoView.m; sourceTree = "<group>"; };
+		14F7741A1C02F8E000F55042 /* UserBasicInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserBasicInfoView.xib; sourceTree = "<group>"; };
 		B70194441B9716A1008F77F7 /* DepartDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepartDetails.h; sourceTree = "<group>"; };
 		B70194451B9716A1008F77F7 /* DepartDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DepartDetails.m; sourceTree = "<group>"; };
 		B70194491B97E12F008F77F7 /* UserInfoUpdateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoUpdateView.h; sourceTree = "<group>"; };
@@ -929,6 +942,8 @@
 				142CF32E1C01986E009FAE0A /* SolnMgt.m */,
 				142CF3351C019E27009FAE0A /* Satisfa.h */,
 				142CF3361C019E27009FAE0A /* Satisfa.m */,
+				14967EEB1C037E5F00F97916 /* UserBasicInfo.h */,
+				14967EEC1C037E5F00F97916 /* UserBasicInfo.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1089,6 +1104,12 @@
 				140BAE121C0205660047AF57 /* UserInfoTypeTableView.h */,
 				140BAE131C0205660047AF57 /* UserInfoTypeTableView.m */,
 				140BAE141C0205660047AF57 /* UserInfoTypeTableView.xib */,
+				14F774181C02F8E000F55042 /* UserBasicInfoView.h */,
+				14F774191C02F8E000F55042 /* UserBasicInfoView.m */,
+				14F7741A1C02F8E000F55042 /* UserBasicInfoView.xib */,
+				1437FE771C03E9AE003126D3 /* UserBasicInfoUpdateView.h */,
+				1437FE781C03E9AE003126D3 /* UserBasicInfoUpdateView.m */,
+				1437FE791C03E9AE003126D3 /* UserBasicInfoUpdateView.xib */,
 			);
 			name = UserInfo;
 			sourceTree = "<group>";
@@ -1981,6 +2002,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F7741C1C02F8E000F55042 /* UserBasicInfoView.xib in Resources */,
 				B73C13181BAD82F500C34036 /* MessageListView.xib in Resources */,
 				B719FC9B1B96E3C700206227 /* bootstrap.min.js in Resources */,
 				B799E5001B92B14300630829 /* LoginView.xib in Resources */,
@@ -2025,6 +2047,7 @@
 				14B6DD631BBA41FF002E90DF /* UserListView.xib in Resources */,
 				142CF32C1C01956B009FAE0A /* SolnMgtTableCell.xib in Resources */,
 				04E3D4051AD23CBD0052032B /* MainPageView.xib in Resources */,
+				1437FE7B1C03E9AE003126D3 /* UserBasicInfoUpdateView.xib in Resources */,
 				B701944D1B97E12F008F77F7 /* UserInfoUpdateView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2140,6 +2163,7 @@
 				B798ED511B930B8800AE40F2 /* MWPhoto.m in Sources */,
 				B798ED5F1B930B8800AE40F2 /* PSTCollectionViewUpdateItem.m in Sources */,
 				B798ED601B930B8800AE40F2 /* PSTGridLayoutInfo.m in Sources */,
+				1437FE7A1C03E9AE003126D3 /* UserBasicInfoUpdateView.m in Sources */,
 				B798ED661B930B8800AE40F2 /* MKAnnotationView+WebCache.m in Sources */,
 				B798ED7A1B930B8800AE40F2 /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
 				B798ED4D1B930B8800AE40F2 /* MBProgressHUD.m in Sources */,
@@ -2173,6 +2197,7 @@
 				04B275751AB6C966002A7CE0 /* IQKeyboardManager.m in Sources */,
 				B798ED1A1B930B8800AE40F2 /* AFJSONUtilities.m in Sources */,
 				142CF3191C017F2F009FAE0A /* SatisfaTableView.m in Sources */,
+				14F7741B1C02F8E000F55042 /* UserBasicInfoView.m in Sources */,
 				B798ED171B930B8800AE40F2 /* AFHTTPRequestOperation.m in Sources */,
 				B798ED401B930B8800AE40F2 /* NSString+Extensions.m in Sources */,
 				B798ED681B930B8800AE40F2 /* SDImageCache.m in Sources */,
@@ -2182,6 +2207,7 @@
 				B798ED271B930B8800AE40F2 /* ASIFormDataRequest.m in Sources */,
 				142CF2E51C0156BC009FAE0A /* UsersTableView.m in Sources */,
 				B798ED6C1B930B8800AE40F2 /* SDWebImageDownloaderOperation.m in Sources */,
+				14967EED1C037E5F00F97916 /* UserBasicInfo.m in Sources */,
 				B7F337D21B9F304500708F75 /* RepairImgCell.m in Sources */,
 				B73C13201BAD8B4900C34036 /* MsgCell.m in Sources */,
 				B798ED1D1B930B8800AE40F2 /* AFPropertyListRequestOperation.m in Sources */,
@@ -2383,7 +2409,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BroadEN;
-				PROVISIONING_PROFILE = "f8263fe1-9029-4612-aa73-923c44b5464e";
+				PROVISIONING_PROFILE = "a99ed246-45b9-4307-9428-638221e3b0d0";
 			};
 			name = Debug;
 		};
@@ -2425,7 +2451,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BroadEN;
-				PROVISIONING_PROFILE = "f8263fe1-9029-4612-aa73-923c44b5464e";
+				PROVISIONING_PROFILE = "a99ed246-45b9-4307-9428-638221e3b0d0";
 			};
 			name = Release;
 		};
@@ -2446,7 +2472,7 @@
 				INFOPLIST_FILE = BroadENTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = BroadENTests;
-				PROVISIONING_PROFILE = "f8263fe1-9029-4612-aa73-923c44b5464e";
+				PROVISIONING_PROFILE = "a99ed246-45b9-4307-9428-638221e3b0d0";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BroadEN.app/BroadEN";
 			};
 			name = Debug;
@@ -2464,7 +2490,7 @@
 				INFOPLIST_FILE = BroadENTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = BroadENTests;
-				PROVISIONING_PROFILE = "f8263fe1-9029-4612-aa73-923c44b5464e";
+				PROVISIONING_PROFILE = "a99ed246-45b9-4307-9428-638221e3b0d0";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BroadEN.app/BroadEN";
 			};
 			name = Release;

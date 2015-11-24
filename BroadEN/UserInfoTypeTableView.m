@@ -9,6 +9,7 @@
 #import "UserInfoTypeTableView.h"
 #import "ItemTableCell.h"
 #import "SettingModel.h"
+#import "UserBasicInfoView.h"
 
 @interface UserInfoTypeTableView ()
 {
@@ -49,7 +50,10 @@
     switch (action.tag) {
         case 1:
         {
-            
+            UserBasicInfoView *basicInfoView = [[UserBasicInfoView alloc] init];
+            basicInfoView.titleStr = self.titleStr;
+            basicInfoView.ID = self.userId;
+            [self.navigationController pushViewController:basicInfoView animated:YES];
         }
             break;
         case 2:

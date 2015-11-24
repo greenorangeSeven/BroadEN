@@ -265,7 +265,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1739"
             endingLineNumber = "1739"
-            landmarkName = "-alertView:clickedButtonAtIndex:"
+            landmarkName = "-imgChoiceAction9"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -452,11 +452,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ThirdParty/Helper/Tool.m"
-            timestampString = "466618350.089771"
+            timestampString = "469993802.983823"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "441"
-            endingLineNumber = "441"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
             landmarkName = "+generateTradeNO"
             landmarkType = "5">
          </BreakpointContent>
@@ -761,7 +761,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1138"
             endingLineNumber = "1138"
-            landmarkName = "-reSizeCollectionView"
+            landmarkName = "-textFieldShouldBeginEditing:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -777,8 +777,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1139"
             endingLineNumber = "1139"
-            landmarkName = "-reSizeCollectionView"
-            landmarkType = "5">
+            landmarkName = "@implementation WeiXiuUpdateView"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -921,7 +921,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1513"
             endingLineNumber = "1513"
-            landmarkName = "-imgChoiceAction2"
+            landmarkName = "-imgChoiceAction1"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1145,7 +1145,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1482"
             endingLineNumber = "1482"
-            landmarkName = "-imgChoiceAction1"
+            landmarkName = "-didReceiveMemoryWarning"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1396,6 +1396,54 @@
             startingLineNumber = "81"
             endingLineNumber = "81"
             landmarkName = "-reload:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BroadEN/UserBasicInfoView.m"
+            timestampString = "470021234.075711"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "-requestOK:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BroadEN/UserBasicInfoView.m"
+            timestampString = "470021234.075711"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "-bindData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BroadEN/UserBasicInfoUpdateView.m"
+            timestampString = "470029793.557866"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "-saveAction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
