@@ -41,6 +41,13 @@
         }
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataReload) name:@"Notification_UserBasicInfoReLoad" object:nil];
+    
+    [self getData];
+}
+
+- (void)dataReload
+{
     [self getData];
 }
 
@@ -204,6 +211,19 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,nil]];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"Back";
+    self.navigationItem.backBarButtonItem = backItem;
+}
+
 
 /*
  #pragma mark - Navigation

@@ -243,15 +243,14 @@
     };
     utils.parserOK = ^(NSString *string)
     {
-        NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-        NSError *error;
+//        NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+//        NSError *error;
         NSLog(string);
-//        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-//        if(jsonArray && jsonArray.count > 0){
-//            NSDictionary *jsonDic = [jsonArray objectAtIndex:0];
-//           
-//        }
-        
+        if([string isEqualToString:@"true"])
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UserBasicInfoReLoad" object:nil];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     };
     NSLog(@"%@",request.responseString);
     [utils stringFromparserXML:request.responseString target:@"string"];

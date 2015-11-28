@@ -16,6 +16,7 @@
 @property (copy, nonatomic) NSString *PROJ_Name_En;
 @property (copy, nonatomic) NSString *CustShortName_CN;
 @property (copy, nonatomic) NSString *PROJ_ID;
+@property (copy, nonatomic) NSString *Proj_ID;
 @property (copy, nonatomic) NSString *CUST_Code;
 @property (copy, nonatomic) NSString *Serv_Dept;
 @property (copy, nonatomic) NSString *Duty_Engineer;

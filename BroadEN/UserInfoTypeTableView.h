@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) NSString *titleStr;
 @property (strong, nonatomic) NSString *userId;
+@property (strong, nonatomic) NSString *projId;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

@@ -54,6 +54,16 @@
 #define SolnMgtTableCellIdentifier @"SolnMgtTableCellIdentifier"
 #define SatisfaTableCellIdentifier @"SatisfaTableCellIdentifier"
 #define ItemTableCellIdentifier @"ItemTableCellIdentifier"
+#define UnitInfoTableCellIdentifier @"UnitInfoTableCellIdentifier"
+#define ZeroHeightTableCellIdentifier @"ZeroHeightTableCellIdentifier"
+
+#define UnitInfoBasicOneCellIdentifier @"UnitInfoBasicOneCellIdentifier"
+#define UnitInfoShippingCellIdentifier @"UnitInfoShippingCellIdentifier"
+#define UnitInfoBasicTwoCellIdentifier @"UnitInfoBasicTwoCellIdentifier"
+#define UnitInfoCommissCellIdentifier @"UnitInfoCommissCellIdentifier"
+
+#define MaintainingTableCellIdentifier @"MaintainingTableCellIdentifier"
+#define ImageCollectionCellIdentifier @"ImageCollectionCellIdentifier"
 
 
 //每页数量

@@ -325,6 +325,7 @@
         UserInfoTypeTableView *infoTypeView = [[UserInfoTypeTableView alloc] init];
         infoTypeView.titleStr = d.PROJ_Name_En;
         infoTypeView.userId = d.ID;
+        infoTypeView.projId = d.Proj_ID;
         infoTypeView.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:infoTypeView animated:YES];
     }
@@ -399,7 +400,12 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,nil]];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
+    self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"Back";
+    self.navigationItem.backBarButtonItem = backItem;
 }
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {

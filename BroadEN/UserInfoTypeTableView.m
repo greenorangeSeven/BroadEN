@@ -10,6 +10,8 @@
 #import "ItemTableCell.h"
 #import "SettingModel.h"
 #import "UserBasicInfoView.h"
+#import "UnitInfoTableView.h"
+#import "MaintainingTableView.h"
 
 @interface UserInfoTypeTableView ()
 {
@@ -58,12 +60,16 @@
             break;
         case 2:
         {
-            
+            UnitInfoTableView *unitInfoView = [[UnitInfoTableView alloc] init];
+            unitInfoView.ID = self.userId;
+            [self.navigationController pushViewController:unitInfoView animated:YES];
         }
             break;
         case 3:
         {
-            
+            MaintainingTableView *maintainingView = [[MaintainingTableView alloc] init];
+            maintainingView.projId = self.projId;
+            [self.navigationController pushViewController:maintainingView animated:YES];
         }
             break;
         case 4:
@@ -128,6 +134,19 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,nil]];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"Back";
+    self.navigationItem.backBarButtonItem = backItem;
+}
+
 
 /*
 #pragma mark - Navigation

@@ -138,10 +138,7 @@
         }
         [servs addObjectsFromArray:servNewsList];
         allCount = [servs count];
-//        NSDictionary *dic1 = table1[0];
-//        NSString *counts = dic1[@"Column1"];
-//        self.title = [NSString stringWithFormat:@"Customer Select(%@)",counts];
-//        self.tabBarItem.title = @"User Info";
+
         [self.tableView reloadData];
         [self doneLoadingTableViewData];
     };
