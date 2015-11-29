@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>typeEN</key>
+		<string>Annual 4 times maintenace</string>
+		<key>typeCN</key>
+		<string>年4次保养</string>
+		<key>items</key>
+		<array>
+			<dict>
+				<key>itemEN</key>
+				<string>Annual 1st maintenace</string>
+				<key>itemCN</key>
+				<string>年1次保养</string>
+			</dict>
+			<dict>
+				<key>itemEN</key>
+				<string>Annual 2nd maintenace</string>
+				<key>itemCN</key>
+				<string>年2次保养</string>
+			</dict>
+			<dict>
+				<key>itemEN</key>
+				<string>Annual 3rd maintenace</string>
+				<key>itemCN</key>
+				<string>年3次保养</string>
+			</dict>
+			<dict>
+				<key>itemEN</key>
+				<string>Annual 4th maintenace</string>
+				<key>itemCN</key>
+				<string>年4次保养</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>typeEN</key>
+		<string>Abnormal Handling</string>
+		<key>typeCN</key>
+		<string>异常处理</string>
+		<key>items</key>
+		<array>
+			<dict>
+				<key>itemEN</key>
+				<string>Vacuum</string>
+				<key>itemCN</key>
+				<string>真空</string>
+			</dict>
+			<dict>
+				<key>itemEN</key>
+				<string>Burner</string>
+				<key>itemCN</key>
+				<string>燃烧机</string>
+			</dict>
+			<dict>
+				<key>itemEN</key>
+				<string>Electrical control system</string>
+				<key>itemCN</key>
+				<string>电气控制</string>
+			</dict>
+			<dict>
+				<key>itemEN</key>
+				<string>Water system</string>
+				<key>itemCN</key>
+				<string>水系统</string>
+			</dict>
+			<dict>
+				<key>itemEN</key>
+				<string>Solution</string>
+				<key>itemCN</key>
+				<string>溶液</string>
+			</dict>
+			<dict>
+				<key>itemEN</key>
+				<string>Precise commissioning</string>
+				<key>itemCN</key>
+				<string>精调</string>
+			</dict>
+			<dict>
+				<key>itemEN</key>
+				<string>Others</string>
+				<key>itemCN</key>
+				<string>其他</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>typeEN</key>
+		<string>Visits</string>
+		<key>typeCN</key>
+		<string>巡视</string>
+		<key>items</key>
+		<array>
+			<dict>
+				<key>itemEN</key>
+				<string>Visits</string>
+				<key>itemCN</key>
+				<string>巡视</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>items</key>
+		<array>
+			<dict>
+				<key>itemEN</key>
+				<string>Technic Update</string>
+				<key>itemCN</key>
+				<string>技改升级</string>
+			</dict>
+		</array>
+		<key>typeEN</key>
+		<string>Technic Update</string>
+		<key>typeCN</key>
+		<string>技改升级</string>
+	</dict>
+	<dict>
+		<key>items</key>
+		<array>
+			<dict>
+				<key>itemEN</key>
+				<string>Others</string>
+				<key>itemCN</key>
+				<string>其他</string>
+			</dict>
+		</array>
+		<key>typeEN</key>
+		<string>Others</string>
+		<key>typeCN</key>
+		<string>其他</string>
+	</dict>
+</array>
+</plist>

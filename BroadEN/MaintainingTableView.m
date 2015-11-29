@@ -209,6 +209,7 @@
 - (void)addAction:(id )sender
 {
     MaintainingAddView *addView = [[MaintainingAddView alloc] init];
+    addView.projId = self.projId;
     [self.navigationController pushViewController:addView animated:YES];
 }
 

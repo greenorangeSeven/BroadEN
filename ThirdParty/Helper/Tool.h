@@ -89,6 +89,8 @@
 + (NSString *)TimestampToDateStr:(NSString *)timestamp andFormatterStr:(NSString *)formatter;
 
 + (NSString *)GenerateTags:(NSMutableArray *)tags;
+//根据分隔符分隔日期，只得到日期
++ (NSString *)DateTimeRemoveTime:(NSString *)dateTime andSeparated:(NSString *)separated;
 
 + (void)saveCache:(NSString *)catalog andType:(int)type andID:(int)_id andString:(NSString *)str;
 + (NSString *)getCache:(NSString *)catalog andType:(int)type andID:(int)_id;

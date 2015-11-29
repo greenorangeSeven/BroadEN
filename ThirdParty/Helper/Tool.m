@@ -383,6 +383,16 @@
     return [dateFormatter stringFromDate:confromTimesp];
 }
 
++ (NSString *)DateTimeRemoveTime:(NSString *)dateTime andSeparated:(NSString *)separated
+{
+    NSString *dateStr = dateTime;
+    NSArray *arr = [dateTime componentsSeparatedByString:NSLocalizedString(separated, nil)];
+    if (arr && [arr count] > 0) {
+        dateStr = arr[0];
+    }
+    return dateStr;
+}
+
 +(int)compareOneDay:(NSString *)oneDay withAnotherDay:(NSString *)anotherDay
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

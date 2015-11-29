@@ -124,6 +124,7 @@
 		14B6DD631BBA41FF002E90DF /* UserListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B6DD611BBA41FF002E90DF /* UserListView.xib */; };
 		14B6DD681BBA449D002E90DF /* UserSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B6DD661BBA449D002E90DF /* UserSearchView.m */; };
 		14B6DD691BBA449D002E90DF /* UserSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B6DD671BBA449D002E90DF /* UserSearchView.xib */; };
+		14EF6C2C1C0B55690016A8B0 /* ServiceType.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14EF6C2B1C0B55690016A8B0 /* ServiceType.plist */; };
 		14F7741B1C02F8E000F55042 /* UserBasicInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F774191C02F8E000F55042 /* UserBasicInfoView.m */; };
 		14F7741C1C02F8E000F55042 /* UserBasicInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F7741A1C02F8E000F55042 /* UserBasicInfoView.xib */; };
 		B70194461B9716A1008F77F7 /* DepartDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = B70194451B9716A1008F77F7 /* DepartDetails.m */; };
@@ -515,6 +516,7 @@
 		14B6DD651BBA449D002E90DF /* UserSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSearchView.h; sourceTree = "<group>"; };
 		14B6DD661BBA449D002E90DF /* UserSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSearchView.m; sourceTree = "<group>"; };
 		14B6DD671BBA449D002E90DF /* UserSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSearchView.xib; sourceTree = "<group>"; };
+		14EF6C2B1C0B55690016A8B0 /* ServiceType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServiceType.plist; sourceTree = "<group>"; };
 		14F774181C02F8E000F55042 /* UserBasicInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserBasicInfoView.h; sourceTree = "<group>"; };
 		14F774191C02F8E000F55042 /* UserBasicInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserBasicInfoView.m; sourceTree = "<group>"; };
 		14F7741A1C02F8E000F55042 /* UserBasicInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserBasicInfoView.xib; sourceTree = "<group>"; };
@@ -1072,9 +1074,6 @@
 				B73C131D1BAD8B4900C34036 /* MsgCell.h */,
 				B73C131E1BAD8B4900C34036 /* MsgCell.m */,
 				B73C131F1BAD8B4900C34036 /* MsgCell.xib */,
-				142C79881C095816006FBC28 /* ImageCollectionCell.h */,
-				142C79891C095816006FBC28 /* ImageCollectionCell.m */,
-				142C798A1C095816006FBC28 /* ImageCollectionCell.xib */,
 			);
 			name = MainPage;
 			sourceTree = "<group>";
@@ -1121,6 +1120,9 @@
 				149200A21C063A7C00007D95 /* ZeroHeightTableCell.h */,
 				149200A31C063A7C00007D95 /* ZeroHeightTableCell.m */,
 				149200A41C063A7C00007D95 /* ZeroHeightTableCell.xib */,
+				142C79881C095816006FBC28 /* ImageCollectionCell.h */,
+				142C79891C095816006FBC28 /* ImageCollectionCell.m */,
+				142C798A1C095816006FBC28 /* ImageCollectionCell.xib */,
 				04E90AEC1AAD3E80005409D8 /* Images.xcassets */,
 				04E90AE31AAD3E80005409D8 /* BroadEN.xcdatamodeld */,
 				04C911881AAD8EC9004A5C63 /* MainPage */,
@@ -1148,6 +1150,7 @@
 				04E90ADD1AAD3E80005409D8 /* Info.plist */,
 				04E90ADE1AAD3E80005409D8 /* main.m */,
 				04E90D731AAD4047005409D8 /* BroadEN-Prefix.pch */,
+				14EF6C2B1C0B55690016A8B0 /* ServiceType.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2173,6 +2176,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14EF6C2C1C0B55690016A8B0 /* ServiceType.plist in Resources */,
 				14F7741C1C02F8E000F55042 /* UserBasicInfoView.xib in Resources */,
 				146185B81C04AAF400473078 /* UnitInfoDetailView.xib in Resources */,
 				B73C13181BAD82F500C34036 /* MessageListView.xib in Resources */,
