@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>typeEN</key>
+		<string>Report/scheme/suggestion of energy saving analysis</string>
+		<key>typeCN</key>
+		<string>节能诊断报告/方案/建议</string>
+	</dict>
+	<dict>
+		<key>typeEN</key>
+		<string>Report to H.O. or  instruction from H.O.</string>
+		<key>typeCN</key>
+		<string>给总部的报告及批示</string>
+	</dict>
+	<dict>
+		<key>typeEN</key>
+		<string>Annual service report</string>
+		<key>typeCN</key>
+		<string>年度服务总结报告</string>
+	</dict>
+	<dict>
+		<key>typeEN</key>
+		<string>Service contact letter</string>
+		<key>typeCN</key>
+		<string>服务联络函</string>
+	</dict>
+</array>
+</plist>

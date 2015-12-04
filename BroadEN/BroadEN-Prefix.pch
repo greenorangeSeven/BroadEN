@@ -67,6 +67,10 @@
 #define MaintainingTableCellIdentifier @"MaintainingTableCellIdentifier"
 #define ImageCollectionCellIdentifier @"ImageCollectionCellIdentifier"
 
+#define SatisfaUnitTableCellIdentifier @"SatisfaUnitTableCellIdentifier"
+#define CorrespondenceCellIdentifier @"CorrespondenceCellIdentifier"
+#define AgreementTableCellIdentifier @"AgreementTableCellIdentifier"
+
 
 //每页数量
 #define page_count 5

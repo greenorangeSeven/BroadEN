@@ -26,5 +26,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *serviceItemTF;
 @property (weak, nonatomic) IBOutlet UITextField *serviceDateTF;
 @property (weak, nonatomic) IBOutlet UITextField *unitTF;
+@property (weak, nonatomic) IBOutlet UITextView *EngineerNoteTV;
+
+@property (weak, nonatomic) IBOutlet UIImageView *ServiceFormIV;
+@property (weak, nonatomic) IBOutlet UIImageView *SnecePhotoIV;
+@property (weak, nonatomic) IBOutlet UIImageView *TouchSencePhotoIV;
 
 @end

@@ -13,7 +13,7 @@
     NSMutableArray *satisfas;
     BOOL isLoading;
     BOOL isLoadOver;
-    int allCount;
+    NSUInteger allCount;
     
     //下拉刷新
     EGORefreshTableHeaderView *_refreshHeaderView;

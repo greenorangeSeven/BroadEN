@@ -16,6 +16,9 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <objc/runtime.h>
 #import "Jastor.h"
+#include <ifaddrs.h>
+#include <arpa/inet.h>
+#include <net/if.h>
 
 @interface Tool : NSObject
 
@@ -150,5 +153,8 @@
 
 //unicode转string
 +(NSString *)unicode2String:(NSString *)str;
+
++ (NSString *)deviceIPAdress;
++ (NSString *)getIPAddress:(BOOL)preferIPv4;
 
 @end

@@ -23,7 +23,7 @@
             <connections>
                 <outlet property="picIV" destination="UCy-U0-voM" id="Ic5-xE-OVr"/>
             </connections>
-            <point key="canvasLocation" x="-4" y="68"/>
+            <point key="canvasLocation" x="94" y="187"/>
         </collectionViewCell>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

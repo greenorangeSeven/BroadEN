@@ -11,6 +11,7 @@
 @interface UserInfoTypeTableView : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSString *titleStr;
+@property (strong, nonatomic) NSString *PROJ_Name;
 @property (strong, nonatomic) NSString *userId;
 @property (strong, nonatomic) NSString *projId;
 

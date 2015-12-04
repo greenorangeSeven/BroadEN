@@ -12,6 +12,10 @@
 #import "UserBasicInfoView.h"
 #import "UnitInfoTableView.h"
 #import "MaintainingTableView.h"
+#import "UserSolnTableView.h"
+#import "UserSatisfaTableView.h"
+#import "CorrespondenceTableView.h"
+#import "AgreementTabelView.h"
 
 @interface UserInfoTypeTableView ()
 {
@@ -74,22 +78,32 @@
             break;
         case 4:
         {
-            
+            UserSolnTableView *solnTableView = [[UserSolnTableView alloc] init];
+            solnTableView.projId = self.projId;
+            [self.navigationController pushViewController:solnTableView animated:YES];
         }
             break;
         case 5:
         {
-            
+            UserSatisfaTableView *satisfaTableView = [[UserSatisfaTableView alloc] init];
+            satisfaTableView.projId = self.projId;
+            [self.navigationController pushViewController:satisfaTableView animated:YES];
         }
             break;
         case 6:
         {
-            
+            CorrespondenceTableView *corrTableView = [[CorrespondenceTableView alloc] init];
+            corrTableView.projId = self.projId;
+            corrTableView.PROJ_Name = self.PROJ_Name;
+            [self.navigationController pushViewController:corrTableView animated:YES];
         }
             break;
         case 7:
         {
-            
+            AgreementTabelView *agreementTableView = [[AgreementTabelView alloc] init];
+            agreementTableView.projId = self.projId;
+            agreementTableView.PROJ_Name_En = self.titleStr;
+            [self.navigationController pushViewController:agreementTableView animated:YES];
         }
             break;
             

@@ -142,8 +142,8 @@
         allCount = [satisfas count];
         NSDictionary *dic1 = table1[0];
         NSString *counts = dic1[@"Column1"];
-        self.title = [NSString stringWithFormat:@"Soln Mgt List(%@)",counts];
-        self.tabBarItem.title = @"Soln Mgt";
+        self.title = [NSString stringWithFormat:@"Satisfa List(%@)",counts];
+        self.tabBarItem.title = @"Satisfa";
         [self.tableView reloadData];
         [self doneLoadingTableViewData];
     };

@@ -11,6 +11,7 @@
 #import "Maintaining.h"
 #import "MaintainingTableCell.h"
 #import "MaintainingAddView.h"
+#import "MaintauningDetailView.h"
 
 @interface MaintainingTableView ()
 {
@@ -35,6 +36,8 @@
     
     AppDelegate *app = [[UIApplication sharedApplication] delegate];
     userinfo = app.userinfo;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMaintainingData) name:@"Notification_MaintainingListReLoad" object:nil];
     
     [self getSecurity];
 }
@@ -153,7 +156,6 @@
     [utils stringFromparserXML:request.responseString target:@"string"];
 }
 
-
 #pragma TableView的处理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -199,11 +201,10 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSInteger row = [indexPath row];
-//    UnitInfo *u = [units objectAtIndex:row];
-//    UnitInfoDetailView *detailView = [[UnitInfoDetailView alloc] init];
-//    detailView.ID = u.ID;
-//    detailView.PROJ_ID = u.PROJ_ID;
-//    [self.navigationController pushViewController:detailView animated:YES];
+    Maintaining *m = [maintains objectAtIndex:row];
+    MaintauningDetailView *detailView = [[MaintauningDetailView alloc] init];
+    detailView.ID = m.ID;
+    [self.navigationController pushViewController:detailView animated:YES];
 }
 
 - (void)addAction:(id )sender
@@ -223,6 +224,8 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,nil]];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     self.navigationController.navigationBar.hidden = NO;
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];

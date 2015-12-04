@@ -323,6 +323,7 @@
     {
         Depart *d = [users objectAtIndex:row];
         UserInfoTypeTableView *infoTypeView = [[UserInfoTypeTableView alloc] init];
+        infoTypeView.PROJ_Name = d.PROJ_Name;
         infoTypeView.titleStr = d.PROJ_Name_En;
         infoTypeView.userId = d.ID;
         infoTypeView.projId = d.Proj_ID;

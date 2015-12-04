@@ -76,7 +76,7 @@
     NSString *Franchiser = [preference objectForKey:@"Franchiser"];
     NSString *Engineer = [preference objectForKey:@"Engineer"];
     
-    sqlStr = [NSString stringWithFormat:@"declare @p15 int set @p15=0 exec SP_GetSolutionMgmtByPage_En @PageIndex='%i',@PageSize=25,@Where=N'',@OrderBy=N'ID',@Sort='desc',@UserName='%@',@Ser_Dept='%@',@Engineer='%@',@StartTime='',@EndTime='',@TimeType='取样时间',@ConfigType1='',@ConfigType2='',@Franchiser='%@',@Total=@p15 output select @p15",pageIndex,userinfo.UserName,ser_Dept,Engineer, Franchiser];
+    sqlStr = [NSString stringWithFormat:@"declare @p16 int set @p16=0 exec SP_GetSolutionMgmtByPage_En @PageIndex='%i',@PageSize=25,@OrderBy=N'ID',@Sort='desc',@UserName='%@',@Ser_Dept='%@',@Engineer='%@',@searchField='All',@searchString='',@StartTime='',@EndTime='',@TimeType='取样时间',@ConfigType1='',@ConfigType2='',@Franchiser='%@',@Total=@p16 output select @p16",pageIndex,userinfo.UserName,ser_Dept,Engineer, Franchiser];
     
     NSString *urlStr = [NSString stringWithFormat:@"%@JsonDataInUserInfo", api_base_url];
     
@@ -217,7 +217,8 @@
                 }
             }
             SolnMgt *s = [mgts objectAtIndex:row];
-            cell.ececManLb.text = s.Exec_ManEn;
+//            cell.ececManLb.text = s.Exec_ManEn;
+            cell.ececManLb.text = s.Exec_Man;
             cell.execDateLb.text = s.Exec_Date;
             cell.unitModeLb.text = s.AirCondUnit_Mode;
             cell.serialNumLb.text = s.OutFact_Num;
