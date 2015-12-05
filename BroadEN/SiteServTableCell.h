@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SiteServTableCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *nameEnLb;
 @property (weak, nonatomic) IBOutlet UILabel *nameLb;
 @property (weak, nonatomic) IBOutlet UILabel *outfaceNumLb;

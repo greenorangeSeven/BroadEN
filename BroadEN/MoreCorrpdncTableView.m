@@ -1,17 +1,17 @@
 //
-//  SiteServTableView.m
+//  MoreCorrpdncTableView.m
 //  BroadEN
 //
-//  Created by Seven on 15/11/22.
+//  Created by Seven on 15/12/6.
 //  Copyright (c) 2015年 greenorange. All rights reserved.
 //
 
-#import "SiteServTableView.h"
-#import "SiteServTableCell.h"
-#import "MaintauningDetailView.h"
-#import "SiteServ.h"
+#import "MoreCorrpdncTableView.h"
+#import "MoreCorrpdncTableCell.h"
+#import "Correspondence.h"
+#import "CorrespondenceDetailView.h"
 
-@interface SiteServTableView ()
+@interface MoreCorrpdncTableView ()
 {
     UserInfo *userinfo;
     BOOL gNoRefresh;
@@ -19,27 +19,17 @@
 
 @end
 
-@implementation SiteServTableView
+@implementation MoreCorrpdncTableView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title = @"Site Serv List";
-    self.tabBarItem.title = @"Site Serv";
-    
-    //适配iOS7uinavigationbar遮挡的问题
-    if(IS_IOS7)
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
+    self.title = @"Corrpdnc Mails";
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = [[UIView alloc] init];
     
-    allCount = 0;
     //添加的代码
     if (_refreshHeaderView == nil) {
         EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, -320.0f, self.view.frame.size.width, 320)];
@@ -49,7 +39,7 @@
     }
     [_refreshHeaderView refreshLastUpdatedDate];
     
-    servs = [[NSMutableArray alloc] initWithCapacity:25];
+    corrpdncs = [[NSMutableArray alloc] initWithCapacity:25];
     
     AppDelegate *app = [[UIApplication sharedApplication] delegate];
     userinfo = app.userinfo;
@@ -67,7 +57,7 @@
         allCount = 0;
     }
     
-     NSString *sqlStr = nil;
+    NSString *sqlStr = nil;
     
     //计算出页码
     int pageIndex = allCount / 25 + 1;
@@ -77,7 +67,7 @@
     NSString *Franchiser = [preference objectForKey:@"Franchiser"];
     NSString *Engineer = [preference objectForKey:@"Engineer"];
     
-    sqlStr = [NSString stringWithFormat:@"declare @p17 int set @p17=0 exec SP_GetMathAirCondUnitByPage_En @PageIndex='%d',@PageSize=25,@OrderBy=N'ID',@Sort='desc',@UserName='%@',@Ser_Dept='%@',@Engineer='%@',@TimeType='服务时间',@StartTime='',@EndTime='',@Type='All',@Project='All',@Rating='All',@SearchField='ALL',@SearchString='',@Franchiser='%@',@Total=@p17 output select @p17",pageIndex,userinfo.UserName,ser_Dept,Engineer, Franchiser];
+    sqlStr = [NSString stringWithFormat:@"declare @p11 int set @p11=0 exec SP_GetComeGoLetterByPage_En @PageIndex='%d',@PageSize=25,@OrderBy=N'ID',@Sort='desc',@UserName='%@',@Ser_Dept='%@',@Engineer='%@',@StartTime='',@EndTime='',@LetterType='All',@Franchiser='All',@SearchField='All',@SearchString='',@Total=@p11 output select @p11",pageIndex,userinfo.UserName,ser_Dept,Engineer];
     
     NSString *urlStr = [NSString stringWithFormat:@"%@JsonDataInUserInfo", api_base_url];
     
@@ -131,26 +121,24 @@
         NSArray *table = [jsonDic objectForKey:@"Table"];
         NSArray *table1 = [jsonDic objectForKey:@"Table1"];
         
-        NSArray *servNewsList = [Tool readJsonToObjArray:table andObjClass:[SiteServ class]];
+        NSArray *corrpdncNewsList = [Tool readJsonToObjArray:table andObjClass:[Correspondence class]];
         isLoading = NO;
         if (!gNoRefresh) {
             [self clear];
         }
-        if (servNewsList.count < 25) {
+        if (corrpdncNewsList.count < 25) {
             isLoadOver = YES;
         }
-        [servs addObjectsFromArray:servNewsList];
-        allCount = [servs count];
+        [corrpdncs addObjectsFromArray:corrpdncNewsList];
+        allCount = [corrpdncs count];
         
         NSDictionary *dic1 = table1[0];
         NSString *counts = dic1[@"Column1"];
-        self.title = [NSString stringWithFormat:@"Site Serv List(%@)",counts];
-        self.tabBarItem.title = @"Site Serv";
-
+        self.title = [NSString stringWithFormat:@"Corrpdnc Mails(%@)",counts];
+        
         [self.tableView reloadData];
         [self doneLoadingTableViewData];
     };
-    NSLog(@"%@",request.responseString);
     [utils stringFromparserXML:request.responseString target:@"string"];
 }
 
@@ -158,15 +146,15 @@
 {
     [self setTableView:nil];
     _refreshHeaderView = nil;
-    [servs removeAllObjects];
-    servs = nil;
+    [corrpdncs removeAllObjects];
+    corrpdncs = nil;
     [super viewDidUnload];
 }
 
 - (void)clear
 {
     allCount = 0;
-    [servs removeAllObjects];
+    [corrpdncs removeAllObjects];
     isLoadOver = NO;
 }
 
@@ -175,21 +163,21 @@
 {
     if ([UserModel Instance].isNetworkRunning) {
         if (isLoadOver) {
-            return servs.count == 0 ? 1 : servs.count;
+            return corrpdncs.count == 0 ? 1 : corrpdncs.count;
         }
         else
-            return servs.count + 1;
+            return corrpdncs.count + 1;
     }
     else
-        return servs.count;
+        return corrpdncs.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = [indexPath row];
-    if (row < [servs count])
+    if (row < [corrpdncs count])
     {
-        return 131.0;
+        return 126.0;
     }
     else
     {
@@ -206,25 +194,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = [indexPath row];
-    if ([servs count] > 0) {
-        if (row < [servs count])
+    if ([corrpdncs count] > 0) {
+        if (row < [corrpdncs count])
         {
-            SiteServTableCell *cell = [tableView dequeueReusableCellWithIdentifier:SiteServTableCellIdentifier];
+            MoreCorrpdncTableCell *cell = [tableView dequeueReusableCellWithIdentifier:MoreCorrpdncTableCellIdentifier];
             if (!cell) {
-                NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"SiteServTableCell" owner:self options:nil];
+                NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"MoreCorrpdncTableCell" owner:self options:nil];
                 for (NSObject *o in objects) {
-                    if ([o isKindOfClass:[SiteServTableCell class]]) {
-                        cell = (SiteServTableCell *)o;
+                    if ([o isKindOfClass:[MoreCorrpdncTableCell class]]) {
+                        cell = (MoreCorrpdncTableCell *)o;
                         break;
                     }
                 }
             }
-            SiteServ *s = [servs objectAtIndex:row];
-            cell.nameEnLb.text = s.PROJ_Name_En;
-            cell.nameLb.text = s.PROJ_Name;
-            cell.outfaceNumLb.text = s.OutFact_Num;
-            cell.typeLb.text = s.Type;
-            cell.projectLb.text = s.Project;
+            Correspondence *c = [corrpdncs objectAtIndex:row];
+            cell.PROJ_Name_EnLB.text = c.PROJ_Name_En;
+            cell.Uploader_EnLB.text = c.Uploader_En;
+            cell.FileTypeEnLB.text = c.FileTypeEn;
+            cell.UploadTimeLB.text = c.Exec_Date;
             return cell;
             
         }
@@ -243,9 +230,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    int row = [indexPath row];
+    NSInteger row = [indexPath row];
     //点击“下面20条”
-    if (row >= [servs count]) {
+    if (row >= [corrpdncs count]) {
         //启动刷新
         if (!isLoading) {
             [self performSelector:@selector(reload:)];
@@ -253,10 +240,9 @@
     }
     else
     {
-        SiteServ *s = [servs objectAtIndex:row];
-        MaintauningDetailView *detailView = [[MaintauningDetailView alloc] init];
-        detailView.ID = s.ID;
-        detailView.hidesBottomBarWhenPushed = YES;
+        Correspondence *c = [corrpdncs objectAtIndex:row];
+        CorrespondenceDetailView *detailView = [[CorrespondenceDetailView alloc] init];
+        detailView.ID = c.ID;
         [self.navigationController pushViewController:detailView animated:YES];
     }
 }

@@ -10,6 +10,7 @@
 
 @interface UserSolnTableView : UIViewController
 
+@property (strong, nonatomic) NSString *PROJ_Name_En;
 @property (strong, nonatomic) NSString *projId;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

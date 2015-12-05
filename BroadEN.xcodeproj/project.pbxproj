@@ -151,6 +151,16 @@
 		14B6DD631BBA41FF002E90DF /* UserListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B6DD611BBA41FF002E90DF /* UserListView.xib */; };
 		14B6DD681BBA449D002E90DF /* UserSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B6DD661BBA449D002E90DF /* UserSearchView.m */; };
 		14B6DD691BBA449D002E90DF /* UserSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B6DD671BBA449D002E90DF /* UserSearchView.xib */; };
+		14BACCB41C1337CB007566BF /* MoreUnitInfoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BACCB21C1337CB007566BF /* MoreUnitInfoTableView.m */; };
+		14BACCB51C1337CB007566BF /* MoreUnitInfoTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14BACCB31C1337CB007566BF /* MoreUnitInfoTableView.xib */; };
+		14BACCBB1C133857007566BF /* MoreUnitInfoTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BACCB91C133857007566BF /* MoreUnitInfoTableCell.m */; };
+		14BACCBC1C133857007566BF /* MoreUnitInfoTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14BACCBA1C133857007566BF /* MoreUnitInfoTableCell.xib */; };
+		14BACCC61C13424F007566BF /* MoreAgreementTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BACCC41C13424F007566BF /* MoreAgreementTableView.m */; };
+		14BACCC71C13424F007566BF /* MoreAgreementTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14BACCC51C13424F007566BF /* MoreAgreementTableView.xib */; };
+		14BACCCC1C134407007566BF /* MoreCorrpdncTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BACCCA1C134407007566BF /* MoreCorrpdncTableView.m */; };
+		14BACCCD1C134407007566BF /* MoreCorrpdncTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14BACCCB1C134407007566BF /* MoreCorrpdncTableView.xib */; };
+		14BACCD11C1348F4007566BF /* MoreCorrpdncTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BACCCF1C1348F4007566BF /* MoreCorrpdncTableCell.m */; };
+		14BACCD21C1348F4007566BF /* MoreCorrpdncTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14BACCD01C1348F4007566BF /* MoreCorrpdncTableCell.xib */; };
 		14EF6C2C1C0B55690016A8B0 /* ServiceType.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14EF6C2B1C0B55690016A8B0 /* ServiceType.plist */; };
 		14F7741B1C02F8E000F55042 /* UserBasicInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F774191C02F8E000F55042 /* UserBasicInfoView.m */; };
 		14F7741C1C02F8E000F55042 /* UserBasicInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F7741A1C02F8E000F55042 /* UserBasicInfoView.xib */; };
@@ -584,6 +594,21 @@
 		14B6DD651BBA449D002E90DF /* UserSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSearchView.h; sourceTree = "<group>"; };
 		14B6DD661BBA449D002E90DF /* UserSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSearchView.m; sourceTree = "<group>"; };
 		14B6DD671BBA449D002E90DF /* UserSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSearchView.xib; sourceTree = "<group>"; };
+		14BACCB11C1337CB007566BF /* MoreUnitInfoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreUnitInfoTableView.h; sourceTree = "<group>"; };
+		14BACCB21C1337CB007566BF /* MoreUnitInfoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreUnitInfoTableView.m; sourceTree = "<group>"; };
+		14BACCB31C1337CB007566BF /* MoreUnitInfoTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreUnitInfoTableView.xib; sourceTree = "<group>"; };
+		14BACCB81C133857007566BF /* MoreUnitInfoTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreUnitInfoTableCell.h; sourceTree = "<group>"; };
+		14BACCB91C133857007566BF /* MoreUnitInfoTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreUnitInfoTableCell.m; sourceTree = "<group>"; };
+		14BACCBA1C133857007566BF /* MoreUnitInfoTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreUnitInfoTableCell.xib; sourceTree = "<group>"; };
+		14BACCC31C13424F007566BF /* MoreAgreementTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreAgreementTableView.h; sourceTree = "<group>"; };
+		14BACCC41C13424F007566BF /* MoreAgreementTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreAgreementTableView.m; sourceTree = "<group>"; };
+		14BACCC51C13424F007566BF /* MoreAgreementTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreAgreementTableView.xib; sourceTree = "<group>"; };
+		14BACCC91C134407007566BF /* MoreCorrpdncTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCorrpdncTableView.h; sourceTree = "<group>"; };
+		14BACCCA1C134407007566BF /* MoreCorrpdncTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCorrpdncTableView.m; sourceTree = "<group>"; };
+		14BACCCB1C134407007566BF /* MoreCorrpdncTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreCorrpdncTableView.xib; sourceTree = "<group>"; };
+		14BACCCE1C1348F4007566BF /* MoreCorrpdncTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCorrpdncTableCell.h; sourceTree = "<group>"; };
+		14BACCCF1C1348F4007566BF /* MoreCorrpdncTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCorrpdncTableCell.m; sourceTree = "<group>"; };
+		14BACCD01C1348F4007566BF /* MoreCorrpdncTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreCorrpdncTableCell.xib; sourceTree = "<group>"; };
 		14EF6C2B1C0B55690016A8B0 /* ServiceType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServiceType.plist; sourceTree = "<group>"; };
 		14F774181C02F8E000F55042 /* UserBasicInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserBasicInfoView.h; sourceTree = "<group>"; };
 		14F774191C02F8E000F55042 /* UserBasicInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserBasicInfoView.m; sourceTree = "<group>"; };
@@ -1309,7 +1334,6 @@
 		142CF2E01C01566D009FAE0A /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
-				1402B6811C1136F9003E940D /* Agreement */,
 				142CF2E21C0156BC009FAE0A /* UsersTableView.h */,
 				142CF2E31C0156BC009FAE0A /* UsersTableView.m */,
 				142CF2E41C0156BC009FAE0A /* UsersTableView.xib */,
@@ -1325,6 +1349,7 @@
 				145049631C0D789000085B5F /* SolnMgt */,
 				1400A4B71C0E7CDF000472F9 /* Satisfa */,
 				14AD6D9E1C0F34D000A1C8AB /* Correspondence */,
+				1402B6811C1136F9003E940D /* Agreement */,
 			);
 			name = UserInfo;
 			sourceTree = "<group>";
@@ -1393,6 +1418,9 @@
 		142CF30B1C017EA7009FAE0A /* more */ = {
 			isa = PBXGroup;
 			children = (
+				14BACCC81C1343D6007566BF /* CorrpdncMails */,
+				14BACCBD1C133FC1007566BF /* AgreementMgt */,
+				14BACCB71C1337DC007566BF /* UnitInfo */,
 				142CF31B1C017F42009FAE0A /* MoreListView.h */,
 				142CF31C1C017F42009FAE0A /* MoreListView.m */,
 				142CF31D1C017F42009FAE0A /* MoreListView.xib */,
@@ -1501,6 +1529,42 @@
 				14AD6DAF1C0F3FF500A1C8AB /* CorrespondenceAddView.xib */,
 			);
 			name = Correspondence;
+			sourceTree = "<group>";
+		};
+		14BACCB71C1337DC007566BF /* UnitInfo */ = {
+			isa = PBXGroup;
+			children = (
+				14BACCB11C1337CB007566BF /* MoreUnitInfoTableView.h */,
+				14BACCB21C1337CB007566BF /* MoreUnitInfoTableView.m */,
+				14BACCB31C1337CB007566BF /* MoreUnitInfoTableView.xib */,
+				14BACCB81C133857007566BF /* MoreUnitInfoTableCell.h */,
+				14BACCB91C133857007566BF /* MoreUnitInfoTableCell.m */,
+				14BACCBA1C133857007566BF /* MoreUnitInfoTableCell.xib */,
+			);
+			name = UnitInfo;
+			sourceTree = "<group>";
+		};
+		14BACCBD1C133FC1007566BF /* AgreementMgt */ = {
+			isa = PBXGroup;
+			children = (
+				14BACCC31C13424F007566BF /* MoreAgreementTableView.h */,
+				14BACCC41C13424F007566BF /* MoreAgreementTableView.m */,
+				14BACCC51C13424F007566BF /* MoreAgreementTableView.xib */,
+			);
+			name = AgreementMgt;
+			sourceTree = "<group>";
+		};
+		14BACCC81C1343D6007566BF /* CorrpdncMails */ = {
+			isa = PBXGroup;
+			children = (
+				14BACCC91C134407007566BF /* MoreCorrpdncTableView.h */,
+				14BACCCA1C134407007566BF /* MoreCorrpdncTableView.m */,
+				14BACCCB1C134407007566BF /* MoreCorrpdncTableView.xib */,
+				14BACCCE1C1348F4007566BF /* MoreCorrpdncTableCell.h */,
+				14BACCCF1C1348F4007566BF /* MoreCorrpdncTableCell.m */,
+				14BACCD01C1348F4007566BF /* MoreCorrpdncTableCell.xib */,
+			);
+			name = CorrpdncMails;
 			sourceTree = "<group>";
 		};
 		B719FC571B947EAC00206227 /* SDRefresh */ = {
@@ -2338,10 +2402,12 @@
 				142CF2E61C0156BC009FAE0A /* UsersTableView.xib in Resources */,
 				141096711C0DDDFC00D08169 /* SolnMgtDetailView.xib in Resources */,
 				B7D415B51B99266C00462F0C /* WeiXiuCell.xib in Resources */,
+				14BACCCD1C134407007566BF /* MoreCorrpdncTableView.xib in Resources */,
 				142CF3151C017F0D009FAE0A /* SolnMgtTableView.xib in Resources */,
 				1492009B1C062EBD00007D95 /* UnitInfoBasicOneCell.xib in Resources */,
 				B737E46B1BAC5B5300912FAB /* RongYeUpdateView.xib in Resources */,
 				142CF3101C017EEE009FAE0A /* SiteServTableView.xib in Resources */,
+				14BACCBC1C133857007566BF /* MoreUnitInfoTableCell.xib in Resources */,
 				149200B01C063ECC00007D95 /* UnitInfoCommissCell.xib in Resources */,
 				B719FC921B96E3B200206227 /* userdetailsupdate.html in Resources */,
 				B7D819FD1BA64390005386CE /* YuKaiDetailView.xib in Resources */,
@@ -2353,6 +2419,7 @@
 				143A15891C04435C00F4B418 /* UnitInfoTableView.xib in Resources */,
 				B7F337DB1BA2474E00708F75 /* YuKaiAddView.xib in Resources */,
 				B737E4671BAC5B5300912FAB /* RongYeAddView.xib in Resources */,
+				14BACCB51C1337CB007566BF /* MoreUnitInfoTableView.xib in Resources */,
 				142AF5191C11E76600B5EAFE /* AgreementDetailView.xib in Resources */,
 				149200A11C06386700007D95 /* UnitInfoShippingCell.xib in Resources */,
 				149200AB1C063C2200007D95 /* UnitInfoBasicTwoCell.xib in Resources */,
@@ -2371,6 +2438,7 @@
 				142CF31F1C017F42009FAE0A /* MoreListView.xib in Resources */,
 				B737E4691BAC5B5300912FAB /* RongYeDetailView.xib in Resources */,
 				142C797A1C093ECF006FBC28 /* MaintauningDetailView.xib in Resources */,
+				14BACCC71C13424F007566BF /* MoreAgreementTableView.xib in Resources */,
 				142CF2EB1C01578E009FAE0A /* UserTableCell.xib in Resources */,
 				B798ED641B930B8800AE40F2 /* LICENSE in Resources */,
 				04B2757D1AB6C966002A7CE0 /* IQKeyboardManager.bundle in Resources */,
@@ -2390,6 +2458,7 @@
 				142CF32C1C01956B009FAE0A /* SolnMgtTableCell.xib in Resources */,
 				04E3D4051AD23CBD0052032B /* MainPageView.xib in Resources */,
 				1437FE7B1C03E9AE003126D3 /* UserBasicInfoUpdateView.xib in Resources */,
+				14BACCD21C1348F4007566BF /* MoreCorrpdncTableCell.xib in Resources */,
 				B701944D1B97E12F008F77F7 /* UserInfoUpdateView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2431,6 +2500,7 @@
 				B719FC7F1B96903000206227 /* Depart.m in Sources */,
 				04E3D3CC1AD02BB00052032B /* SettingModel.m in Sources */,
 				04E3D4061AD23CBD0052032B /* MainPageView.m in Sources */,
+				14BACCCC1C134407007566BF /* MoreCorrpdncTableView.m in Sources */,
 				B798ED221B930B8800AE40F2 /* ASIWebPageRequest.m in Sources */,
 				143D71931C07558100E08308 /* UserSecurity.m in Sources */,
 				142CF32F1C01986E009FAE0A /* SolnMgt.m in Sources */,
@@ -2444,6 +2514,7 @@
 				B701944C1B97E12F008F77F7 /* UserInfoUpdateView.m in Sources */,
 				B798ED6B1B930B8800AE40F2 /* SDWebImageDownloader.m in Sources */,
 				B798ED2D1B930B8800AE40F2 /* IconDownloader.m in Sources */,
+				14BACCC61C13424F007566BF /* MoreAgreementTableView.m in Sources */,
 				149200A01C06386700007D95 /* UnitInfoShippingCell.m in Sources */,
 				B7D415DA1B9996EA00462F0C /* SGActionView.m in Sources */,
 				B7F337DF1BA2479200708F75 /* Invoice.m in Sources */,
@@ -2505,11 +2576,13 @@
 				B7D415DB1B9996EA00462F0C /* SGAlertMenu.m in Sources */,
 				142CF3031C015B5F009FAE0A /* NdUncaughtExceptionHandler.m in Sources */,
 				B798ED231B930B8800AE40F2 /* ASIAuthenticationDialog.m in Sources */,
+				14BACCB41C1337CB007566BF /* MoreUnitInfoTableView.m in Sources */,
 				1492009A1C062EBD00007D95 /* UnitInfoBasicOneCell.m in Sources */,
 				142CF3041C015B5F009FAE0A /* TQImageCache.m in Sources */,
 				1402B68B1C113D15003E940D /* AgreementTableCell.m in Sources */,
 				B737E46A1BAC5B5300912FAB /* RongYeUpdateView.m in Sources */,
 				B798ED751B930B8800AE40F2 /* UIView+WebCacheOperation.m in Sources */,
+				14BACCBB1C133857007566BF /* MoreUnitInfoTableCell.m in Sources */,
 				B798ED2F1B930B8800AE40F2 /* UIViewController+CWPopup.m in Sources */,
 				04B275731AB6C966002A7CE0 /* IQUIView+Hierarchy.m in Sources */,
 				04B275741AB6C966002A7CE0 /* IQUIWindow+Hierarchy.m in Sources */,
@@ -2638,6 +2711,7 @@
 				B7D416051B9DC94A00462F0C /* IQAssetsPickerShadowView.m in Sources */,
 				B719FC831B96C9BD00206227 /* UserInfoView.m in Sources */,
 				B798ED481B930B8800AE40F2 /* JastorRuntimeHelper.m in Sources */,
+				14BACCD11C1348F4007566BF /* MoreCorrpdncTableCell.m in Sources */,
 				142CF2FF1C015B5F009FAE0A /* EGORefreshTableHeaderView.m in Sources */,
 				1400A4C01C0E870B000472F9 /* SatisfaDetailView.m in Sources */,
 			);

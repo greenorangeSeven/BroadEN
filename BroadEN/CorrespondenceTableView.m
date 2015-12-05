@@ -150,8 +150,15 @@
         NSError *error;
         NSLog(@"%@", string);
         NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        correspondences = [Tool readJsonToObjArray:jsonArray andObjClass:[Correspondence class]];
-        [self.tableView reloadData];
+        if([jsonArray count] > 0)
+        {
+            correspondences = [Tool readJsonToObjArray:jsonArray andObjClass:[Correspondence class]];
+            [self.tableView reloadData];
+        }
+        else
+        {
+            [Tool showCustomHUD:@"NO DATA" andView:self.view andImage:nil andAfterDelay:1.2f];
+        }
     };
     [utils stringFromparserXML:request.responseString target:@"string"];
 }

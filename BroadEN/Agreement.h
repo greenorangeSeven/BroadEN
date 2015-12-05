@@ -10,6 +10,7 @@
 
 @interface Agreement : Jastor
 
+@property (copy, nonatomic) NSString *PROJ_Name_En;
 @property (copy, nonatomic) NSString *rowid;
 @property (copy, nonatomic) NSString *ID;
 @property (copy, nonatomic) NSString *Proj_ID;

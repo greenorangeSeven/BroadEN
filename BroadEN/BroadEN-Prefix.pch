@@ -71,6 +71,9 @@
 #define CorrespondenceCellIdentifier @"CorrespondenceCellIdentifier"
 #define AgreementTableCellIdentifier @"AgreementTableCellIdentifier"
 
+#define MoreUnitInfoTableCellIdentifier @"MoreUnitInfoTableCellIdentifier"
+#define MoreCorrpdncTableCellIdentifier @"MoreCorrpdncTableCellIdentifier"
+
 
 //每页数量
 #define page_count 5

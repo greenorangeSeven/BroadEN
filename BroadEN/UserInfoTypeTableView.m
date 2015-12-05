@@ -80,6 +80,7 @@
         {
             UserSolnTableView *solnTableView = [[UserSolnTableView alloc] init];
             solnTableView.projId = self.projId;
+            solnTableView.PROJ_Name_En = self.titleStr;
             [self.navigationController pushViewController:solnTableView animated:YES];
         }
             break;

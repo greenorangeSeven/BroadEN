@@ -16,5 +16,6 @@
 @property (copy, nonatomic) NSString *Prod_Num;
 @property (copy, nonatomic) NSString *Send_Date;
 @property (copy, nonatomic) NSString *PROJ_ID;
+@property (copy, nonatomic) NSString *PROJ_Name_En;
 
 @end

@@ -101,7 +101,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 107.0;
+    return 128.0;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -125,7 +125,7 @@
         }
     }
     SolnMgt *s = [mgts objectAtIndex:row];
-//    cell.ececManLb.text = s.Exec_ManEn;
+    cell.PROJ_Name_EnLb.text = self.PROJ_Name_En;
     cell.ececManLb.text = s.Exec_Man;
     cell.execDateLb.text = s.Exec_Date;
     cell.unitModeLb.text = s.AirCondUnit_Mode;

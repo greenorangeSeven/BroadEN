@@ -10,6 +10,7 @@
 
 @interface SolnMgtTableCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *PROJ_Name_EnLb;
 @property (weak, nonatomic) IBOutlet UILabel *ececManLb;
 @property (weak, nonatomic) IBOutlet UILabel *execDateLb;
 @property (weak, nonatomic) IBOutlet UILabel *unitModeLb;

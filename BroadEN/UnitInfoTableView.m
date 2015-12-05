@@ -80,8 +80,16 @@
         NSLog(string);
         NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         
-        units = [Tool readJsonToObjArray:jsonArray andObjClass:[UnitInfo class]];
-        [self.tableView reloadData];
+        if([jsonArray count] > 0)
+        {
+            units = [Tool readJsonToObjArray:jsonArray andObjClass:[UnitInfo class]];
+            [self.tableView reloadData];
+        }
+        else
+        {
+            [Tool showCustomHUD:@"NO DATA" andView:self.view andImage:nil andAfterDelay:1.2f];
+        }
+        
     };
     NSLog(@"%@",request.responseString);
     [utils stringFromparserXML:request.responseString target:@"string"];
@@ -121,7 +129,7 @@
     cell.UnitModelLb.text = u.AirCondUnit_Mode;
     cell.ProductionLb.text = u.Prod_Num;
     cell.SerialLb.text = u.OutFact_Num;
-    cell.DeliveryLb.text = u.Send_Date;
+    cell.DeliveryLb.text = [Tool DateTimeRemoveTime:u.Send_Date andSeparated:@" "];
     return cell;
 }
 

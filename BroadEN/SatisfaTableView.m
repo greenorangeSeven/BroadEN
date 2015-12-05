@@ -8,6 +8,7 @@
 
 #import "SatisfaTableView.h"
 #import "SatisfaTableCell.h"
+#import "SatisfaDetailView.h"
 #import "Satisfa.h"
 
 @interface SatisfaTableView ()
@@ -284,7 +285,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    int row = [indexPath row];
+    NSUInteger row = [indexPath row];
     //点击“下面20条”
     if (row >= [satisfas count]) {
         //启动刷新
@@ -294,12 +295,12 @@
     }
     else
     {
-        //        Notice *n = [notices objectAtIndex:[indexPath row]];
-        //        NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, htm_pushDetailHtm ,n.pushId];
-        //        CommDetailView *detailView = [[CommDetailView alloc] init];
-        //        detailView.titleStr = @"详情";
-        //        detailView.urlStr = pushDetailHtm;
-        //        [self.navigationController pushViewController:detailView animated:YES];
+        Satisfa *s = [satisfas objectAtIndex:row];
+        SatisfaDetailView *detailView = [[SatisfaDetailView alloc] init];
+        detailView.ID = s.ID;
+        detailView.projId = s.PROJ_ID;
+        detailView.hidesBottomBarWhenPushed  = YES;
+        [self.navigationController pushViewController:detailView animated:YES];
     }
 }
 
@@ -372,6 +373,10 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,nil]];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
+    self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"Back";
+    self.navigationItem.backBarButtonItem = backItem;
 }
 
 - (void)viewWillDisappear:(BOOL)animated

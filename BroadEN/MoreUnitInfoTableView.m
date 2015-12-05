@@ -1,17 +1,17 @@
 //
-//  SiteServTableView.m
+//  MoreUnitInfoTableView.m
 //  BroadEN
 //
-//  Created by Seven on 15/11/22.
+//  Created by Seven on 15/12/5.
 //  Copyright (c) 2015年 greenorange. All rights reserved.
 //
 
-#import "SiteServTableView.h"
-#import "SiteServTableCell.h"
-#import "MaintauningDetailView.h"
-#import "SiteServ.h"
+#import "MoreUnitInfoTableView.h"
+#import "MoreUnitInfoTableCell.h"
+#import "UnitInfo.h"
+#import "UnitInfoDetailView.h"
 
-@interface SiteServTableView ()
+@interface MoreUnitInfoTableView ()
 {
     UserInfo *userinfo;
     BOOL gNoRefresh;
@@ -19,27 +19,18 @@
 
 @end
 
-@implementation SiteServTableView
+@implementation MoreUnitInfoTableView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Site Serv List";
-    self.tabBarItem.title = @"Site Serv";
-    
-    //适配iOS7uinavigationbar遮挡的问题
-    if(IS_IOS7)
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
+    self.title = @"Unit Info";
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = [[UIView alloc] init];
     
-    allCount = 0;
     //添加的代码
     if (_refreshHeaderView == nil) {
         EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, -320.0f, self.view.frame.size.width, 320)];
@@ -49,7 +40,7 @@
     }
     [_refreshHeaderView refreshLastUpdatedDate];
     
-    servs = [[NSMutableArray alloc] initWithCapacity:25];
+    units = [[NSMutableArray alloc] initWithCapacity:25];
     
     AppDelegate *app = [[UIApplication sharedApplication] delegate];
     userinfo = app.userinfo;
@@ -67,7 +58,7 @@
         allCount = 0;
     }
     
-     NSString *sqlStr = nil;
+    NSString *sqlStr = nil;
     
     //计算出页码
     int pageIndex = allCount / 25 + 1;
@@ -77,7 +68,7 @@
     NSString *Franchiser = [preference objectForKey:@"Franchiser"];
     NSString *Engineer = [preference objectForKey:@"Engineer"];
     
-    sqlStr = [NSString stringWithFormat:@"declare @p17 int set @p17=0 exec SP_GetMathAirCondUnitByPage_En @PageIndex='%d',@PageSize=25,@OrderBy=N'ID',@Sort='desc',@UserName='%@',@Ser_Dept='%@',@Engineer='%@',@TimeType='服务时间',@StartTime='',@EndTime='',@Type='All',@Project='All',@Rating='All',@SearchField='ALL',@SearchString='',@Franchiser='%@',@Total=@p17 output select @p17",pageIndex,userinfo.UserName,ser_Dept,Engineer, Franchiser];
+    sqlStr = [NSString stringWithFormat:@"declare @p13 int set @p13=0 exec SP_GetUnitStatusByPage_En @PageIndex='%D',@PageSize=25,@OrderBy=N'ID',@Sort='desc',@UserName='%@',@Ser_Dept='%@',@Engineer='%@',@Country='全部',@SearchField='All',@SearchString='',@UnitStatus='全部',@Franchiser='%@',@Total=@p13 output select @p13",pageIndex,userinfo.UserName,ser_Dept,Engineer, Franchiser];
     
     NSString *urlStr = [NSString stringWithFormat:@"%@JsonDataInUserInfo", api_base_url];
     
@@ -131,22 +122,21 @@
         NSArray *table = [jsonDic objectForKey:@"Table"];
         NSArray *table1 = [jsonDic objectForKey:@"Table1"];
         
-        NSArray *servNewsList = [Tool readJsonToObjArray:table andObjClass:[SiteServ class]];
+        NSArray *unitNewsList = [Tool readJsonToObjArray:table andObjClass:[UnitInfo class]];
         isLoading = NO;
         if (!gNoRefresh) {
             [self clear];
         }
-        if (servNewsList.count < 25) {
+        if (unitNewsList.count < 25) {
             isLoadOver = YES;
         }
-        [servs addObjectsFromArray:servNewsList];
-        allCount = [servs count];
+        [units addObjectsFromArray:unitNewsList];
+        allCount = [units count];
         
         NSDictionary *dic1 = table1[0];
         NSString *counts = dic1[@"Column1"];
-        self.title = [NSString stringWithFormat:@"Site Serv List(%@)",counts];
-        self.tabBarItem.title = @"Site Serv";
-
+        self.title = [NSString stringWithFormat:@"Unit Info(%@)",counts];
+        
         [self.tableView reloadData];
         [self doneLoadingTableViewData];
     };
@@ -158,15 +148,15 @@
 {
     [self setTableView:nil];
     _refreshHeaderView = nil;
-    [servs removeAllObjects];
-    servs = nil;
+    [units removeAllObjects];
+    units = nil;
     [super viewDidUnload];
 }
 
 - (void)clear
 {
     allCount = 0;
-    [servs removeAllObjects];
+    [units removeAllObjects];
     isLoadOver = NO;
 }
 
@@ -175,19 +165,19 @@
 {
     if ([UserModel Instance].isNetworkRunning) {
         if (isLoadOver) {
-            return servs.count == 0 ? 1 : servs.count;
+            return units.count == 0 ? 1 : units.count;
         }
         else
-            return servs.count + 1;
+            return units.count + 1;
     }
     else
-        return servs.count;
+        return units.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = [indexPath row];
-    if (row < [servs count])
+    if (row < [units count])
     {
         return 131.0;
     }
@@ -206,25 +196,25 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = [indexPath row];
-    if ([servs count] > 0) {
-        if (row < [servs count])
+    if ([units count] > 0) {
+        if (row < [units count])
         {
-            SiteServTableCell *cell = [tableView dequeueReusableCellWithIdentifier:SiteServTableCellIdentifier];
+            MoreUnitInfoTableCell *cell = [tableView dequeueReusableCellWithIdentifier:MoreUnitInfoTableCellIdentifier];
             if (!cell) {
-                NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"SiteServTableCell" owner:self options:nil];
+                NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"MoreUnitInfoTableCell" owner:self options:nil];
                 for (NSObject *o in objects) {
-                    if ([o isKindOfClass:[SiteServTableCell class]]) {
-                        cell = (SiteServTableCell *)o;
+                    if ([o isKindOfClass:[MoreUnitInfoTableCell class]]) {
+                        cell = (MoreUnitInfoTableCell *)o;
                         break;
                     }
                 }
             }
-            SiteServ *s = [servs objectAtIndex:row];
-            cell.nameEnLb.text = s.PROJ_Name_En;
-            cell.nameLb.text = s.PROJ_Name;
-            cell.outfaceNumLb.text = s.OutFact_Num;
-            cell.typeLb.text = s.Type;
-            cell.projectLb.text = s.Project;
+            UnitInfo *u = [units objectAtIndex:row];
+            cell.PROJ_Name_EnLb.text = u.PROJ_Name_En;
+            cell.UnitModelLb.text = u.AirCondUnit_Mode;
+            cell.ProductionLb.text = u.Prod_Num;
+            cell.SerialLb.text = u.OutFact_Num;
+            cell.DeliveryLb.text = [Tool DateTimeRemoveTime:u.Send_Date andSeparated:@" "];
             return cell;
             
         }
@@ -243,9 +233,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    int row = [indexPath row];
+    NSInteger row = [indexPath row];
     //点击“下面20条”
-    if (row >= [servs count]) {
+    if (row >= [units count]) {
         //启动刷新
         if (!isLoading) {
             [self performSelector:@selector(reload:)];
@@ -253,10 +243,10 @@
     }
     else
     {
-        SiteServ *s = [servs objectAtIndex:row];
-        MaintauningDetailView *detailView = [[MaintauningDetailView alloc] init];
-        detailView.ID = s.ID;
-        detailView.hidesBottomBarWhenPushed = YES;
+        UnitInfo *u = [units objectAtIndex:row];
+        UnitInfoDetailView *detailView = [[UnitInfoDetailView alloc] init];
+        detailView.ID = u.ID;
+        detailView.PROJ_ID = u.PROJ_ID;
         [self.navigationController pushViewController:detailView animated:YES];
     }
 }

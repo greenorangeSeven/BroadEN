@@ -200,7 +200,7 @@
                 self.tableView.tableFooterView = self.footerView;
             }
         }
-        else if ([state isEqualToString:@""])
+        else
         {
             if ([Serv_OverallMeritEN isEqualToString:@"Poor"] || [Serv_OverallMeritEN isEqualToString:@"Bad"] || [Serv_OverallMeritEN isEqualToString:@"Very Bad"]) {
                 self.UserHQConfirmOpinionView.hidden = NO;

@@ -8,6 +8,7 @@
 
 #import "SolnMgtTableView.h"
 #import "SolnMgtTableCell.h"
+#import "SolnMgtDetailView.h"
 #import "SolnMgt.h"
 
 @interface SolnMgtTableView ()
@@ -186,7 +187,7 @@
     NSInteger row = [indexPath row];
     if (row < [mgts count])
     {
-        return 107.0;
+        return 128.0;
     }
     else
     {
@@ -217,7 +218,7 @@
                 }
             }
             SolnMgt *s = [mgts objectAtIndex:row];
-//            cell.ececManLb.text = s.Exec_ManEn;
+            cell.PROJ_Name_EnLb.text = s.PROJ_Name_En;
             cell.ececManLb.text = s.Exec_Man;
             cell.execDateLb.text = s.Exec_Date;
             cell.unitModeLb.text = s.AirCondUnit_Mode;
@@ -240,7 +241,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    int row = [indexPath row];
+    NSUInteger row = [indexPath row];
     //点击“下面20条”
     if (row >= [mgts count]) {
         //启动刷新
@@ -250,12 +251,11 @@
     }
     else
     {
-        //        Notice *n = [notices objectAtIndex:[indexPath row]];
-        //        NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, htm_pushDetailHtm ,n.pushId];
-        //        CommDetailView *detailView = [[CommDetailView alloc] init];
-        //        detailView.titleStr = @"详情";
-        //        detailView.urlStr = pushDetailHtm;
-        //        [self.navigationController pushViewController:detailView animated:YES];
+        SolnMgt *s = [mgts objectAtIndex:row];
+        SolnMgtDetailView *detailView = [[SolnMgtDetailView alloc] init];
+        detailView.ID = s.ID;
+        detailView.hidesBottomBarWhenPushed  = YES;
+        [self.navigationController pushViewController:detailView animated:YES];
     }
 }
 
@@ -328,6 +328,10 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,nil]];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
+    self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"Back";
+    self.navigationItem.backBarButtonItem = backItem;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
