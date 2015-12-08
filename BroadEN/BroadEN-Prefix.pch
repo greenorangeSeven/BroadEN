@@ -73,7 +73,7 @@
 
 #define MoreUnitInfoTableCellIdentifier @"MoreUnitInfoTableCellIdentifier"
 #define MoreCorrpdncTableCellIdentifier @"MoreCorrpdncTableCellIdentifier"
-
+#define MyWorkTableCellIdentifier @"MyWorkTableCellIdentifier"
 
 //每页数量
 #define page_count 5

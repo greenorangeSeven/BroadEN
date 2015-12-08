@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>typeEN</key>
+		<string>Unit management handover sheet</string>
+		<key>typeCN</key>
+		<string>机组管理交接单</string>
+	</dict>
+	<dict>
+		<key>typeEN</key>
+		<string>User background information sheet</string>
+		<key>typeCN</key>
+		<string>用户背景资料表</string>
+	</dict>
+	<dict>
+		<key>typeEN</key>
+		<string>Commissioning report</string>
+		<key>typeCN</key>
+		<string>调试成绩表</string>
+	</dict>
+	<dict>
+		<key>typeEN</key>
+		<string>Performance commissioning instroduction</string>
+		<key>typeCN</key>
+		<string>制冷性能指引表</string>
+	</dict>
+	<dict>
+		<key>typeEN</key>
+		<string>PLC program backup</string>
+		<key>typeCN</key>
+		<string>PLC程序备份</string>
+	</dict>
+	<dict>
+		<key>typeEN</key>
+		<string>Touch Screen program backup</string>
+		<key>typeCN</key>
+		<string>触摸屏程序备份</string>
+	</dict>
+	<dict>
+		<key>typeEN</key>
+		<string>Photo</string>
+		<key>typeCN</key>
+		<string>照片</string>
+	</dict>
+	<dict>
+		<key>typeEN</key>
+		<string>Others</string>
+		<key>typeCN</key>
+		<string>其他</string>
+	</dict>
+</array>
+</plist>

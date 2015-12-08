@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MWPhotoBrowser.h"
 
-@interface UnitInfoDetailView : UIViewController<UITableViewDelegate,UITableViewDataSource,MBProgressHUDDelegate,MWPhotoBrowserDelegate>
+@interface UnitInfoDetailView : UIViewController<UITableViewDelegate,UITableViewDataSource,MBProgressHUDDelegate,MWPhotoBrowserDelegate,UIActionSheetDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate>
 {
     NSMutableArray *_photos;
 }
@@ -19,5 +19,10 @@
 @property (strong, nonatomic) NSString *PROJ_ID;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *footerView;
+
+@property (weak, nonatomic) IBOutlet UILabel *TypeEnLB;
+@property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
+- (IBAction)chooseFileTypeAction:(id)sender;
 
 @end

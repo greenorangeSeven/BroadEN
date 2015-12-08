@@ -21,5 +21,6 @@
 
 @property (copy, nonatomic) NSString *KeepFix_Sign_EN;
 @property (copy, nonatomic) NSString *bzbx_EN;
+@property (copy, nonatomic) NSString *PROJ_Name;
 
 @end

@@ -249,7 +249,7 @@
     {
         if ([filePicArray count] <= 6)
         {
-            if ([picArray count] % 3 == 0) {
+            if ([filePicArray count] % 3 == 0) {
                 addRow = -1;
             }
         }

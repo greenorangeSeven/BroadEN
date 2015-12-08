@@ -13,6 +13,7 @@
 #import "MoreUnitInfoTableView.h"
 #import "MoreAgreementTableView.h"
 #import "MoreCorrpdncTableView.h"
+#import "MyWorkTableView.h"
 
 @interface MoreListView ()
 {
@@ -154,7 +155,9 @@
             break;
         case 4:
         {
-           
+            MyWorkTableView *myWorkView = [[MyWorkTableView alloc] init];
+            myWorkView.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:myWorkView animated:YES];
         }
             break;
         case 5:

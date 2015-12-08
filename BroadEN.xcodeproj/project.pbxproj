@@ -61,10 +61,19 @@
 		1402B6871C1137AE003E940D /* AgreementTabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1402B6851C1137AE003E940D /* AgreementTabelView.xib */; };
 		1402B68B1C113D15003E940D /* AgreementTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1402B6891C113D15003E940D /* AgreementTableCell.m */; };
 		1402B68C1C113D15003E940D /* AgreementTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1402B68A1C113D15003E940D /* AgreementTableCell.xib */; };
+		14091CAE1C167A610068A20C /* UnitFileType.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14091CAD1C167A610068A20C /* UnitFileType.plist */; };
 		140BAE151C0205660047AF57 /* UserInfoTypeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 140BAE131C0205660047AF57 /* UserInfoTypeTableView.m */; };
 		140BAE161C0205660047AF57 /* UserInfoTypeTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140BAE141C0205660047AF57 /* UserInfoTypeTableView.xib */; };
 		141096701C0DDDFC00D08169 /* SolnMgtDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410966E1C0DDDFC00D08169 /* SolnMgtDetailView.m */; };
 		141096711C0DDDFC00D08169 /* SolnMgtDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1410966F1C0DDDFC00D08169 /* SolnMgtDetailView.xib */; };
+		141FB0C91C13FB3B0073C884 /* MyWorkTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 141FB0C71C13FB3B0073C884 /* MyWorkTableView.m */; };
+		141FB0CA1C13FB3B0073C884 /* MyWorkTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141FB0C81C13FB3B0073C884 /* MyWorkTableView.xib */; };
+		141FB0CD1C13FBE80073C884 /* MyWorkType.m in Sources */ = {isa = PBXBuildFile; fileRef = 141FB0CC1C13FBE80073C884 /* MyWorkType.m */; };
+		141FB0D01C1401950073C884 /* MyWorkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 141FB0CF1C1401950073C884 /* MyWorkItem.m */; };
+		141FB0D41C1405680073C884 /* MyWorkTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 141FB0D21C1405680073C884 /* MyWorkTableCell.m */; };
+		141FB0D51C1405680073C884 /* MyWorkTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141FB0D31C1405680073C884 /* MyWorkTableCell.xib */; };
+		14216FAC1C155F440033FF37 /* SolnMgtFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14216FAA1C155F440033FF37 /* SolnMgtFlowView.m */; };
+		14216FAD1C155F440033FF37 /* SolnMgtFlowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14216FAB1C155F440033FF37 /* SolnMgtFlowView.xib */; };
 		142AF5131C11DEED00B5EAFE /* Agreement.m in Sources */ = {isa = PBXBuildFile; fileRef = 142AF5121C11DEED00B5EAFE /* Agreement.m */; };
 		142AF5181C11E76600B5EAFE /* AgreementDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142AF5161C11E76600B5EAFE /* AgreementDetailView.m */; };
 		142AF5191C11E76600B5EAFE /* AgreementDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142AF5171C11E76600B5EAFE /* AgreementDetailView.xib */; };
@@ -450,12 +459,26 @@
 		1402B6881C113D15003E940D /* AgreementTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgreementTableCell.h; sourceTree = "<group>"; };
 		1402B6891C113D15003E940D /* AgreementTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgreementTableCell.m; sourceTree = "<group>"; };
 		1402B68A1C113D15003E940D /* AgreementTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AgreementTableCell.xib; sourceTree = "<group>"; };
+		14091CAD1C167A610068A20C /* UnitFileType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UnitFileType.plist; sourceTree = "<group>"; };
 		140BAE121C0205660047AF57 /* UserInfoTypeTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoTypeTableView.h; sourceTree = "<group>"; };
 		140BAE131C0205660047AF57 /* UserInfoTypeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoTypeTableView.m; sourceTree = "<group>"; };
 		140BAE141C0205660047AF57 /* UserInfoTypeTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoTypeTableView.xib; sourceTree = "<group>"; };
 		1410966D1C0DDDFC00D08169 /* SolnMgtDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolnMgtDetailView.h; sourceTree = "<group>"; };
 		1410966E1C0DDDFC00D08169 /* SolnMgtDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolnMgtDetailView.m; sourceTree = "<group>"; };
 		1410966F1C0DDDFC00D08169 /* SolnMgtDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SolnMgtDetailView.xib; sourceTree = "<group>"; };
+		141FB0C61C13FB3B0073C884 /* MyWorkTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWorkTableView.h; sourceTree = "<group>"; };
+		141FB0C71C13FB3B0073C884 /* MyWorkTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWorkTableView.m; sourceTree = "<group>"; };
+		141FB0C81C13FB3B0073C884 /* MyWorkTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyWorkTableView.xib; sourceTree = "<group>"; };
+		141FB0CB1C13FBE80073C884 /* MyWorkType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWorkType.h; sourceTree = "<group>"; };
+		141FB0CC1C13FBE80073C884 /* MyWorkType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWorkType.m; sourceTree = "<group>"; };
+		141FB0CE1C1401950073C884 /* MyWorkItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWorkItem.h; sourceTree = "<group>"; };
+		141FB0CF1C1401950073C884 /* MyWorkItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWorkItem.m; sourceTree = "<group>"; };
+		141FB0D11C1405680073C884 /* MyWorkTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWorkTableCell.h; sourceTree = "<group>"; };
+		141FB0D21C1405680073C884 /* MyWorkTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWorkTableCell.m; sourceTree = "<group>"; };
+		141FB0D31C1405680073C884 /* MyWorkTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyWorkTableCell.xib; sourceTree = "<group>"; };
+		14216FA91C155F440033FF37 /* SolnMgtFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolnMgtFlowView.h; sourceTree = "<group>"; };
+		14216FAA1C155F440033FF37 /* SolnMgtFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolnMgtFlowView.m; sourceTree = "<group>"; };
+		14216FAB1C155F440033FF37 /* SolnMgtFlowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SolnMgtFlowView.xib; sourceTree = "<group>"; };
 		142AF5111C11DEED00B5EAFE /* Agreement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agreement.h; sourceTree = "<group>"; };
 		142AF5121C11DEED00B5EAFE /* Agreement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Agreement.m; sourceTree = "<group>"; };
 		142AF5151C11E76600B5EAFE /* AgreementDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgreementDetailView.h; sourceTree = "<group>"; };
@@ -1143,6 +1166,10 @@
 				14AD6DAB1C0F3AA600A1C8AB /* Correspondence.m */,
 				142AF5111C11DEED00B5EAFE /* Agreement.h */,
 				142AF5121C11DEED00B5EAFE /* Agreement.m */,
+				141FB0CB1C13FBE80073C884 /* MyWorkType.h */,
+				141FB0CC1C13FBE80073C884 /* MyWorkType.m */,
+				141FB0CE1C1401950073C884 /* MyWorkItem.h */,
+				141FB0CF1C1401950073C884 /* MyWorkItem.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1249,6 +1276,7 @@
 				04E90D731AAD4047005409D8 /* BroadEN-Prefix.pch */,
 				14EF6C2B1C0B55690016A8B0 /* ServiceType.plist */,
 				14AD6DB31C0F5B8F00A1C8AB /* FileType.plist */,
+				14091CAD1C167A610068A20C /* UnitFileType.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1329,6 +1357,30 @@
 				142AF5171C11E76600B5EAFE /* AgreementDetailView.xib */,
 			);
 			name = Agreement;
+			sourceTree = "<group>";
+		};
+		141FB0C51C13FAD00073C884 /* MyWork */ = {
+			isa = PBXGroup;
+			children = (
+				141FB0C61C13FB3B0073C884 /* MyWorkTableView.h */,
+				141FB0C71C13FB3B0073C884 /* MyWorkTableView.m */,
+				141FB0C81C13FB3B0073C884 /* MyWorkTableView.xib */,
+				141FB0D11C1405680073C884 /* MyWorkTableCell.h */,
+				141FB0D21C1405680073C884 /* MyWorkTableCell.m */,
+				141FB0D31C1405680073C884 /* MyWorkTableCell.xib */,
+				14216FA81C155ECE0033FF37 /* SolnMgt */,
+			);
+			name = MyWork;
+			sourceTree = "<group>";
+		};
+		14216FA81C155ECE0033FF37 /* SolnMgt */ = {
+			isa = PBXGroup;
+			children = (
+				14216FA91C155F440033FF37 /* SolnMgtFlowView.h */,
+				14216FAA1C155F440033FF37 /* SolnMgtFlowView.m */,
+				14216FAB1C155F440033FF37 /* SolnMgtFlowView.xib */,
+			);
+			name = SolnMgt;
 			sourceTree = "<group>";
 		};
 		142CF2E01C01566D009FAE0A /* UserInfo */ = {
@@ -1418,15 +1470,16 @@
 		142CF30B1C017EA7009FAE0A /* more */ = {
 			isa = PBXGroup;
 			children = (
-				14BACCC81C1343D6007566BF /* CorrpdncMails */,
-				14BACCBD1C133FC1007566BF /* AgreementMgt */,
-				14BACCB71C1337DC007566BF /* UnitInfo */,
 				142CF31B1C017F42009FAE0A /* MoreListView.h */,
 				142CF31C1C017F42009FAE0A /* MoreListView.m */,
 				142CF31D1C017F42009FAE0A /* MoreListView.xib */,
 				142CF3381C01A329009FAE0A /* ItemTableCell.h */,
 				142CF3391C01A329009FAE0A /* ItemTableCell.m */,
 				142CF33A1C01A329009FAE0A /* ItemTableCell.xib */,
+				14BACCB71C1337DC007566BF /* UnitInfo */,
+				14BACCBD1C133FC1007566BF /* AgreementMgt */,
+				14BACCC81C1343D6007566BF /* CorrpdncMails */,
+				141FB0C51C13FAD00073C884 /* MyWork */,
 			);
 			name = more;
 			sourceTree = "<group>";
@@ -2418,8 +2471,10 @@
 				1400A4C11C0E870B000472F9 /* SatisfaDetailView.xib in Resources */,
 				143A15891C04435C00F4B418 /* UnitInfoTableView.xib in Resources */,
 				B7F337DB1BA2474E00708F75 /* YuKaiAddView.xib in Resources */,
+				14216FAD1C155F440033FF37 /* SolnMgtFlowView.xib in Resources */,
 				B737E4671BAC5B5300912FAB /* RongYeAddView.xib in Resources */,
 				14BACCB51C1337CB007566BF /* MoreUnitInfoTableView.xib in Resources */,
+				141FB0D51C1405680073C884 /* MyWorkTableCell.xib in Resources */,
 				142AF5191C11E76600B5EAFE /* AgreementDetailView.xib in Resources */,
 				149200A11C06386700007D95 /* UnitInfoShippingCell.xib in Resources */,
 				149200AB1C063C2200007D95 /* UnitInfoBasicTwoCell.xib in Resources */,
@@ -2429,6 +2484,7 @@
 				B719FC911B96E3B200206227 /* userdetails.html in Resources */,
 				1402B6871C1137AE003E940D /* AgreementTabelView.xib in Resources */,
 				14AD6DB41C0F5B8F00A1C8AB /* FileType.plist in Resources */,
+				141FB0CA1C13FB3B0073C884 /* MyWorkTableView.xib in Resources */,
 				142CF3021C015B5F009FAE0A /* LoadingCell.xib in Resources */,
 				B719FC971B96E3BA00206227 /* bootstrap.min.css in Resources */,
 				B719FC981B96E3BA00206227 /* normalize.css in Resources */,
@@ -2442,6 +2498,7 @@
 				142CF2EB1C01578E009FAE0A /* UserTableCell.xib in Resources */,
 				B798ED641B930B8800AE40F2 /* LICENSE in Resources */,
 				04B2757D1AB6C966002A7CE0 /* IQKeyboardManager.bundle in Resources */,
+				14091CAE1C167A610068A20C /* UnitFileType.plist in Resources */,
 				B798EDB61B93E66A00AE40F2 /* TwoMainView.xib in Resources */,
 				B7B3AFEE1BB661940097B83C /* HSDatePickerViewController.xib in Resources */,
 				04E90AED1AAD3E80005409D8 /* Images.xcassets in Resources */,
@@ -2594,6 +2651,7 @@
 				146BE5671C06DFDF00263237 /* MaintainingTableView.m in Sources */,
 				B798ED601B930B8800AE40F2 /* PSTGridLayoutInfo.m in Sources */,
 				143D71961C0760A400E08308 /* Maintaining.m in Sources */,
+				141FB0D41C1405680073C884 /* MyWorkTableCell.m in Sources */,
 				142C79851C095177006FBC28 /* MaintainingAddView.m in Sources */,
 				14AD6DA31C0F359100A1C8AB /* CorrespondenceTableView.m in Sources */,
 				14AD6DB01C0F3FF500A1C8AB /* CorrespondenceAddView.m in Sources */,
@@ -2639,6 +2697,7 @@
 				B798ED171B930B8800AE40F2 /* AFHTTPRequestOperation.m in Sources */,
 				B798ED401B930B8800AE40F2 /* NSString+Extensions.m in Sources */,
 				B798ED681B930B8800AE40F2 /* SDImageCache.m in Sources */,
+				141FB0CD1C13FBE80073C884 /* MyWorkType.m in Sources */,
 				B7D416041B9DC94A00462F0C /* IQAssetsCell.m in Sources */,
 				B798ED461B930B8800AE40F2 /* GCDiscreetNotificationView.m in Sources */,
 				B798ED441B930B8800AE40F2 /* UIImage+resize.m in Sources */,
@@ -2683,6 +2742,7 @@
 				B798ED141B930B8800AE40F2 /* NSData+CommonCrypto.m in Sources */,
 				143A15911C0450DB00F4B418 /* UnitInfo.m in Sources */,
 				B798ED1C1B930B8800AE40F2 /* AFOSCClient.m in Sources */,
+				141FB0C91C13FB3B0073C884 /* MyWorkTableView.m in Sources */,
 				1402B6861C1137AE003E940D /* AgreementTabelView.m in Sources */,
 				1400A4C71C0EC2A5000472F9 /* SatisfaUnitTableCell.m in Sources */,
 				B798ED2C1B930B8800AE40F2 /* Reachability.m in Sources */,
@@ -2693,11 +2753,13 @@
 				B7B3AFED1BB661940097B83C /* HSDatePickerViewController.m in Sources */,
 				04B2757C1AB6C966002A7CE0 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				B798ED411B930B8800AE40F2 /* NSString+URLEncoding.m in Sources */,
+				14216FAC1C155F440033FF37 /* SolnMgtFlowView.m in Sources */,
 				B798ED561B930B8800AE40F2 /* DACircularProgressView.m in Sources */,
 				142CF31E1C017F42009FAE0A /* MoreListView.m in Sources */,
 				04E90ADF1AAD3E80005409D8 /* main.m in Sources */,
 				B7D415DE1B9996EA00462F0C /* SGSheetMenu.m in Sources */,
 				B798ED241B930B8800AE40F2 /* ASIDataCompressor.m in Sources */,
+				141FB0D01C1401950073C884 /* MyWorkItem.m in Sources */,
 				142CF3001C015B5F009FAE0A /* ImageStore.m in Sources */,
 				B798ED591B930B8800AE40F2 /* PSTCollectionViewCell.m in Sources */,
 				B737E4681BAC5B5300912FAB /* RongYeDetailView.m in Sources */,
@@ -2776,7 +2838,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "e471a6b4-1a18-4d4a-a4c4-09a63be85bef";
+				PROVISIONING_PROFILE = "118d39ff-b301-4013-bde7-568f994ff4f3";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2815,7 +2877,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "e471a6b4-1a18-4d4a-a4c4-09a63be85bef";
+				PROVISIONING_PROFILE = "118d39ff-b301-4013-bde7-568f994ff4f3";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = NO;
 			};

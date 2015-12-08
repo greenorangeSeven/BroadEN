@@ -67,6 +67,7 @@
 
 @property (copy, nonatomic) NSString *OutwardEn;
 @property (copy, nonatomic) NSString *PROJ_Name_En;
+@property (copy, nonatomic) NSString *PROJ_Name;
 @property (copy, nonatomic) NSString *Duty_Engineer_En;
 @property (copy, nonatomic) NSString *InspectorSignEn;
 @property (copy, nonatomic) NSString *Cl;

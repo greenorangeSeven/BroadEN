@@ -18,8 +18,14 @@
     [super viewDidLoad];
     
     self.title = @"Agreement Mgt Message";
-    
-    self.CN_NameLb.text = self.agreement.CN_Name;
+    if(self.agreement.CN_Name == nil || self.agreement.CN_Name.length == 0)
+    {
+        self.CN_NameLb.text = self.agreement.PROJ_Name_En;
+    }
+    else
+    {
+        self.CN_NameLb.text = self.agreement.CN_Name;
+    }
     self.Agt_NoLb.text = self.agreement.Agt_No;
     self.Agt_ServDeptLb.text = self.agreement.Agt_ServDept;
     self.Agt_Judm_ManLb.text = self.agreement.Agt_Judm_Man;
