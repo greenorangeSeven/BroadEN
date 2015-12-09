@@ -11,6 +11,7 @@
 #import "MyWorkItem.h"
 #import "MyWorkTableCell.h"
 #import "SolnMgtFlowView.h"
+#import "SatisfaFlowView.h"
 
 @interface MyWorkTableView ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -290,7 +291,9 @@
         }
         else if([workItem.FlowName isEqualToString:@"总部电话回访审批"])
         {
-            
+            SatisfaFlowView *satisfaFlow = [[SatisfaFlowView alloc] init];
+            satisfaFlow.Mark = workItem.Mark;
+            [self.navigationController pushViewController:satisfaFlow animated:YES];
         }
         else if([workItem.FlowName isEqualToString:@"溶液管理录入"])
         {

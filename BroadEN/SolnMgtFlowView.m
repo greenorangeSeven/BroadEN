@@ -69,9 +69,6 @@
     self.photoCollectionView.dataSource = self;
     [self.photoCollectionView registerClass:[ImageCollectionCell class] forCellWithReuseIdentifier:ImageCollectionCellIdentifier];
     
-    self.HandingDateTF.delegate = self;
-    self.HandingDateTF.tag = 3;
-    
     [self getSolnDetailData];
 }
 

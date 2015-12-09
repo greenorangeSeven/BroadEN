@@ -26,6 +26,8 @@
     
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"top_bg"] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
     
+    [self checkVersionUpdate];
+    
     //实例化主窗口
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -143,6 +145,61 @@
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
+        }
+    }
+}
+
+- (void)checkVersionUpdate
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@GetAppEnVesion", api_base_url];
+    
+    NSURL *url = [NSURL URLWithString: urlStr];
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setUseCookiePersistence:NO];
+    [request setTimeOutSeconds:30];
+    [request setPostValue:@"ios" forKey:@"type"];
+    [request setDelegate:self];
+    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+    [request setDidFailSelector:@selector(requestFailed:)];
+    [request setDidFinishSelector:@selector(requestUpdate:)];
+    [request startAsynchronous];
+}
+
+- (void)requestUpdate:(ASIHTTPRequest *)request
+{
+    if (request.hud)
+    {
+        [request.hud hide:YES];
+    }
+    [request setUseCookiePersistence:YES];
+    
+    XMLParserUtils *utils = [[XMLParserUtils alloc] init];
+    utils.parserFail = ^()
+    {
+        
+    };
+    utils.parserOK = ^(NSString *string)
+    {
+        NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error;
+        int versionCode = [string intValue];
+        if( versionCode > [AppVersionCode intValue])
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Update?" message:@"Found a new package, would you like to update?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+                                                               alert.tag = 0;
+                                                               [alert show];
+        }
+    };
+    [utils stringFromparserXML:request.responseString target:@"string"];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        if (alertView.tag == 0)
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/greenorangeCN/applist/master/BroadEN.plist"]];
         }
     }
 }

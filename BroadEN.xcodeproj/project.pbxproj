@@ -170,6 +170,9 @@
 		14BACCCD1C134407007566BF /* MoreCorrpdncTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14BACCCB1C134407007566BF /* MoreCorrpdncTableView.xib */; };
 		14BACCD11C1348F4007566BF /* MoreCorrpdncTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BACCCF1C1348F4007566BF /* MoreCorrpdncTableCell.m */; };
 		14BACCD21C1348F4007566BF /* MoreCorrpdncTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14BACCD01C1348F4007566BF /* MoreCorrpdncTableCell.xib */; };
+		14E79C861C173F7200D2FE2C /* SatisfaFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E79C841C173F7200D2FE2C /* SatisfaFlowView.m */; };
+		14E79C871C173F7200D2FE2C /* SatisfaFlowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E79C851C173F7200D2FE2C /* SatisfaFlowView.xib */; };
+		14EEC2B31C17DB2A0099E3AE /* NextWorkFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EEC2B21C17DB2A0099E3AE /* NextWorkFlow.m */; };
 		14EF6C2C1C0B55690016A8B0 /* ServiceType.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14EF6C2B1C0B55690016A8B0 /* ServiceType.plist */; };
 		14F7741B1C02F8E000F55042 /* UserBasicInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F774191C02F8E000F55042 /* UserBasicInfoView.m */; };
 		14F7741C1C02F8E000F55042 /* UserBasicInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F7741A1C02F8E000F55042 /* UserBasicInfoView.xib */; };
@@ -632,6 +635,11 @@
 		14BACCCE1C1348F4007566BF /* MoreCorrpdncTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCorrpdncTableCell.h; sourceTree = "<group>"; };
 		14BACCCF1C1348F4007566BF /* MoreCorrpdncTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCorrpdncTableCell.m; sourceTree = "<group>"; };
 		14BACCD01C1348F4007566BF /* MoreCorrpdncTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreCorrpdncTableCell.xib; sourceTree = "<group>"; };
+		14E79C831C173F7200D2FE2C /* SatisfaFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SatisfaFlowView.h; sourceTree = "<group>"; };
+		14E79C841C173F7200D2FE2C /* SatisfaFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SatisfaFlowView.m; sourceTree = "<group>"; };
+		14E79C851C173F7200D2FE2C /* SatisfaFlowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SatisfaFlowView.xib; sourceTree = "<group>"; };
+		14EEC2B11C17DB2A0099E3AE /* NextWorkFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextWorkFlow.h; sourceTree = "<group>"; };
+		14EEC2B21C17DB2A0099E3AE /* NextWorkFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextWorkFlow.m; sourceTree = "<group>"; };
 		14EF6C2B1C0B55690016A8B0 /* ServiceType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServiceType.plist; sourceTree = "<group>"; };
 		14F774181C02F8E000F55042 /* UserBasicInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserBasicInfoView.h; sourceTree = "<group>"; };
 		14F774191C02F8E000F55042 /* UserBasicInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserBasicInfoView.m; sourceTree = "<group>"; };
@@ -1170,6 +1178,8 @@
 				141FB0CC1C13FBE80073C884 /* MyWorkType.m */,
 				141FB0CE1C1401950073C884 /* MyWorkItem.h */,
 				141FB0CF1C1401950073C884 /* MyWorkItem.m */,
+				14EEC2B11C17DB2A0099E3AE /* NextWorkFlow.h */,
+				14EEC2B21C17DB2A0099E3AE /* NextWorkFlow.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1362,6 +1372,7 @@
 		141FB0C51C13FAD00073C884 /* MyWork */ = {
 			isa = PBXGroup;
 			children = (
+				14E79C811C173F5200D2FE2C /* Satisfa */,
 				141FB0C61C13FB3B0073C884 /* MyWorkTableView.h */,
 				141FB0C71C13FB3B0073C884 /* MyWorkTableView.m */,
 				141FB0C81C13FB3B0073C884 /* MyWorkTableView.xib */,
@@ -1618,6 +1629,16 @@
 				14BACCD01C1348F4007566BF /* MoreCorrpdncTableCell.xib */,
 			);
 			name = CorrpdncMails;
+			sourceTree = "<group>";
+		};
+		14E79C811C173F5200D2FE2C /* Satisfa */ = {
+			isa = PBXGroup;
+			children = (
+				14E79C831C173F7200D2FE2C /* SatisfaFlowView.h */,
+				14E79C841C173F7200D2FE2C /* SatisfaFlowView.m */,
+				14E79C851C173F7200D2FE2C /* SatisfaFlowView.xib */,
+			);
+			name = Satisfa;
 			sourceTree = "<group>";
 		};
 		B719FC571B947EAC00206227 /* SDRefresh */ = {
@@ -2440,6 +2461,7 @@
 				14F7741C1C02F8E000F55042 /* UserBasicInfoView.xib in Resources */,
 				146185B81C04AAF400473078 /* UnitInfoDetailView.xib in Resources */,
 				B73C13181BAD82F500C34036 /* MessageListView.xib in Resources */,
+				14E79C871C173F7200D2FE2C /* SatisfaFlowView.xib in Resources */,
 				B719FC9B1B96E3C700206227 /* bootstrap.min.js in Resources */,
 				1400A4C81C0EC2A5000472F9 /* SatisfaUnitTableCell.xib in Resources */,
 				B799E5001B92B14300630829 /* LoginView.xib in Resources */,
@@ -2585,6 +2607,7 @@
 				B7D415EE1B9D1E3500462F0C /* EnginUnit.m in Sources */,
 				142CF3231C01854F009FAE0A /* SiteServTableCell.m in Sources */,
 				B798ED6A1B930B8800AE40F2 /* SDWebImageDecoder.m in Sources */,
+				14EEC2B31C17DB2A0099E3AE /* NextWorkFlow.m in Sources */,
 				B798ED131B930B8800AE40F2 /* NSData+Base64.m in Sources */,
 				142CF3271C018D73009FAE0A /* SiteServ.m in Sources */,
 				146185BF1C04C00600473078 /* UnitInfoBasicTwo.m in Sources */,
@@ -2612,6 +2635,7 @@
 				141096701C0DDDFC00D08169 /* SolnMgtDetailView.m in Sources */,
 				B798ED2A1B930B8800AE40F2 /* ASINetworkQueue.m in Sources */,
 				B798ED4B1B930B8800AE40F2 /* JKCountDownButton.m in Sources */,
+				14E79C861C173F7200D2FE2C /* SatisfaFlowView.m in Sources */,
 				B7D4160A1B9DC9DC00462F0C /* IQMediaPickerControllerConstants.m in Sources */,
 				B798ED701B930B8800AE40F2 /* UIImage+GIF.m in Sources */,
 				142C79791C093ECF006FBC28 /* MaintauningDetailView.m in Sources */,

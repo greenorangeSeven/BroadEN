@@ -60,7 +60,7 @@
 
 + (UIColor *)getBackgroundColor;
 + (UIColor *)getCellBackgroundColor;
-
+//判断字符串是否不为空
 + (BOOL)isStringExist:(NSString *)str;
 + (BOOL)isValidateEmail:(NSString *)email;
 
