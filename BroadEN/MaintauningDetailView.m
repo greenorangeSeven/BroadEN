@@ -227,7 +227,7 @@
                          break;
                      case 3:
                          otherPicArray = [NSMutableArray arrayWithArray:picArray];
-                         [self reloadOtherHeight:YES];
+                         [self reloadOtherHeight:YES andIsInit:YES];
                          [self.otherCollectionView reloadData];
                          break;
                      default:
@@ -252,21 +252,35 @@
      }];
 }
 
-- (void)reloadOtherHeight:(BOOL )addORcutRow
+- (void)reloadOtherHeight:(BOOL )addORcutRow andIsInit:(BOOL )ISInit
 {
     int addRow = 0;
-    if(addORcutRow)
+    if(ISInit)
     {
-        if ([otherPicArray count] % 3 == 1) {
-            addRow = 1;
+        if ([otherPicArray count] % 3 > 0) {
+            addRow = [otherPicArray count]/3 + 1 - 1;
+        }
+        else
+        {
+            addRow = [otherPicArray count]/3 - 1;
         }
     }
     else
     {
-        if ([otherPicArray count] % 3 == 0) {
-            addRow = -1;
+        if(addORcutRow)
+        {
+            if ([otherPicArray count] % 3 == 1) {
+                addRow = 1;
+            }
+        }
+        else
+        {
+            if ([otherPicArray count] % 3 == 0) {
+                addRow = -1;
+            }
         }
     }
+    
     
     //只允许上传9张图片
     if ([otherPicArray count] == 10) {

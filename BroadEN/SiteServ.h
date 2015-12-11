@@ -22,7 +22,9 @@
 @property (copy, nonatomic) NSString *OutFact_Num;
 
 @property (copy, nonatomic) NSString *Project;
+@property (copy, nonatomic) NSString *Project_En;
 
 @property (copy, nonatomic) NSString *Type;
+@property (copy, nonatomic) NSString *Type_En;
 
 @end

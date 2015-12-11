@@ -14,7 +14,7 @@
 #import "NextWorkFlow.h"
 #import "SGActionView.h"
 
-@interface SatisfaFlowView ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface SatisfaFlowView ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIAlertViewDelegate>
 {
     Satisfa *satisfa;
     NSArray *units;
@@ -35,10 +35,15 @@
     
     NextWorkFlow *nextWorkFlow;
     NSArray *nextWorkArray;
+    NSArray *applyWorkArray;
     
     NSString *Operation;
     
     BOOL goToFive;
+    
+    UIAlertView *reJectDialog;
+    BOOL isReject;
+    NSString *rejectContent;
 }
 
 @end
@@ -61,6 +66,7 @@
     jiaose = userinfo.JiaoSe;
     
     goToFive = NO;
+    isReject = NO;
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -83,9 +89,19 @@
     [self getSatisfaDetailData];
 }
 
+- (void)rejectAction:(id )sender
+{
+    reJectDialog = [[UIAlertView alloc] initWithTitle:@"ReJect" message:@"Please Write ReJect Reason" delegate:self cancelButtonTitle:@"Sure" otherButtonTitles:@"cancel",nil];
+    reJectDialog.tag = 2;
+    [reJectDialog setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    [reJectDialog show];
+    isReject = YES;
+}
+
 - (void)submitAction:(id )sender
 {
     NSString *nextSql = @"";
+    isReject = NO;
     //流程第2步！ 总部审批      IM角色  AM角色       StepID = 3（下一步流程），
     if(nextWorkFlow.StepID == 3 && ([jiaose isEqualToString:@"IM"] || [jiaose isEqualToString:@"AM"]))
     {
@@ -347,12 +363,22 @@
 {
     NSMutableArray *StepNames = [[NSMutableArray alloc] init];
     NSMutableArray *NextUserNames = [[NSMutableArray alloc] init];
-    for(NextWorkFlow *nextWork in nextWorkArray)
-    {
-        [StepNames addObject:nextWork.StepName];
-        [NextUserNames addObject:nextWork.NextUserName];
+    if (isReject) {
+        for(NextWorkFlow *nextWork in applyWorkArray)
+        {
+            [StepNames addObject:nextWork.StepName];
+            [NextUserNames addObject:nextWork.NextUserName];
+        }
     }
-    [SGActionView showSheetWithTitle:@"Please Select" itemTitles:NextUserNames itemSubTitles:StepNames selectedIndex:-1 selectedHandle:^(NSInteger index){
+    else
+    {
+        for(NextWorkFlow *nextWork in nextWorkArray)
+        {
+            [StepNames addObject:nextWork.StepName];
+            [NextUserNames addObject:nextWork.NextUserName];
+        }
+    }
+    [SGActionView showSheetWithTitle:@"Please Select" itemTitles:NextUserNames itemSubTitles:StepNames selectedIndex:0 selectedHandle:^(NSInteger index){
         NextWorkFlow *selectNextWork = nextWorkArray[index];
         
         NSString *nextStr = @"";
@@ -381,7 +407,15 @@
 
 - (void)FlowNextSubmit:(NSString *)nextStr
 {
-    NSString *sql = [NSString stringWithFormat:@"exec SP_FlowSubmit_En @UserName='%@',@AcionID=1,@NextStr='%@',@Mark='%@',@FlowName='总部电话回访审批',@Data=N'00000 000 写流程测试'", userinfo.UserName, nextStr, self.Mark];
+    NSString *sql = @"";
+    if(isReject)
+    {
+        sql = [NSString stringWithFormat:@"exec SP_FlowSubmit_En @UserName='%@',@AcionID=-1,@NextStr='%@',@Mark='%@',@FlowName='总部电话回访审批',@Data=N'IOS app端%@'", userinfo.UserName, nextStr, self.Mark, Operation];
+    }
+    else
+    {
+        sql = [NSString stringWithFormat:@"exec SP_FlowSubmit_En @UserName='%@',@AcionID=1,@NextStr='%@',@Mark='%@',@FlowName='总部电话回访审批',@Data=N'IOS app端%@'", userinfo.UserName, nextStr, self.Mark, Operation];
+    }
     NSString *urlStr = [NSString stringWithFormat:@"%@DoActionInDZDA", api_base_url];
     NSURL *url = [NSURL URLWithString: urlStr];
     
@@ -495,6 +529,12 @@
             //流程第2步！ 总部审批      IM角色  AM角色       StepID = 3，
             if(nextWorkFlow.StepID == 3 && ([jiaose isEqualToString:@"IM"] || [jiaose isEqualToString:@"AM"]))
             {
+                //如果是第二步就会有回退按钮
+                UIBarButtonItem *submitBtn = [[UIBarButtonItem alloc] initWithTitle: @"|  Submit" style:UIBarButtonItemStyleBordered target:self action:@selector(submitAction:)];
+                UIBarButtonItem *rollbackBtn = [[UIBarButtonItem alloc] initWithTitle: @"Reject  " style:UIBarButtonItemStyleBordered target:self action:@selector(rejectAction:)];
+                NSArray *buttonArray = [[NSArray alloc] initWithObjects:submitBtn,rollbackBtn , nil];
+                self.navigationItem.rightBarButtonItems = buttonArray;
+                
                 self.ServiceBranchView.hidden = YES;
                 self.EngineerView.hidden = YES;
                 self.UserHQConfirmOpinionView.hidden = YES;
@@ -544,7 +584,7 @@
             
             //流程第5步！ 总部确认      IM角色     StepID = 6（下一步流程），
             if(nextWorkFlow.StepID == 5 && [jiaose isEqualToString:@"IM"])
-            {                
+            {
                 self.UserHQ_ConfirmTV.editable = YES;
                 self.UserHQ_Confirm_SignLB.text = UserName;
                 self.UserHQ_Confirm_SignDateLB.text = [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"];
@@ -725,35 +765,35 @@
         {
             
             if ([Prod_OverallMeritEN isEqualToString:@"Poor"] || [Prod_OverallMeritEN isEqualToString:@"Bad"] || [Prod_OverallMeritEN isEqualToString:@"Very Bad"] || [Serv_OverallMeritEN isEqualToString:@"Poor"] || [Serv_OverallMeritEN isEqualToString:@"Bad"] || [Serv_OverallMeritEN isEqualToString:@"Very Bad"]) {
-//                self.UserHQConfirmOpinionView.hidden = NO;
+                //                self.UserHQConfirmOpinionView.hidden = NO;
                 goToFive = YES;
             }
             else
             {
-//                self.UserHQConfirmOpinionView.hidden = YES;
-//                
-//                CGRect footerFrame = self.footerView.frame;
-//                footerFrame.size.height = footerFrame.size.height -192;
-//                self.footerView.frame = footerFrame;
-//                
-//                self.tableView.tableFooterView = self.footerView;
+                //                self.UserHQConfirmOpinionView.hidden = YES;
+                //
+                //                CGRect footerFrame = self.footerView.frame;
+                //                footerFrame.size.height = footerFrame.size.height -192;
+                //                self.footerView.frame = footerFrame;
+                //
+                //                self.tableView.tableFooterView = self.footerView;
                 goToFive = NO;
             }
         }
         else
         {
             if ([Serv_OverallMeritEN isEqualToString:@"Poor"] || [Serv_OverallMeritEN isEqualToString:@"Bad"] || [Serv_OverallMeritEN isEqualToString:@"Very Bad"]) {
-//                self.UserHQConfirmOpinionView.hidden = NO;
+                //                self.UserHQConfirmOpinionView.hidden = NO;
                 goToFive = YES;
             }
             else
             {
-//                self.UserHQConfirmOpinionView.hidden = YES;
-//                CGRect footerFrame = self.footerView.frame;
-//                footerFrame.size.height = footerFrame.size.height -192;
-//                self.footerView.frame = footerFrame;
-//                
-//                self.tableView.tableFooterView = self.footerView;
+                //                self.UserHQConfirmOpinionView.hidden = YES;
+                //                CGRect footerFrame = self.footerView.frame;
+                //                footerFrame.size.height = footerFrame.size.height -192;
+                //                self.footerView.frame = footerFrame;
+                //
+                //                self.tableView.tableFooterView = self.footerView;
                 goToFive = NO;
             }
         }
@@ -909,7 +949,76 @@
             [self reloadPhotoHeight:NO];
             [self.photoCollectionView reloadData];
         }
+        if(alertView.tag == 2)
+        {
+            [self.view endEditing:YES];
+            reJectDialog = nil;
+            UITextField *reasonField = [alertView textFieldAtIndex:0];
+            if (reasonField.text.length == 0) {
+                [self performSelector:@selector(rejectAction:) withObject:nil afterDelay:0.8f];
+                [Tool showCustomHUD:@"Please Write ReJect Reason" andView:self.view andImage:nil andAfterDelay:1.2f];
+            }
+            else
+            {
+                rejectContent = reasonField.text;
+                [self doReject];
+            }
+        }
     }
+}
+
+- (void)doReject
+{
+    NSString *sqlStr = [NSString stringWithFormat:@"Sp_GetApplyInfo_En '%@'", self.Mark];
+    NSString *urlStr = [NSString stringWithFormat:@"%@JsonDataInDZDA", api_base_url];
+    
+    NSURL *url = [NSURL URLWithString: urlStr];
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setUseCookiePersistence:NO];
+    [request setTimeOutSeconds:30];
+    [request setPostValue:sqlStr forKey:@"sqlstr"];
+    [request setDelegate:self];
+    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+    [request setDidFailSelector:@selector(requestFailed:)];
+    [request setDidFinishSelector:@selector(requestApplyInfo:)];
+    [request startAsynchronous];
+}
+
+- (void)requestApplyInfo:(ASIHTTPRequest *)request
+{
+    if (request.hud)
+    {
+        [request.hud hide:YES];
+    }
+    [request setUseCookiePersistence:YES];
+    
+    XMLParserUtils *utils = [[XMLParserUtils alloc] init];
+    utils.parserFail = ^()
+    {
+        [Tool showCustomHUD:@"连接失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+    };
+    utils.parserOK = ^(NSString *string)
+    {
+        NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error;
+        NSLog(@"%@", string);
+        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+        if (jsonArray && [jsonArray count] > 0) {
+            applyWorkArray = [Tool readJsonToObjArray:jsonArray andObjClass:[NextWorkFlow class]];
+            NextWorkFlow *applyWorkFlow = applyWorkArray[0];
+            NSString *nextStr = @"";
+            //流程第2步！ 总部审批（流程驳回）      IM角色  AM角色       StepID = 1，
+            if(applyWorkFlow.StepID == 1 && ([jiaose isEqualToString:@"IM"] || [jiaose isEqualToString:@"AM"]))
+            {
+                nextStr = [NSString stringWithFormat:@"%d/%d", applyWorkFlow.StepID, applyWorkFlow.NextUserNameCode];
+                Operation = rejectContent;
+            }
+            
+            [self FlowNextSubmit:nextStr];
+        }
+    };
+    [utils stringFromparserXML:request.responseString target:@"string"];
 }
 
 //定义展示的UICollectionViewCell的个数

@@ -22,6 +22,7 @@
 @property (copy, nonatomic) NSString *Project;
 @property (copy, nonatomic) NSString *Project_En;
 @property (copy, nonatomic) NSString *Pro_Num;
+@property (copy, nonatomic) NSString *PROJ_Name;
 
 @property (copy, nonatomic) NSString *Uploader;
 @property (copy, nonatomic) NSString *Uploader_En;
@@ -35,6 +36,21 @@
 @property (copy, nonatomic) NSString *EngineerNote;
 @property (copy, nonatomic) NSString *EngineerSign;
 @property (copy, nonatomic) NSString *EngineerSignDate;
+
+@property (copy, nonatomic) NSString *Rating;
+
+@property (copy, nonatomic) NSString *ManagerNote;
+@property (copy, nonatomic) NSString *ManagerSign;
+@property (copy, nonatomic) NSString *ManagerSignDate;
+
+@property (copy, nonatomic) NSString *UserHQNote;
+@property (copy, nonatomic) NSString *UserHQSign;
+@property (copy, nonatomic) NSString *UserHQSignDate;
+
+@property (copy, nonatomic) NSString *EngineerFeedback;
+@property (copy, nonatomic) NSString *EngineerFeedbackSign;
+@property (copy, nonatomic) NSString *EngineerFeedbackSignDate;
+
 @property (copy, nonatomic) NSString *Mark;
 
 @end

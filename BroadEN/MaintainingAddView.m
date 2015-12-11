@@ -1054,10 +1054,46 @@
 
 - (void)insertData
 {
+    if(![Tool isStringExist:allfilename02])
+    {
+        allfilename02 = @"null";
+    }
+    else
+    {
+        allfilename02 = [NSString stringWithFormat:@"'%@'", allfilename02];
+    }
+    
+    if(![Tool isStringExist:allfilename04])
+    {
+        allfilename04 = @"null";
+    }
+    else
+    {
+        allfilename04 = [NSString stringWithFormat:@"'%@'", allfilename04];
+    }
+    
+    if(![Tool isStringExist:allfilename03])
+    {
+        allfilename03 = @"null";
+    }
+    else
+    {
+        allfilename03 = [NSString stringWithFormat:@"'%@'", allfilename03];
+    }
+    
+    if(![Tool isStringExist:allfilename])
+    {
+        allfilename = @"null";
+    }
+    else
+    {
+        allfilename = [NSString stringWithFormat:@"'%@'", allfilename];
+    }
+    
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@DoActionInDZDA",api_base_url]]];
     [request setUseCookiePersistence:NO];
     [request setTimeOutSeconds:30];
-    NSString *sql = [NSString stringWithFormat:@"insert into TB_CUST_ProjInf_MatnRec  ( Proj_ID, Exec_Man, Exec_Man_En,  Exec_Date, Exec_Date01, Exec_Date02,AirCondUnit_Mode,OutFact_Num,Pro_Num,Type,Type_En,Project,Project_En,Uploader,Uploader_En,UploadTime,AirCondUnit_Mode_Hold,OutFact_Num_Hold,Serv_Dept_Hold,Engineer_Hold,CUST_Code_Hold,CUST_Name,Rating,allfilename,allfilename02,allfilename03,allfilename04,EngineerNote,EngineerSign,EngineerSignDate,ManagerNote,ManagerSign,ManagerSignDate,UserHQNote,UserHQSign,UserHQSignDate,Mark,EngineerFeedback,EngineerFeedbackSign,EngineerFeedbackSignDate) values  ('%@','%@','%@','%@',NULL,NULL,'%@','%@','%@','%@','%@','%@','%@','%@','%@','%@',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'%@','%@','%@','%@','%@','%@','%@',NULL,NULL,NULL,NULL,NULL,NULL,'%@',NULL,NULL,NULL)",self.projId, Exec_Man, Engineer, self.serviceDateTF.text, AirCondUnit_Mode, selectedUnit.OutFact_Num, selectedUnit.Prod_Num, [selectServiceTypeDic objectForKey:@"typeCN"], [selectServiceTypeDic objectForKey:@"typeEN"], [selectServiceItemDic objectForKey:@"itemCN"], [selectServiceItemDic objectForKey:@"itemEN"], Exec_Man, Engineer, self.UploadDateTF.text,allfilename, allfilename02, allfilename03, allfilename04, self.EngineerNoteTV.text, Engineer, self.UploadDateTF.text, Mark];
+    NSString *sql = [NSString stringWithFormat:@"insert into TB_CUST_ProjInf_MatnRec  ( Proj_ID, Exec_Man, Exec_Man_En,  Exec_Date, Exec_Date01, Exec_Date02,AirCondUnit_Mode,OutFact_Num,Pro_Num,Type,Type_En,Project,Project_En,Uploader,Uploader_En,UploadTime,AirCondUnit_Mode_Hold,OutFact_Num_Hold,Serv_Dept_Hold,Engineer_Hold,CUST_Code_Hold,CUST_Name,Rating,allfilename,allfilename02,allfilename03,allfilename04,EngineerNote,EngineerSign,EngineerSignDate,ManagerNote,ManagerSign,ManagerSignDate,UserHQNote,UserHQSign,UserHQSignDate,Mark,EngineerFeedback,EngineerFeedbackSign,EngineerFeedbackSignDate) values  ('%@','%@','%@','%@',NULL,NULL,'%@','%@','%@','%@','%@','%@','%@','%@','%@','%@',NULL,NULL,NULL,NULL,NULL,NULL,NULL,%@,%@,%@,%@,'%@','%@','%@',NULL,NULL,NULL,NULL,NULL,NULL,'%@',NULL,NULL,NULL)",self.projId, Exec_Man, Engineer, self.serviceDateTF.text, AirCondUnit_Mode, selectedUnit.OutFact_Num, selectedUnit.Prod_Num, [selectServiceTypeDic objectForKey:@"typeCN"], [selectServiceTypeDic objectForKey:@"typeEN"], [selectServiceItemDic objectForKey:@"itemCN"], [selectServiceItemDic objectForKey:@"itemEN"], Exec_Man, Engineer, self.UploadDateTF.text,allfilename, allfilename02, allfilename03, allfilename04, self.EngineerNoteTV.text, Engineer, self.UploadDateTF.text, Mark];
     
     [request setPostValue:sql forKey:@"sqlstr"];
     [request setDefaultResponseEncoding:NSUTF8StringEncoding];

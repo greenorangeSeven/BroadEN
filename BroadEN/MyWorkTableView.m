@@ -12,6 +12,7 @@
 #import "MyWorkTableCell.h"
 #import "SolnMgtFlowView.h"
 #import "SatisfaFlowView.h"
+#import "MaintenanceFlowView.h"
 
 @interface MyWorkTableView ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -43,6 +44,7 @@
 
 - (void)getToDoWork
 {
+    [workTypeArray removeAllObjects];
     NSString *sqlStr = [NSString stringWithFormat:@"Sp_Search_GetFlowToDo_En '10','%@'", userinfo.UserName];
     
     NSString *urlStr = [NSString stringWithFormat:@"%@JsonDataInDZDA", api_base_url];
@@ -287,7 +289,9 @@
         MyWorkItem *workItem = [workType.workArray objectAtIndex:indexPath.row];
         if([workItem.FlowName isEqualToString:@"维护保养审批(英文版)"])
         {
-            
+            MaintenanceFlowView *maintenanceFlow = [[MaintenanceFlowView alloc] init];
+            maintenanceFlow.Mark = workItem.Mark;
+            [self.navigationController pushViewController:maintenanceFlow animated:YES];
         }
         else if([workItem.FlowName isEqualToString:@"总部电话回访审批"])
         {

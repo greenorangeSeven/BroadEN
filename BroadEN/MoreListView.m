@@ -14,6 +14,8 @@
 #import "MoreAgreementTableView.h"
 #import "MoreCorrpdncTableView.h"
 #import "MyWorkTableView.h"
+#import "SettingView.h"
+#import "HelpAndSupportView.h"
 
 @interface MoreListView ()
 {
@@ -162,12 +164,16 @@
             break;
         case 5:
         {
-           
+            SettingView *settingsView = [[SettingView alloc] init];
+            settingsView.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:settingsView animated:YES];
         }
             break;
         case 6:
         {
-           
+            HelpAndSupportView *helpView = [[HelpAndSupportView alloc] init];
+            helpView.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:helpView animated:YES];
         }
             break;
             

@@ -17,6 +17,8 @@
 {
     UserInfo *userinfo;
     NSArray *maintains;
+    
+    NSString *jiaose;
 }
 
 @end
@@ -36,6 +38,7 @@
     
     AppDelegate *app = [[UIApplication sharedApplication] delegate];
     userinfo = app.userinfo;
+    jiaose = userinfo.JiaoSe;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMaintainingData) name:@"Notification_MaintainingListReLoad" object:nil];
     
@@ -93,8 +96,11 @@
         BOOL haveQueryRecord = NO;
         for (UserSecurity *s in securityList) {
             if ([s.ModuleCode isEqualToString:@"DA0301"] && [s.PermissionName isEqualToString:@"新建"]) {
-                UIBarButtonItem *addBtn = [[UIBarButtonItem alloc] initWithTitle: @"Add" style:UIBarButtonItemStyleBordered target:self action:@selector(addAction:)];
-                self.navigationItem.rightBarButtonItem = addBtn;
+                if([jiaose isEqualToString:@"SE"] || [jiaose isEqualToString:@"FJ"] || [jiaose isEqualToString:@"GJJXS"])
+                {
+                    UIBarButtonItem *addBtn = [[UIBarButtonItem alloc] initWithTitle: @"Add" style:UIBarButtonItemStyleBordered target:self action:@selector(addAction:)];
+                    self.navigationItem.rightBarButtonItem = addBtn;
+                }
             }
             if ([s.ModuleCode isEqualToString:@"DA0301"] && [s.PermissionName isEqualToString:@"查看"]) {
                 haveQueryRecord = YES;

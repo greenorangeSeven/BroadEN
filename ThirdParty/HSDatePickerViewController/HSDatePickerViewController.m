@@ -186,14 +186,14 @@ static NSInteger kBufforRows = 30; //Number of rows that are prevent by scroll p
 
 - (NSString *)confirmButtonTitle {
     if (!_confirmButtonTitle) {
-        _confirmButtonTitle = @"确定";
+        _confirmButtonTitle = @"Sure";
     }
     return _confirmButtonTitle;
 }
 
 - (NSString *)backButtonTitle {
     if (!_backButtonTitle) {
-        _backButtonTitle = @"取消";
+        _backButtonTitle = @"Cancel";
     }
     return _backButtonTitle;
 }

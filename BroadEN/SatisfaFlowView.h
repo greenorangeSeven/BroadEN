@@ -11,7 +11,6 @@
 @interface SatisfaFlowView : UIViewController
 
 @property (strong, nonatomic) NSString *Mark;
-//@property (strong, nonatomic) NSString *ID;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

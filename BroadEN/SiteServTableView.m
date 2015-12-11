@@ -223,8 +223,8 @@
             cell.nameEnLb.text = s.PROJ_Name_En;
             cell.nameLb.text = s.PROJ_Name;
             cell.outfaceNumLb.text = s.OutFact_Num;
-            cell.typeLb.text = s.Type;
-            cell.projectLb.text = s.Project;
+            cell.typeLb.text = s.Type_En;
+            cell.projectLb.text = s.Project_En;
             return cell;
             
         }

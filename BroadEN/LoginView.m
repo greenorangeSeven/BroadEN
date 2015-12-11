@@ -115,7 +115,7 @@
     utils.parserFail = ^()
     {
         hud.hidden = YES;
-        [Tool showCustomHUD:@"登录失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+        [Tool showCustomHUD:@"Login Failure" andView:self.view andImage:nil andAfterDelay:1.2f];
     };
     utils.parserOK = ^(NSString *string)
     {
@@ -152,13 +152,13 @@
             else
             {
                 hud.hidden = YES;
-                [Tool showCustomHUD:@"登录失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+                [Tool showCustomHUD:@"Login Failure" andView:self.view andImage:nil andAfterDelay:1.2f];
             }
         }
         else
         {
             hud.hidden = YES;
-            [Tool showCustomHUD:@"登录失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Login Succeed" andView:self.view andImage:nil andAfterDelay:1.2f];
         }
     };
     
@@ -206,7 +206,7 @@
     hud.hidden = YES;
     utils.parserFail = ^()
     {
-        [Tool showCustomHUD:@"登录失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+        [Tool showCustomHUD:@"Login Failure" andView:self.view andImage:nil andAfterDelay:1.2f];
     };
     utils.parserOK = ^(NSString *string)
     {
@@ -223,12 +223,12 @@
             [preference setObject:self.pwdField.text forKey:@"pwd"];
             AppDelegate *app = [[UIApplication sharedApplication] delegate];
             app.userinfo = userinfo;
-            [Tool showCustomHUD:@"登录成功" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Login Succeed" andView:self.view andImage:nil andAfterDelay:1.2f];
             [self performSelector:@selector(goNext) withObject:nil afterDelay:1.3f];
         }
         else
         {
-            [Tool showCustomHUD:@"登录失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Login Failure" andView:self.view andImage:nil andAfterDelay:1.2f];
         }
     };
     
@@ -299,7 +299,7 @@
 
 - (IBAction)contactAction:(id)sender
 {
-         NSURL *phoneURL = [NSURL URLWithString:@"tel:0731-84086339"];
+         NSURL *phoneURL = [NSURL URLWithString:@"tel:+86-731-84086265"];
          if ( !phoneCallWebView ) {
              phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
          }

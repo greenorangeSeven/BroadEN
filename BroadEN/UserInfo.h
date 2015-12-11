@@ -74,6 +74,10 @@
 @property (copy, nonatomic) NSString *IsGJB;
 @property (copy, nonatomic) NSString *js;
 
+@property (copy, nonatomic) NSString *DepartmentEn;
+@property (copy, nonatomic) NSString *RoleNameEn;
+@property (copy, nonatomic) NSString *ZhiWeiEn;
+
 @property (strong, nonatomic) NSArray *permissions;
 
 //判断是否有该权限
