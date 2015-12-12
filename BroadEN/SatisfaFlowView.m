@@ -363,12 +363,14 @@
 {
     NSMutableArray *StepNames = [[NSMutableArray alloc] init];
     NSMutableArray *NextUserNames = [[NSMutableArray alloc] init];
+    NSArray *selectNextFlowArray = [[NSArray alloc] init];
     if (isReject) {
         for(NextWorkFlow *nextWork in applyWorkArray)
         {
             [StepNames addObject:nextWork.StepName];
             [NextUserNames addObject:nextWork.NextUserName];
         }
+        selectNextFlowArray = applyWorkArray;
     }
     else
     {
@@ -377,25 +379,26 @@
             [StepNames addObject:nextWork.StepName];
             [NextUserNames addObject:nextWork.NextUserName];
         }
+        selectNextFlowArray = nextWorkArray;
     }
-    [SGActionView showSheetWithTitle:@"Please Select" itemTitles:NextUserNames itemSubTitles:StepNames selectedIndex:0 selectedHandle:^(NSInteger index){
-        NextWorkFlow *selectNextWork = nextWorkArray[index];
+    [SGActionView showSheetWithTitle:@"Please Select" itemTitles:NextUserNames itemSubTitles:StepNames selectedIndex:-1 selectedHandle:^(NSInteger index){
+        NextWorkFlow *selectNextWork = selectNextFlowArray[index];
         
         NSString *nextStr = @"";
         //流程第2步！ 总部审批      IM角色  AM角色       StepID = 3，
-        if(nextWorkFlow.StepID == 3 && ([jiaose isEqualToString:@"IM"] || [jiaose isEqualToString:@"AM"]))
+        if(selectNextWork.StepID == 3 && ([jiaose isEqualToString:@"IM"] || [jiaose isEqualToString:@"AM"]))
         {
             nextStr = [NSString stringWithFormat:@"%d/%d", selectNextWork.StepID, selectNextWork.NextUserNameCode];
             Operation = @"办理";
         }
         //流程第3步！ 服务部落实    SH角色       StepID = 4（下一步流程），
-        if(nextWorkFlow.StepID == 4 && [jiaose isEqualToString:@"SH"])
+        if(selectNextWork.StepID == 4 && [jiaose isEqualToString:@"SH"])
         {
             nextStr = [NSString stringWithFormat:@"%d/%d", selectNextWork.StepID, selectNextWork.NextUserNameCode];
             Operation = @"办理";
         }
         //流程第4步！ 工程师落实（办结归档）    SE 或 FJ 角色       StepID = 5（下一步流程），
-        if(nextWorkFlow.StepID == 5 && ([jiaose isEqualToString:@"SE"] || [jiaose isEqualToString:@"FJ"]))
+        if(selectNextWork.StepID == 5 && ([jiaose isEqualToString:@"SE"] || [jiaose isEqualToString:@"FJ"]))
         {
             nextStr = [NSString stringWithFormat:@"%d/%d", selectNextWork.StepID, selectNextWork.NextUserNameCode];
             Operation = @"工程师落实";

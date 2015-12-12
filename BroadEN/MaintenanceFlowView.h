@@ -10,7 +10,7 @@
 #import "MWPhotoBrowser.h"
 #import "HSDatePickerViewController.h"
 
-@interface MaintenanceFlowView : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MWPhotoBrowserDelegate,UITextFieldDelegate,UIAlertViewDelegate,HSDatePickerViewControllerDelegate>
+@interface MaintenanceFlowView : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MWPhotoBrowserDelegate,UITextFieldDelegate,UIAlertViewDelegate,HSDatePickerViewControllerDelegate,UIActionSheetDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) NSString *Mark;
 

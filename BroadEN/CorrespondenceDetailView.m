@@ -624,17 +624,25 @@
     {
         if(alertView.tag == 1)
         {
-            Img *img = [filePicArray objectAtIndex:selectPicIndex];
-            NSString *delname = [NSString stringWithFormat:@"|%@", [img.Url lastPathComponent]];
-            if(newsallfilenameStr.length > 30)
-            {
-                newsallfilenameStr = [newsallfilenameStr stringByReplacingOccurrencesOfString:delname withString:@""];
+            id img = [filePicArray objectAtIndex:selectPicIndex];
+            if ([img isKindOfClass:[Img class]]) {
+                Img *picImage = (Img *)img;
+                NSString *delname = [NSString stringWithFormat:@"|%@", [picImage.Url lastPathComponent]];
+                if(newsallfilenameStr.length > 30)
+                {
+                    newsallfilenameStr = [newsallfilenameStr stringByReplacingOccurrencesOfString:delname withString:@""];
+                }
+                else
+                {
+                    newsallfilenameStr = @"";
+                }
+                delFileNameStr = [NSString stringWithFormat:@"%@%@", delFileNameStr, delname];
             }
-            else
+            else if([img isKindOfClass:[UIImage class]])
             {
-                newsallfilenameStr = @"";
+                UIImage *picImage = (UIImage *)img;
+                [newsPicArray removeObject:picImage];
             }
-            delFileNameStr = [NSString stringWithFormat:@"%@%@", delFileNameStr, delname];
             
             [filePicArray removeObjectAtIndex:selectPicIndex];
             doChange = YES;
