@@ -9,6 +9,7 @@
 #import "UsersTableView.h"
 #import "UserTableCell.h"
 #import "UserInfoTypeTableView.h"
+#import "AllInOneSearchView.h"
 
 @interface UsersTableView ()
 {
@@ -54,13 +55,13 @@
     AppDelegate *app = [[UIApplication sharedApplication] delegate];
     userinfo = app.userinfo;
     
-    self.searchController =[[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];;
-    
-    self.searchController.searchResultsDelegate= self;
-    
-    self.searchController.searchResultsDataSource = self;
-    
-    self.searchController.delegate = self;
+//    self.searchController =[[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];;
+//    
+//    self.searchController.searchResultsDelegate= self;
+//    
+//    self.searchController.searchResultsDataSource = self;
+//    
+//    self.searchController.delegate = self;
     
     [self reload:YES];
 }
@@ -422,5 +423,12 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+- (IBAction)searchAction:(id)sender {
+    AllInOneSearchView *searchView = [[AllInOneSearchView alloc] init];
+    searchView.searchType = @"UserInfo";
+    searchView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:searchView animated:YES];
+}
 
 @end

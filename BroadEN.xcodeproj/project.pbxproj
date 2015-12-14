@@ -178,6 +178,9 @@
 		14BACCCD1C134407007566BF /* MoreCorrpdncTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14BACCCB1C134407007566BF /* MoreCorrpdncTableView.xib */; };
 		14BACCD11C1348F4007566BF /* MoreCorrpdncTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BACCCF1C1348F4007566BF /* MoreCorrpdncTableCell.m */; };
 		14BACCD21C1348F4007566BF /* MoreCorrpdncTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14BACCD01C1348F4007566BF /* MoreCorrpdncTableCell.xib */; };
+		14E215B81C1D762C00EBC3FF /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E215B71C1D762C00EBC3FF /* KxMenu.m */; };
+		14E215BF1C1DC8DB00EBC3FF /* AllInOneSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E215BD1C1DC8DB00EBC3FF /* AllInOneSearchView.m */; };
+		14E215C01C1DC8DB00EBC3FF /* AllInOneSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E215BE1C1DC8DB00EBC3FF /* AllInOneSearchView.xib */; };
 		14E79C861C173F7200D2FE2C /* SatisfaFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E79C841C173F7200D2FE2C /* SatisfaFlowView.m */; };
 		14E79C871C173F7200D2FE2C /* SatisfaFlowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E79C851C173F7200D2FE2C /* SatisfaFlowView.xib */; };
 		14E9C43A1C1A501D00E9910B /* MaintenanceFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9C4381C1A501D00E9910B /* MaintenanceFlowView.m */; };
@@ -274,7 +277,6 @@
 		B798ED491B930B8800AE40F2 /* PrintObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B798EC6A1B930B8800AE40F2 /* PrintObject.m */; };
 		B798ED4A1B930B8800AE40F2 /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = B798EC6C1B930B8800AE40F2 /* Tool.m */; };
 		B798ED4B1B930B8800AE40F2 /* JKCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B798EC6F1B930B8800AE40F2 /* JKCountDownButton.m */; };
-		B798ED4C1B930B8800AE40F2 /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B798EC721B930B8800AE40F2 /* KxMenu.m */; };
 		B798ED4D1B930B8800AE40F2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B798EC751B930B8800AE40F2 /* MBProgressHUD.m */; };
 		B798ED4E1B930B8800AE40F2 /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B798EC791B930B8800AE40F2 /* MWCaptionView.m */; };
 		B798ED4F1B930B8800AE40F2 /* MWGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B798EC7C1B930B8800AE40F2 /* MWGridCell.m */; };
@@ -657,6 +659,11 @@
 		14BACCCE1C1348F4007566BF /* MoreCorrpdncTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCorrpdncTableCell.h; sourceTree = "<group>"; };
 		14BACCCF1C1348F4007566BF /* MoreCorrpdncTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCorrpdncTableCell.m; sourceTree = "<group>"; };
 		14BACCD01C1348F4007566BF /* MoreCorrpdncTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreCorrpdncTableCell.xib; sourceTree = "<group>"; };
+		14E215B61C1D762C00EBC3FF /* KxMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMenu.h; sourceTree = "<group>"; };
+		14E215B71C1D762C00EBC3FF /* KxMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxMenu.m; sourceTree = "<group>"; };
+		14E215BC1C1DC8DB00EBC3FF /* AllInOneSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllInOneSearchView.h; sourceTree = "<group>"; };
+		14E215BD1C1DC8DB00EBC3FF /* AllInOneSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllInOneSearchView.m; sourceTree = "<group>"; };
+		14E215BE1C1DC8DB00EBC3FF /* AllInOneSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllInOneSearchView.xib; sourceTree = "<group>"; };
 		14E79C831C173F7200D2FE2C /* SatisfaFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SatisfaFlowView.h; sourceTree = "<group>"; };
 		14E79C841C173F7200D2FE2C /* SatisfaFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SatisfaFlowView.m; sourceTree = "<group>"; };
 		14E79C851C173F7200D2FE2C /* SatisfaFlowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SatisfaFlowView.xib; sourceTree = "<group>"; };
@@ -833,8 +840,6 @@
 		B798EC6C1B930B8800AE40F2 /* Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tool.m; sourceTree = "<group>"; };
 		B798EC6E1B930B8800AE40F2 /* JKCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKCountDownButton.h; sourceTree = "<group>"; };
 		B798EC6F1B930B8800AE40F2 /* JKCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCountDownButton.m; sourceTree = "<group>"; };
-		B798EC711B930B8800AE40F2 /* KxMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMenu.h; sourceTree = "<group>"; };
-		B798EC721B930B8800AE40F2 /* KxMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxMenu.m; sourceTree = "<group>"; };
 		B798EC741B930B8800AE40F2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		B798EC751B930B8800AE40F2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		B798EC781B930B8800AE40F2 /* MWCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCaptionView.h; sourceTree = "<group>"; };
@@ -1290,6 +1295,7 @@
 				142CF3091C017E87009FAE0A /* SolnMgt */,
 				142CF30A1C017E97009FAE0A /* Satisfa */,
 				142CF30B1C017EA7009FAE0A /* more */,
+				14E215BB1C1DC8A600EBC3FF /* Search */,
 				B7D415BA1B992C3900462F0C /* UserPage */,
 				B7D415B71B992C0400462F0C /* WeiXiuPage */,
 				B7D415B81B992C1800462F0C /* RongYePage */,
@@ -1413,7 +1419,6 @@
 		141FB0C51C13FAD00073C884 /* MyWork */ = {
 			isa = PBXGroup;
 			children = (
-				14E9C4351C1A4FEF00E9910B /* Maintenance */,
 				141FB0C61C13FB3B0073C884 /* MyWorkTableView.h */,
 				141FB0C71C13FB3B0073C884 /* MyWorkTableView.m */,
 				141FB0C81C13FB3B0073C884 /* MyWorkTableView.xib */,
@@ -1422,6 +1427,7 @@
 				141FB0D31C1405680073C884 /* MyWorkTableCell.xib */,
 				14216FA81C155ECE0033FF37 /* SolnMgt */,
 				14E79C811C173F5200D2FE2C /* Satisfa */,
+				14E9C4351C1A4FEF00E9910B /* Maintenance */,
 			);
 			name = MyWork;
 			sourceTree = "<group>";
@@ -1533,10 +1539,10 @@
 				14BACCBD1C133FC1007566BF /* AgreementMgt */,
 				14BACCC81C1343D6007566BF /* CorrpdncMails */,
 				141FB0C51C13FAD00073C884 /* MyWork */,
+				141E1A321C1916E70086B39E /* Settings */,
 				141E1A261C18FACB0086B39E /* HelpAndSupportView.h */,
 				141E1A271C18FACB0086B39E /* HelpAndSupportView.m */,
 				141E1A281C18FACB0086B39E /* HelpAndSupportView.xib */,
-				141E1A321C1916E70086B39E /* Settings */,
 			);
 			name = more;
 			sourceTree = "<group>";
@@ -1677,6 +1683,25 @@
 			name = CorrpdncMails;
 			sourceTree = "<group>";
 		};
+		14E215B51C1D762C00EBC3FF /* KxMenu */ = {
+			isa = PBXGroup;
+			children = (
+				14E215B61C1D762C00EBC3FF /* KxMenu.h */,
+				14E215B71C1D762C00EBC3FF /* KxMenu.m */,
+			);
+			path = KxMenu;
+			sourceTree = "<group>";
+		};
+		14E215BB1C1DC8A600EBC3FF /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				14E215BC1C1DC8DB00EBC3FF /* AllInOneSearchView.h */,
+				14E215BD1C1DC8DB00EBC3FF /* AllInOneSearchView.m */,
+				14E215BE1C1DC8DB00EBC3FF /* AllInOneSearchView.xib */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		14E79C811C173F5200D2FE2C /* Satisfa */ = {
 			isa = PBXGroup;
 			children = (
@@ -1726,6 +1751,7 @@
 		B798EBE11B930B8800AE40F2 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				14E215B51C1D762C00EBC3FF /* KxMenu */,
 				142CF2EE1C015B5F009FAE0A /* EGORefreshTable */,
 				B7B3AFE91BB661940097B83C /* HSDatePickerViewController */,
 				B7D415F31B9DC94A00462F0C /* IQAssetsPickerController */,
@@ -1746,7 +1772,6 @@
 				B798EC601B930B8800AE40F2 /* GCDiscreetNotificationView */,
 				B798EC631B930B8800AE40F2 /* Helper */,
 				B798EC6D1B930B8800AE40F2 /* JKCountDownButton */,
-				B798EC701B930B8800AE40F2 /* KxMenu */,
 				B798EC731B930B8800AE40F2 /* MBProgressHUD */,
 				B798EC761B930B8800AE40F2 /* MWPhotoBrowser */,
 				B798ECD51B930B8800AE40F2 /* NSString+Regex */,
@@ -2003,15 +2028,6 @@
 				B798EC6F1B930B8800AE40F2 /* JKCountDownButton.m */,
 			);
 			path = JKCountDownButton;
-			sourceTree = "<group>";
-		};
-		B798EC701B930B8800AE40F2 /* KxMenu */ = {
-			isa = PBXGroup;
-			children = (
-				B798EC711B930B8800AE40F2 /* KxMenu.h */,
-				B798EC721B930B8800AE40F2 /* KxMenu.m */,
-			);
-			path = KxMenu;
 			sourceTree = "<group>";
 		};
 		B798EC731B930B8800AE40F2 /* MBProgressHUD */ = {
@@ -2561,6 +2577,7 @@
 				14AD6DA91C0F363100A1C8AB /* CorrespondenceCell.xib in Resources */,
 				142CF31A1C017F2F009FAE0A /* SatisfaTableView.xib in Resources */,
 				B7F337D31B9F304500708F75 /* RepairImgCell.xib in Resources */,
+				14E215C01C1DC8DB00EBC3FF /* AllInOneSearchView.xib in Resources */,
 				B719FC911B96E3B200206227 /* userdetails.html in Resources */,
 				1402B6871C1137AE003E940D /* AgreementTabelView.xib in Resources */,
 				14AD6DB41C0F5B8F00A1C8AB /* FileType.plist in Resources */,
@@ -2700,7 +2717,6 @@
 				B7D4160A1B9DC9DC00462F0C /* IQMediaPickerControllerConstants.m in Sources */,
 				B798ED701B930B8800AE40F2 /* UIImage+GIF.m in Sources */,
 				142C79791C093ECF006FBC28 /* MaintauningDetailView.m in Sources */,
-				B798ED4C1B930B8800AE40F2 /* KxMenu.m in Sources */,
 				14E9C43A1C1A501D00E9910B /* MaintenanceFlowView.m in Sources */,
 				B798ED611B930B8800AE40F2 /* PSTGridLayoutItem.m in Sources */,
 				B798ED201B930B8800AE40F2 /* UIImageView+AFNetworking.m in Sources */,
@@ -2735,6 +2751,7 @@
 				142CF32B1C01956B009FAE0A /* SolnMgtTableCell.m in Sources */,
 				B719FC711B95358D00206227 /* WeiXiuAddView.m in Sources */,
 				B798ED5C1B930B8800AE40F2 /* PSTCollectionViewFlowLayout.m in Sources */,
+				14E215B81C1D762C00EBC3FF /* KxMenu.m in Sources */,
 				B798ED511B930B8800AE40F2 /* MWPhoto.m in Sources */,
 				B798ED5F1B930B8800AE40F2 /* PSTCollectionViewUpdateItem.m in Sources */,
 				146BE5671C06DFDF00263237 /* MaintainingTableView.m in Sources */,
@@ -2818,6 +2835,7 @@
 				B7D416071B9DC94A00462F0C /* IQAssetsPickerController.m in Sources */,
 				B7D415DC1B9996EA00462F0C /* SGBaseMenu.m in Sources */,
 				B798ED7B1B930B8800AE40F2 /* RMMapper.m in Sources */,
+				14E215BF1C1DC8DB00EBC3FF /* AllInOneSearchView.m in Sources */,
 				B798ED3E1B930B8800AE40F2 /* NSDate+Extensions.m in Sources */,
 				B798ED4E1B930B8800AE40F2 /* MWCaptionView.m in Sources */,
 				B799E4FF1B92B14300630829 /* LoginView.m in Sources */,

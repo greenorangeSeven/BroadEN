@@ -10,6 +10,7 @@
 #import "MoreUnitInfoTableCell.h"
 #import "UnitInfo.h"
 #import "UnitInfoDetailView.h"
+#import "AllInOneSearchView.h"
 
 @interface MoreUnitInfoTableView ()
 {
@@ -340,5 +341,12 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+- (IBAction)searchAction:(id)sender {
+    AllInOneSearchView *searchView = [[AllInOneSearchView alloc] init];
+    searchView.searchType = @"UnitInfo";
+    searchView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:searchView animated:YES];
+}
 
 @end

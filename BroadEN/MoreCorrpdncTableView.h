@@ -31,5 +31,6 @@
 - (void)refresh;
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;
+- (IBAction)searchAction:(id)sender;
 
 @end

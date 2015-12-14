@@ -10,6 +10,7 @@
 #import "SolnMgtTableCell.h"
 #import "SolnMgtDetailView.h"
 #import "SolnMgt.h"
+#import "AllInOneSearchView.h"
 
 @interface SolnMgtTableView ()
 {
@@ -348,5 +349,12 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+- (IBAction)searchAction:(id)sender {
+    AllInOneSearchView *searchView = [[AllInOneSearchView alloc] init];
+    searchView.searchType = @"SolnMgt";
+    searchView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:searchView animated:YES];
+}
 
 @end

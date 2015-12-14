@@ -49,5 +49,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *EngineerFeedbackSignLB;
 @property (weak, nonatomic) IBOutlet UILabel *EngineerFeedbackSignDateLB;
 
+- (IBAction)selectRatingAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *selectRatingBtn;
 
 @end

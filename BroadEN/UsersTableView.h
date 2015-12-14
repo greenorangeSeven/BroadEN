@@ -20,8 +20,8 @@
     BOOL _reloading;
 }
 
-@property (nonatomic, retain)UISearchDisplayController *searchController;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+//@property (nonatomic, retain)UISearchDisplayController *searchController;
+//@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 - (void)reload:(BOOL)noRefresh;
@@ -33,5 +33,6 @@
 - (void)refresh;
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;
+- (IBAction)searchAction:(id)sender;
 
 @end

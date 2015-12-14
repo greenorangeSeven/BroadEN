@@ -1,16 +1,16 @@
 //
-//  SiteServTableView.h
+//  AllInOneSearchView.h
 //  BroadEN
 //
-//  Created by Seven on 15/11/22.
+//  Created by Seven on 15/12/13.
 //  Copyright (c) 2015年 greenorange. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface SiteServTableView : UIViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate,MBProgressHUDDelegate>
+@interface AllInOneSearchView : UIViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate,MBProgressHUDDelegate>
 {
-    NSMutableArray *servs;
+    NSMutableArray *datas;
     BOOL isLoading;
     BOOL isLoadOver;
     int allCount;
@@ -20,6 +20,9 @@
     BOOL _reloading;
 }
 
+@property (weak, nonatomic) NSString *searchType;
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 - (void)reload:(BOOL)noRefresh;
@@ -31,6 +34,7 @@
 - (void)refresh;
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;
-- (IBAction)searchAction:(id)sender;
+
+- (IBAction)refineSearchAction:(id)sender;
 
 @end

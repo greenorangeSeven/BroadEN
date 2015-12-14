@@ -10,6 +10,7 @@
 #import "AgreementTableCell.h"
 #import "AgreementDetailView.h"
 #import "Agreement.h"
+#import "AllInOneSearchView.h"
 
 @interface MoreAgreementTableView ()
 {
@@ -337,5 +338,12 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+- (IBAction)searchAction:(id)sender {
+    AllInOneSearchView *searchView = [[AllInOneSearchView alloc] init];
+    searchView.searchType = @"Agreement";
+    searchView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:searchView animated:YES];
+}
 
 @end

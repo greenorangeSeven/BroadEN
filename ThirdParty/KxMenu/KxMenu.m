@@ -154,8 +154,7 @@ typedef enum {
     
 } KxMenuViewArrowDirection;
 
-@implementation KxMenuView
-{
+@implementation KxMenuView {
     
     KxMenuViewArrowDirection    _arrowDirection;
     CGFloat                     _arrowPosition;
@@ -326,7 +325,6 @@ typedef enum {
     [self setupFrameInView:view fromRect:rect];
         
     KxMenuOverlay *overlay = [[KxMenuOverlay alloc] initWithFrame:view.bounds];
-    
     [overlay addSubview:self];
     [view addSubview:overlay];
     
@@ -572,8 +570,8 @@ typedef enum {
 {
     const CGFloat locations[] = {0,1};
     const CGFloat components[] = {
-        0.713, 0.713, 0.713, 1,
-        0.713, 0.713, 0.713, 1,
+        23.0/255.0, 143.0/255.0, 230.0/255.0, 1,
+        23.0/255.0, 143.0/255.0, 230.0/255.0, 1,
     };
     
     return [self gradientImageWithSize:size locations:locations components:components count:2];
@@ -583,7 +581,7 @@ typedef enum {
 {
     const CGFloat locations[5] = {0,0.2,0.5,0.8,1};
     
-    const CGFloat R = 0.44f, G = 0.44f, B = 0.44f;
+    const CGFloat R = 1.0f, G = 1.0f, B = 1.0f;
         
     const CGFloat components[20] = {
         R,G,B,0.1,
@@ -624,8 +622,8 @@ typedef enum {
 - (void)drawBackground:(CGRect)frame
              inContext:(CGContextRef) context
 {
-    CGFloat R0 = 0, G0 = 0, B0 = 0;
-    CGFloat R1 = 0, G1 = 0, B1 = 0;
+    CGFloat R0 = 23.0/255.0, G0 = 143.0/255.0, B0 = 230.0/255.0;
+    CGFloat R1 = 23.0/255.0, G1 = 143.0/255.0, B1 = 230.0/255.0;
     
     UIColor *tintColor = [KxMenu tintColor];
     if (tintColor) {

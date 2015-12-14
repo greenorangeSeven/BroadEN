@@ -10,6 +10,7 @@
 #import "SiteServTableCell.h"
 #import "MaintauningDetailView.h"
 #import "SiteServ.h"
+#import "AllInOneSearchView.h"
 
 @interface SiteServTableView ()
 {
@@ -350,5 +351,12 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+- (IBAction)searchAction:(id)sender {
+    AllInOneSearchView *searchView = [[AllInOneSearchView alloc] init];
+    searchView.searchType = @"SiteServ";
+    searchView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:searchView animated:YES];
+}
 
 @end

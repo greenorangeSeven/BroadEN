@@ -89,6 +89,8 @@
     NSString *delFileStr;
     NSString *newsallfilenameStr;
     NSMutableArray *newsPicArray;
+    
+    NSString *nextSql;
 }
 @property (nonatomic, retain) NSMutableArray *photos;
 
@@ -131,8 +133,6 @@
     //[self getFlowNextInfo];
     [self getMaintenanceData];
     
-    self.RatingTF.delegate = self;
-    self.RatingTF.tag = 5;
     selectedRaingIndex = 100;
     
     UITapGestureRecognizer *serviceFormTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(picCheckAction:)];
@@ -296,7 +296,7 @@
 
 - (void)submitAction:(id )sender
 {
-    NSString *nextSql = @"";
+    nextSql = @"";
     isReject = NO;
     //流程第2步！ 主管审核   SH       StepID = 3，
     if(nextWorkFlow.StepID == 3 && [jiaose isEqualToString:@"SH"])
@@ -376,7 +376,67 @@
             [Tool showCustomHUD:@"please engineerNote" andView:self.view andImage:nil andAfterDelay:1.2f];
             return;
         }
-        nextSql = @"step1";
+        if ([self.serviceTypeTF.text isEqualToString:@"Annual 4 times maintenace"])
+        {
+            if([maintaining.OutFact_Num isEqualToString:OutFact_Num] && [maintaining.Project_En isEqualToString:Project_En])
+            {
+                nextSql = @"step1";
+            }
+            else
+            {
+                NSDateComponents *datec = [Tool getCurrentYear_Month_Day];
+                NSInteger year = [datec year];
+                NSString *sql = [NSString stringWithFormat:@"Select COUNT(*) From TB_CUST_ProjInf_MatnRec Where Project='%@' and Proj_ID='%@' and OutFact_Num='%@' and YEAR(UploadTime)=%d", Project, maintaining.Proj_ID, OutFact_Num, (int)year];
+                
+                ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@JsonDataInDZDA",api_base_url]]];
+                
+                [request setUseCookiePersistence:NO];
+                [request setTimeOutSeconds:30];
+                
+                [request setPostValue:sql forKey:@"sqlstr"];
+                [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+                [request startSynchronous];
+                
+                XMLParserUtils *utils = [[XMLParserUtils alloc] init];
+                utils.parserFail = ^()
+                {
+                    if (hud) {
+                        [hud hide:YES];
+                    }
+                    [Tool showCustomHUD:@"网络连接错误" andView:self.view andImage:nil andAfterDelay:1.2f];
+                };
+                utils.parserOK = ^(NSString *string)
+                {
+                    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+                    NSError *error;
+                    NSLog(string);
+                    NSArray *table = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                    NSDictionary *dic = table[0];
+                    NSString *count = [dic objectForKey:@"Column1"];
+                    if([count intValue] > 0)
+                    {
+                        if (hud) {
+                            [hud hide:YES];
+                        }
+                        [Tool showCustomHUD:@"This Type record already exists" andView:self.view andImage:nil andAfterDelay:1.2f];
+                        nextSql = @"already";
+                    }
+                    else
+                    {
+                        nextSql = @"step1";
+                    }
+                };
+                [utils stringFromparserXML:request.responseString target:@"string"];
+            }
+        }
+        else
+        {
+            nextSql = @"step1";
+        }
+    }
+    
+    if ([nextSql isEqualToString:@"already"]) {
+        return;
     }
     
     self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -916,7 +976,8 @@
                 self.UserHQView.hidden = YES;
                 self.EngineerFeedbackView.hidden = YES;
 
-                self.RatingTF.enabled = YES;
+//                self.RatingTF.enabled = YES;
+                self.selectRatingBtn.enabled = YES;
                 self.ManagerNoteTV.editable = YES;
                 self.ManagerSignLB.text = UserName;
                 self.ManagerSignDateLB.text = [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"];
@@ -928,7 +989,8 @@
             {
                 self.EngineerFeedbackView.hidden = YES;
                 
-                self.RatingTF.enabled = YES;
+//                self.RatingTF.enabled = YES;
+                self.selectRatingBtn.enabled = YES;
                 self.UserHQNoteTV.editable = YES;
                 self.UserHQSignLB.text = UserName;
                 self.UserHQSignDateLB.text = [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"];
@@ -941,6 +1003,8 @@
                 self.EngineerFeedbackTV.editable = YES;
                 self.EngineerFeedbackSignLB.text = UserName;
                 self.EngineerFeedbackSignDateLB.text = [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"];
+                
+                self.selectRatingBtn.enabled = NO;
                 
                 self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, self.EngineerFeedbackView.frame.origin.y + self.EngineerFeedbackView.frame.size.height);
             }
@@ -1150,7 +1214,7 @@
         OutFact_Num = maintaining.OutFact_Num;
         Pro_Num = maintaining.Pro_Num;
         Type = maintaining.Type;
-        Type_En = maintaining.Type;
+        Type_En = maintaining.Type_En;
         Project = maintaining.Project;
         Project_En = maintaining.Project_En;
         
@@ -1826,19 +1890,6 @@
                               Pro_Num = selectedUnit.Prod_Num;
                           }];
     }
-    //选择评分
-    if(textField.tag == 5)
-    {
-        NSArray *ratingArray = [[NSArray alloc] initWithObjects:@"A", @"B", @"C", @"D", nil];
-        [SGActionView showSheetWithTitle:@"Choose service type:"
-                              itemTitles:ratingArray
-                           itemSubTitles:nil
-                           selectedIndex:selectedRaingIndex
-                          selectedHandle:^(NSInteger index){
-                              selectedRaingIndex = index;
-                              self.RatingTF.text = [ratingArray objectAtIndex:index];
-                          }];
-    }
     return NO;
 }
 
@@ -1887,4 +1938,15 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)selectRatingAction:(id)sender {
+    NSArray *ratingArray = [[NSArray alloc] initWithObjects:@"A", @"B", @"C", @"D", nil];
+    [SGActionView showSheetWithTitle:@"Choose service type:"
+                          itemTitles:ratingArray
+                       itemSubTitles:nil
+                       selectedIndex:selectedRaingIndex
+                      selectedHandle:^(NSInteger index){
+                          selectedRaingIndex = index;
+                          self.RatingTF.text = [ratingArray objectAtIndex:index];
+                      }];
+}
 @end

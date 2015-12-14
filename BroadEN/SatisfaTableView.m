@@ -10,6 +10,7 @@
 #import "SatisfaTableCell.h"
 #import "SatisfaDetailView.h"
 #import "Satisfa.h"
+#import "AllInOneSearchView.h"
 
 @interface SatisfaTableView ()
 {
@@ -393,5 +394,12 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+- (IBAction)searchAction:(id)sender {
+    AllInOneSearchView *searchView = [[AllInOneSearchView alloc] init];
+    searchView.searchType = @"Satisfa";
+    searchView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:searchView animated:YES];
+}
 
 @end

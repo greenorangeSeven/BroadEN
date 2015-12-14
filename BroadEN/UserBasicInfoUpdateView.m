@@ -121,13 +121,13 @@
 
 - (void)saveAction:(id)sender
 {
-    NSString *verifyStr = [self verifyData];
-    if([Tool isStringExist:verifyStr])
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"alert:" message:verifyStr delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-        return;
-    }
+//    NSString *verifyStr = [self verifyData];
+//    if([Tool isStringExist:verifyStr])
+//    {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"alert:" message:verifyStr delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [alert show];
+//        return;
+//    }
     
     NSMutableString *mutableSQL = [[NSMutableString alloc] initWithString:@"update TB_CUST_ProjInf set"];
     [mutableSQL appendString:[NSString stringWithFormat:@" PROJ_Name_En='%@',", PROJ_Name_En]];

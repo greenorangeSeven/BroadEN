@@ -10,6 +10,7 @@
 #import "MoreCorrpdncTableCell.h"
 #import "Correspondence.h"
 #import "CorrespondenceDetailView.h"
+#import "AllInOneSearchView.h"
 
 @interface MoreCorrpdncTableView ()
 {
@@ -213,7 +214,6 @@
             cell.FileTypeEnLB.text = c.FileTypeEn;
             cell.UploadTimeLB.text = c.Exec_Date;
             return cell;
-            
         }
         else
         {
@@ -336,5 +336,12 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+- (IBAction)searchAction:(id)sender {
+    AllInOneSearchView *searchView = [[AllInOneSearchView alloc] init];
+    searchView.searchType = @"CorrpdncMails";
+    searchView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:searchView animated:YES];
+}
 
 @end
