@@ -92,4 +92,6 @@
 @property (copy, nonatomic) NSString *MachRoom_Inf;
 @property (copy, nonatomic) NSString *Engineer_Score;
 
+@property (copy, nonatomic) NSString *Sys_ElseThing;
+
 @end

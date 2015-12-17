@@ -21,8 +21,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 
-@property (weak, nonatomic) IBOutlet UILabel *TypeEnLB;
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
-- (IBAction)chooseFileTypeAction:(id)sender;
 
 @end

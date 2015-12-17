@@ -40,9 +40,33 @@
 	</dict>
 	<dict>
 		<key>typeEN</key>
-		<string>Photo</string>
+		<string>F-Pictures of typical room or cooling area</string>
 		<key>typeCN</key>
-		<string>照片</string>
+		<string>房间照片</string>
+	</dict>
+	<dict>
+		<key>typeEN</key>
+		<string>J-Pictures of Broad unit</string>
+		<key>typeCN</key>
+		<string>机组照片 </string>
+	</dict>
+	<dict>
+		<key>typeEN</key>
+		<string>L-Pictures of relevant cooling tower</string>
+		<key>typeCN</key>
+		<string>冷却塔照片</string>
+	</dict>
+	<dict>
+		<key>typeEN</key>
+		<string>S-Pictures of water distribution system</string>
+		<key>typeCN</key>
+		<string>机房其它设备照片</string>
+	</dict>
+	<dict>
+		<key>typeEN</key>
+		<string>W-Pictures of building exterior view</string>
+		<key>typeCN</key>
+		<string>建筑外景照片</string>
 	</dict>
 	<dict>
 		<key>typeEN</key>

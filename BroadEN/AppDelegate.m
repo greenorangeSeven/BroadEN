@@ -186,7 +186,7 @@
         int versionCode = [string intValue];
         if( versionCode > [AppVersionCode intValue])
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Update?" message:@"Found a new package, would you like to update?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Update?" message:@"To make our app better for you, we bring updates regularly.  Would you like to update?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
                                                                alert.tag = 0;
                                                                [alert show];
         }

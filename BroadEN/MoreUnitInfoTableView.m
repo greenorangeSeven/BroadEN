@@ -180,7 +180,7 @@
     NSInteger row = [indexPath row];
     if (row < [units count])
     {
-        return 131.0;
+        return 151.0;
     }
     else
     {
@@ -212,6 +212,7 @@
             }
             UnitInfo *u = [units objectAtIndex:row];
             cell.PROJ_Name_EnLb.text = u.PROJ_Name_En;
+            cell.PROJ_NameLb.text = u.PROJ_Name;
             cell.UnitModelLb.text = u.AirCondUnit_Mode;
             cell.ProductionLb.text = u.Prod_Num;
             cell.SerialLb.text = u.OutFact_Num;

@@ -323,7 +323,7 @@
     }
     else if([self.searchType isEqualToString:@"UnitInfo"])
     {
-        rowHeight = 131.0;
+        rowHeight = 151.0;
     }
     else if([self.searchType isEqualToString:@"Agreement"])
     {
@@ -491,6 +491,7 @@
                 }
                 UnitInfo *u = [datas objectAtIndex:row];
                 cell.PROJ_Name_EnLb.text = u.PROJ_Name_En;
+                cell.PROJ_NameLb.text = u.PROJ_Name;
                 cell.UnitModelLb.text = u.AirCondUnit_Mode;
                 cell.ProductionLb.text = u.Prod_Num;
                 cell.SerialLb.text = u.OutFact_Num;

@@ -18,6 +18,7 @@
 #import "ImageCollectionCell.h"
 #import "ZeroHeightTableCell.h"
 #import "SGActionView.h"
+#import "Img.h"
 
 @interface UnitInfoDetailView ()
 {
@@ -49,7 +50,7 @@
     NSMutableArray *fileTypeENArray;//类型英文名称数组
     NSDictionary *selectFileTypeDic;
     NSUInteger selectedFileTypeIndex;
-    
+    Img *currentImg;
 }
 
 @end
@@ -88,32 +89,13 @@
     filePicArray = [[NSMutableArray alloc] init];
     
     selectedFileTypeIndex = 100;
-    fileTypeDicArray = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FileType.plist" ofType:nil]];
+    fileTypeDicArray = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"UnitFileType.plist" ofType:nil]];
     fileTypeENArray = [[NSMutableArray alloc] init];
     for (NSDictionary *typeDic in fileTypeDicArray) {
         [fileTypeENArray addObject:[typeDic objectForKey:@"typeEN"]];
     }
     
     [self getBasicInfoData];
-}
-
-//服务类型、项目、时间等输入框不允许弹出输入法界面
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    if (textField.tag == 1) {
-        [SGActionView showSheetWithTitle:@"Choose file type:"
-                              itemTitles:fileTypeENArray
-                           itemSubTitles:nil
-                           selectedIndex:selectedFileTypeIndex
-                          selectedHandle:^(NSInteger index){
-                              if (selectedFileTypeIndex != index) {
-                                  selectedFileTypeIndex = index;
-                                  selectFileTypeDic = [fileTypeDicArray objectAtIndex:index];
-                                  self.TypeEnLB.text = [fileTypeENArray objectAtIndex:index];
-                              }
-                          }];
-    }
-    return NO;
 }
 
 - (void)modifyAction:(id )sender
@@ -140,13 +122,7 @@
         [Tool showCustomHUD:@"您没做任何修改" andView:self.view andImage:nil andAfterDelay:1.2f];
         return;
     }
-    if ([filePicArray count] > 1) {
-        if (self.TypeEnLB.text == nil || self.TypeEnLB.text.length == 0) {
-            [Tool showCustomHUD:@"please select file type" andView:self.view andImage:nil andAfterDelay:1.2f];
-            return;
-        }
-        
-    }
+
     hud = [[MBProgressHUD alloc] initWithView:self.view];
     [Tool showHUD:@"请稍后..." andView:self.view andHUD:hud];
     
@@ -169,8 +145,9 @@
     UIImage *imgbegin = [[UIImage alloc] init];
     for(int i = 0; i < filePicArray.count - 1; ++i)
     {
+        Img *fileImgObject = [filePicArray objectAtIndex:i];
         imgbegin = nil;
-        imgbegin = filePicArray[i];
+        imgbegin = fileImgObject.img;
         if(imgbegin)
         {
             int random = (arc4random() % 501) + 500;
@@ -178,7 +155,7 @@
             NSString *reName = [[NSString alloc] init];
             reName = nil;
             reName = [NSString stringWithFormat:@"%@%@%i.jpg",picFirstName,[Tool getCurrentTimeStr:@"yyyy-MM-dd-HHmmss"],random];
-            BOOL isOK = [self upload:imgbegin oldName:reName Index:1];
+            BOOL isOK = [self upload:imgbegin oldName:reName Index:1 andType:fileImgObject.fileType];
             if(!isOK)
             {
                 if (hud) {
@@ -242,16 +219,6 @@
             NSError *error2 = [request2 error];
             if (!error2)
             {
-//                NSString *response2 = [request2 responseString];
-//                XMLParserUtils *utils2 = [[XMLParserUtils alloc] init];
-//                utils2.parserFail = ^()
-//                {
-//                };
-//                utils2.parserOK = ^(NSString *string)
-//                {
-//                };
-//                
-//                [utils2 stringFromparserXML:response2 target:@"string"];
                 NSString *response2 = [request2 responseString];
                 if([response2 rangeOfString:@"true"].length > 0)
                 {
@@ -264,7 +231,7 @@
     }
 }
 
-- (BOOL)upload:(UIImage *)img oldName:(NSString *)reName Index:(NSInteger)index
+- (BOOL)upload:(UIImage *)img oldName:(NSString *)reName Index:(NSInteger)index andType:(NSDictionary *)typeDic
 {
     static BOOL isOK = NO;
     if(img)
@@ -317,7 +284,7 @@
 //                        }
 //                        allfilename = [NSString stringWithFormat:@"%@|%@",allfilename,fileName];
 //                        allfilename = [allfilename stringByReplacingOccurrencesOfString:@"null" withString:@""];
-                        NSString *sql2 = [NSString stringWithFormat:@"Insert into TB_CUST_ProjInf_DebugTakeOver(Proj_ID,Exec_Man,Exec_Date,Type,Project,Project_En,AirCondUnit_Mode,OutFact_Num,allfilename) values ('%@','%@','%@','调试交接','%@','%@','%@','%@','%@')", self.PROJ_ID, userinfo.TrueName, [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"], [selectFileTypeDic objectForKey:@"typeCN"], [selectFileTypeDic objectForKey:@"typeEN"],u1.AirCondUnit_Mode,u1.OutFact_Num, fileName];
+                        NSString *sql2 = [NSString stringWithFormat:@"Insert into TB_CUST_ProjInf_DebugTakeOver(Proj_ID,Exec_Man,Exec_Date,Type,Project,Project_En,AirCondUnit_Mode,OutFact_Num,allfilename) values ('%@','%@','%@','调试交接','%@','%@','%@','%@','%@')", self.PROJ_ID, userinfo.TrueName, [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"], [typeDic objectForKey:@"typeCN"], [typeDic objectForKey:@"typeEN"],u1.AirCondUnit_Mode,u1.OutFact_Num, fileName];
                         ASIFormDataRequest *tworequest2 = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@DoActionInDZDA",api_base_url]]];
                         [tworequest2 setUseCookiePersistence:NO];
                         [tworequest2 setTimeOutSeconds:30];
@@ -863,8 +830,17 @@
         }
     }
     NSUInteger row = [indexPath row];
-    UIImage *picImage = [filePicArray objectAtIndex:row];
-    cell.picIV.image = picImage;
+    
+    id image = [filePicArray objectAtIndex:row];
+    if ([image isKindOfClass:[UIImage class]]) {
+        cell.picIV.image = (UIImage *)image;
+    }
+    else
+    {
+        Img *img = (Img *)image;
+        cell.picIV.image = img.img;
+    }
+
     
     return cell;
 }
@@ -888,13 +864,26 @@
 {
     NSUInteger row = [indexPath row];
     if (row == [filePicArray count] -1) {
-        UIActionSheet *cameraSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"取消"
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"拍照", @"从相册中选取", nil];
-        cameraSheet.tag = 0;
-        [cameraSheet showInView:self.view];
+        [SGActionView showSheetWithTitle:@"Choose file type:"
+                              itemTitles:fileTypeENArray
+                           itemSubTitles:nil
+                           selectedIndex:selectedFileTypeIndex
+                          selectedHandle:^(NSInteger index){
+                              if (selectedFileTypeIndex != index) {
+                                  selectedFileTypeIndex = index;
+                                  selectFileTypeDic = [fileTypeDicArray objectAtIndex:index];
+//                                  self.TypeEnLB.text = [fileTypeENArray objectAtIndex:index];
+                                  currentImg = [[Img alloc] init];
+                                  currentImg.fileType = selectFileTypeDic;
+                                  UIActionSheet *cameraSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                                           delegate:self
+                                                                                  cancelButtonTitle:@"取消"
+                                                                             destructiveButtonTitle:nil
+                                                                                  otherButtonTitles:@"拍照", @"从相册中选取", nil];
+                                  cameraSheet.tag = 0;
+                                  [cameraSheet showInView:self.view];
+                              }
+                          }];
     }
     else
     {
@@ -992,7 +981,9 @@
         NSData *imageData = UIImageJPEGRepresentation(smallImage,0.8f);
         UIImage *tImg = [UIImage imageWithData:imageData];
         
-        [filePicArray insertObject:smallImage atIndex:[filePicArray count] -1];
+        currentImg.img = tImg;
+        
+        [filePicArray insertObject:currentImg atIndex:[filePicArray count] -1];
         [self reloadPhotoHeight:YES];
         doChange = YES;
         [self.photoCollectionView reloadData];
@@ -1157,17 +1148,4 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)chooseFileTypeAction:(id)sender {
-    [SGActionView showSheetWithTitle:@"Choose file type:"
-                          itemTitles:fileTypeENArray
-                       itemSubTitles:nil
-                       selectedIndex:selectedFileTypeIndex
-                      selectedHandle:^(NSInteger index){
-                          if (selectedFileTypeIndex != index) {
-                              selectedFileTypeIndex = index;
-                              selectFileTypeDic = [fileTypeDicArray objectAtIndex:index];
-                              self.TypeEnLB.text = [fileTypeENArray objectAtIndex:index];
-                          }
-                      }];
-}
 @end

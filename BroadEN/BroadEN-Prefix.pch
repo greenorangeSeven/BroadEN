@@ -106,7 +106,7 @@
 #define HTML_Bottom @"<div style='margin-bottom:60px'/>"
 
 #define AppVersion @"1.0"
-#define AppVersionCode @"2"
+#define AppVersionCode @"4"
 
 #define noConnect @"noConnect"
 #define wifi @"wifi"

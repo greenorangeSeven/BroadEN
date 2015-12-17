@@ -11,6 +11,7 @@
 @interface MoreUnitInfoTableCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *PROJ_Name_EnLb;
+@property (weak, nonatomic) IBOutlet UILabel *PROJ_NameLb;
 @property (weak, nonatomic) IBOutlet UILabel *UnitModelLb;
 @property (weak, nonatomic) IBOutlet UILabel *ProductionLb;
 @property (weak, nonatomic) IBOutlet UILabel *SerialLb;

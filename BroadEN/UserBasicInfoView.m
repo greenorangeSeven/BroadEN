@@ -205,6 +205,8 @@
     self.F2CoolWPowerTF.text = [NSString stringWithFormat:@"%@kw", basicInfo.CoolWater_Power2];
     self.F2CoolWPcsTF.text = [NSString stringWithFormat:@"%i", [basicInfo.CoolWater_Num2 intValue]];
     self.F2CoolWOriginTF.text = basicInfo.CoolWater_Brand2;
+    
+    self.Sys_ElseThingTF.text = basicInfo.Sys_ElseThing;
 }
 
 - (void)didReceiveMemoryWarning {

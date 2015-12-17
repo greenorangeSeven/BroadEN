@@ -16,6 +16,7 @@
 #import "MyWorkTableView.h"
 #import "SettingView.h"
 #import "HelpAndSupportView.h"
+#import "LoginView.h"
 
 @interface MoreListView ()
 {
@@ -41,6 +42,7 @@
              [[SettingModel alloc] initWith:@"My Work" andImg:@"more_mywork" andTag:4 andTitle2:nil],
              [[SettingModel alloc] initWith:@"Settings" andImg:@"more_setting" andTag:5 andTitle2:nil],
              [[SettingModel alloc] initWith:@"Help and Support" andImg:@"more_help" andTag:6 andTitle2:nil],
+             [[SettingModel alloc] initWith:@"Log Out" andImg:nil andTag:7 andTitle2:nil],
              nil];
     
     self.tableView.delegate = self;
@@ -176,6 +178,13 @@
             [self.navigationController pushViewController:helpView animated:YES];
         }
             break;
+        case 7:
+        {
+            LoginView *loginView = [[LoginView alloc] initWithNibName:@"LoginView" bundle:nil];
+            AppDelegate *appdele = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            appdele.window.rootViewController = loginView;
+        }
+            break;
             
         default:
             break;
@@ -210,6 +219,15 @@
     cell.imgIv.image = [UIImage imageNamed:model.img];
     cell.titleLb.text = model.title;
 //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if ([model.title isEqualToString:@"Log Out"]) {
+        cell.titleLb.textAlignment = UITextAlignmentCenter;
+        cell.titleLb.textColor = [UIColor redColor];
+    }
+    else
+    {
+        cell.titleLb.textAlignment = UITextAlignmentLeft;
+        cell.titleLb.textColor = [Tool getColorForMain];
+    }
     
     return cell;
 }

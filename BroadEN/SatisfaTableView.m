@@ -26,7 +26,7 @@
     [super viewDidLoad];
     
     self.title = @"Satisfa List";
-    self.tabBarItem.title = @"Satisfa";
+    self.tabBarItem.title = @"Satisfaction";
     
     //适配iOS7uinavigationbar遮挡的问题
     if(IS_IOS7)

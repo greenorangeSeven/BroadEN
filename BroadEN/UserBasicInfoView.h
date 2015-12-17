@@ -101,4 +101,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *F2CoolWPcsTF;
 @property (weak, nonatomic) IBOutlet UITextField *F2CoolWOriginTF;
 
+@property (weak, nonatomic) IBOutlet UITextField *Sys_ElseThingTF;
+
 @end

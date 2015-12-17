@@ -8,7 +8,6 @@
 
 #import "LoginView.h"
 #import "AppDelegate.h"
-#import "MainPageView.h"
 #import "DES.h"
 #import "UsersTableView.h"
 #import "SiteServTableView.h"
@@ -273,7 +272,7 @@
     
     SatisfaTableView *satisfaPage = [[SatisfaTableView alloc] initWithNibName:@"SatisfaTableView" bundle:nil];
     satisfaPage.tabBarItem.image = [UIImage imageNamed:@"tab_Satisfa"];
-    satisfaPage.tabBarItem.title = @"Satisfa";
+    satisfaPage.tabBarItem.title = @"Satisfaction";
     UINavigationController *satisfaPageNav = [[UINavigationController alloc] initWithRootViewController:satisfaPage];
     
     MoreListView *morePage = [[MoreListView alloc] initWithNibName:@"MoreListView" bundle:nil];

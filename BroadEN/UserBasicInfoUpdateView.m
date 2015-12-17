@@ -94,6 +94,8 @@
     NSString *CoolWater_Power2;
     NSString *CoolWater_Num2;
     NSString *CoolWater_Brand2;
+    
+    NSString *Sys_ElseThing;
 }
 
 @end
@@ -200,7 +202,9 @@
     [mutableSQL appendString:[NSString stringWithFormat:@" CoolWater_PumpLift2='%@',", CoolWater_PumpLift2]];
     [mutableSQL appendString:[NSString stringWithFormat:@" CoolWater_Power2='%@',", CoolWater_Power2]];
     [mutableSQL appendString:[NSString stringWithFormat:@" CoolWater_Num2='%@',", CoolWater_Num2]];
-    [mutableSQL appendString:[NSString stringWithFormat:@" CoolWater_Brand2='%@' ", CoolWater_Brand2]];
+    [mutableSQL appendString:[NSString stringWithFormat:@" CoolWater_Brand2='%@' ,", CoolWater_Brand2]];
+    [mutableSQL appendString:[NSString stringWithFormat:@" Sys_ElseThing='%@' ", Sys_ElseThing]];
+    
     [mutableSQL appendString:[NSString stringWithFormat:@" where ID='%@'", self.basicInfo.ID]];
     
     NSString *sqlStr = [NSString stringWithString:mutableSQL];
@@ -471,7 +475,9 @@
     CoolWater_PumpLift2 = self.F2CoolWHeadTF.text;
     CoolWater_Power2 = self.F2CoolWPowerTF.text;
     CoolWater_Num2 = self.F2CoolWPcsTF.text;
-    CoolWater_Brand2 = self.F2CoolWOriginTF.text;
+    
+    
+    Sys_ElseThing = self.Sys_ElseThingTF.text;
     return verifyStr;
 }
 
@@ -559,6 +565,8 @@
     self.F2CoolWPowerTF.text = [NSString stringWithFormat:@"%@", self.basicInfo.CoolWater_Power2];
     self.F2CoolWPcsTF.text = [NSString stringWithFormat:@"%i", [self.basicInfo.CoolWater_Num2 intValue]];
     self.F2CoolWOriginTF.text = self.basicInfo.CoolWater_Brand2;
+    
+    self.Sys_ElseThingTF.text = self.basicInfo.Sys_ElseThing;
 }
 
 - (void)didReceiveMemoryWarning {

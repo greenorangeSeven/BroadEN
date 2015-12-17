@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Site Serv List";
+    self.title = @"Site service List";
     self.tabBarItem.title = @"Site Serv";
     
     //适配iOS7uinavigationbar遮挡的问题
@@ -145,7 +145,7 @@
         
         NSDictionary *dic1 = table1[0];
         NSString *counts = dic1[@"Column1"];
-        self.title = [NSString stringWithFormat:@"Site Serv List(%@)",counts];
+        self.title = [NSString stringWithFormat:@"Site service List(%@)",counts];
         self.tabBarItem.title = @"Site Serv";
 
         [self.tableView reloadData];

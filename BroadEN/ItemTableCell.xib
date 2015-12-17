@@ -19,8 +19,8 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gaF-Rf-fuh">
-                        <rect key="frame" x="52" y="19" width="223" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <rect key="frame" x="52" y="19" width="217" height="21"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.090196078430000007" green="0.47450980390000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -35,7 +35,7 @@
                 <outlet property="imgIv" destination="98x-Wa-cde" id="KI0-D3-a5a"/>
                 <outlet property="titleLb" destination="gaF-Rf-fuh" id="pWA-xG-17R"/>
             </connections>
-            <point key="canvasLocation" x="360" y="245"/>
+            <point key="canvasLocation" x="265" y="222"/>
         </tableViewCell>
     </objects>
     <resources>

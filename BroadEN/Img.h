@@ -21,4 +21,7 @@
 @property (copy, nonatomic) UIImage *img;
 
 @property (copy, nonatomic) NSString *tag;
+
+@property (copy, nonatomic) NSDictionary *fileType;
+
 @end
