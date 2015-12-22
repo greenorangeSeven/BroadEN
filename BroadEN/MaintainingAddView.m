@@ -246,7 +246,7 @@
 //                                                     otherButtonTitles:@"删除", nil];
 //        delSheet.tag = -1;
 //        [delSheet showInView:self.view];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示:" message:@"请选择?" delegate:self cancelButtonTitle:@"删除图片" otherButtonTitles:@"取消", nil];
+         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert:" message:@"Please choose?" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Preview", @"Delete", @"Cancel", nil];
         alert.tag = 1;
         [alert show];
     }
@@ -256,9 +256,40 @@
 {
     if(buttonIndex == 0)
     {
+        UIImage *image = [[UIImage alloc] init];
         if(alertView.tag == 1)
         {
-            [picDic removeObjectForKey:[NSString stringWithFormat:@"%d", selectedPicIndex]];
+            image = [picDic objectForKey:[NSString stringWithFormat:@"%d", (int)selectedPicIndex]];
+        }
+        if(alertView.tag == 2)
+        {
+            image = [otherPicArray objectAtIndex:selectOtherPicIndex];
+        }
+        if (image) {
+            [self.photos removeAllObjects];
+            if ([self.photos count] == 0) {
+                NSMutableArray *photos = [[NSMutableArray alloc] init];
+                MWPhoto * photo = [MWPhoto photoWithImage:image];
+                [photos addObject:photo];
+                self.photos = photos;
+            }
+            MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+            browser.displayActionButton = YES;
+            browser.displayNavArrows = NO;//左右分页切换,默认否
+            browser.displaySelectionButtons = NO;//是否显示选择按钮在图片上,默认否
+            browser.alwaysShowControls = YES;//控制条件控件 是否显示,默认否
+            browser.zoomPhotosToFill = NO;//是否全屏,默认是
+            //    browser.wantsFullScreenLayout = YES;//是否全屏
+            [browser setCurrentPhotoIndex:0];
+            self.navigationController.navigationBar.hidden = NO;
+            [self.navigationController pushViewController:browser animated:YES];
+        }
+    }
+    if(buttonIndex == 1)
+    {
+        if(alertView.tag == 1)
+        {
+            [picDic removeObjectForKey:[NSString stringWithFormat:@"%d", (int)selectedPicIndex]];
             
             switch (selectedPicIndex)
             {
@@ -280,6 +311,17 @@
             [self.otherCollectionView reloadData];
         }
     }
+}
+
+//MWPhotoBrowserDelegate委托事件
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return _photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photos.count)
+        return [_photos objectAtIndex:index];
+    return nil;
 }
 
 - (void)getEngineer
@@ -504,7 +546,7 @@
 //        delSheet.tag = -4;
 //        selectOtherPicIndex = row;
 //        [delSheet showInView:self.view];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示:" message:@"请选择?" delegate:self cancelButtonTitle:@"删除图片" otherButtonTitles:@"取消", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert:" message:@"Please choose?" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Preview", @"Delete", @"Cancel", nil];
         alert.tag = 2;
         selectOtherPicIndex = row;
         [alert show];

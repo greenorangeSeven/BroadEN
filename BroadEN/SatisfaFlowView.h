@@ -11,6 +11,7 @@
 @interface SatisfaFlowView : UIViewController
 
 @property (strong, nonatomic) NSString *Mark;
+@property BOOL isQuery;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -63,9 +64,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *UserHQ_Confirm_SignLB;
 @property (weak, nonatomic) IBOutlet UILabel *UserHQ_Confirm_SignDateLB;
 
-
-
-
-
+- (IBAction)checkFlowRecord:(id)sender;
 
 @end

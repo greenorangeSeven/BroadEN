@@ -172,6 +172,39 @@
         self.unitTF.text = maintaining.OutFact_Num;
         self.EngineerNoteTV.text = maintaining.EngineerNote;
         
+        if ([Tool isStringExist:maintaining.Rating]) {
+            self.RatingTF.text = maintaining.Rating;
+        }
+        if ([Tool isStringExist:maintaining.ManagerNote]) {
+            self.ManagerNoteTV.text = maintaining.ManagerNote;
+        }
+        if ([Tool isStringExist:maintaining.ManagerSign]) {
+            self.ManagerSignLB.text = maintaining.ManagerSign;
+        }
+        if ([Tool isStringExist:maintaining.ManagerSignDate]) {
+            self.ManagerSignDateLB.text = maintaining.ManagerSignDate;
+        }
+        
+        if ([Tool isStringExist:maintaining.UserHQNote]) {
+            self.UserHQNoteTV.text = maintaining.UserHQNote;
+        }
+        if ([Tool isStringExist:maintaining.UserHQSign]) {
+            self.UserHQSignLB.text = maintaining.UserHQSign;
+        }
+        if ([Tool isStringExist:maintaining.UserHQSignDate]) {
+            self.UserHQSignDateLB.text = maintaining.UserHQSignDate;
+        }
+        
+        if ([Tool isStringExist:maintaining.EngineerFeedback]) {
+            self.EngineerFeedbackTV.text = maintaining.EngineerFeedback;
+        }
+        if ([Tool isStringExist:maintaining.EngineerFeedbackSign]) {
+            self.EngineerFeedbackSignLB.text = maintaining.EngineerFeedbackSign;
+        }
+        if ([Tool isStringExist:maintaining.EngineerFeedbackSignDate]) {
+            self.EngineerFeedbackSignDateLB.text = maintaining.EngineerFeedbackSignDate;
+        }
+        
         if (maintaining.allfilename02.length > 0) {
             [self getImg:maintaining.allfilename02 andImageIndex:0];
         }
@@ -300,11 +333,15 @@
     self.attachmentView.frame = attachmentFrame;
     
     //多加了个View暂时先这么办吧
-    CGRect main2ViewFrame = self.mainView.frame;
-    main2ViewFrame.size.height = main2ViewFrame.size.height + addHeight;
-    self.mainView.frame = main2ViewFrame;
+    CGRect mainViewFrame = self.mainView.frame;
+    mainViewFrame.size.height = mainViewFrame.size.height + addHeight;
+    self.mainView.frame = mainViewFrame;
     
-    self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, self.mainView.frame.size.height);
+    CGRect main2ViewFrame = self.main2View.frame;
+    main2ViewFrame.origin.y= main2ViewFrame.origin.y + addHeight;
+    self.main2View.frame = main2ViewFrame;
+    
+    self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, self.main2View.frame.origin.y + self.main2View.frame.size.height);
 }
 
 //定义展示的UICollectionViewCell的个数

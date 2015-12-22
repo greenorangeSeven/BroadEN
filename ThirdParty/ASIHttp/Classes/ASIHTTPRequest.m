@@ -1980,7 +1980,6 @@ static NSOperationQueue *sharedQueue = nil;
     @finally {
         
     }
-	
 }
 
 /* ALWAYS CALLED ON MAIN THREAD! */

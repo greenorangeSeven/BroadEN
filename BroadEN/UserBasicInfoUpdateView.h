@@ -80,10 +80,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *HotpressureTF;
 @property (weak, nonatomic) IBOutlet UITextField *HotWaterOutpressureTF;
 
-@property (weak, nonatomic) IBOutlet UITextField *DescribeCWCHTF;
+@property (weak, nonatomic) IBOutlet UITextView *DescribeCWCHTF;
 
 //Others
-@property (weak, nonatomic) IBOutlet UITextField *OthersTF;
+@property (weak, nonatomic) IBOutlet UITextView *OthersTF;
 
 //System Info
 @property (weak, nonatomic) IBOutlet UITextField *Flow1chilledWaterpumpTF;
@@ -110,6 +110,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *F2CoolWPcsTF;
 @property (weak, nonatomic) IBOutlet UITextField *F2CoolWOriginTF;
 
-@property (weak, nonatomic) IBOutlet UITextField *Sys_ElseThingTF;
+@property (weak, nonatomic) IBOutlet UITextView *Sys_ElseThingTF;
+
+- (IBAction)selectCountryAction:(id)sender;
 
 @end

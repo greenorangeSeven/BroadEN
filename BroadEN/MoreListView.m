@@ -17,6 +17,7 @@
 #import "SettingView.h"
 #import "HelpAndSupportView.h"
 #import "LoginView.h"
+#import "SolnMgtTableView.h"
 
 @interface MoreListView ()
 {
@@ -39,7 +40,8 @@
     
     items = [[NSMutableArray alloc] initWithObjects:
              [[SettingModel alloc] initWith:@"Unit Info" andImg:@"more_userinfo" andTag:1 andTitle2:nil],
-             [[SettingModel alloc] initWith:@"My Work" andImg:@"more_mywork" andTag:4 andTitle2:nil],
+             //             [[SettingModel alloc] initWith:@"My Work" andImg:@"more_mywork" andTag:4 andTitle2:nil],
+             [[SettingModel alloc] initWith:@"Soln Mgt" andImg:@"tab_SolnMgt" andTag:4 andTitle2:nil],
              [[SettingModel alloc] initWith:@"Settings" andImg:@"more_setting" andTag:5 andTitle2:nil],
              [[SettingModel alloc] initWith:@"Help and Support" andImg:@"more_help" andTag:6 andTitle2:nil],
              [[SettingModel alloc] initWith:@"Log Out" andImg:nil andTag:7 andTitle2:nil],
@@ -111,7 +113,7 @@
                 haveQueryCorrpdnc = YES;
             }
         }
-
+        
         SettingModel *agreement = [[SettingModel alloc] initWith:@"Agreement Mgt" andImg:@"more_agreement" andTag:2 andTitle2:nil];
         SettingModel *corrpdnc = [[SettingModel alloc] initWith:@"Corrpdnc Mails" andImg:@"more_corrpdnc" andTag:3 andTitle2:nil];
         
@@ -159,9 +161,12 @@
             break;
         case 4:
         {
-            MyWorkTableView *myWorkView = [[MyWorkTableView alloc] init];
-            myWorkView.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:myWorkView animated:YES];
+            //            MyWorkTableView *myWorkView = [[MyWorkTableView alloc] init];
+            //            myWorkView.hidesBottomBarWhenPushed = YES;
+            //            [self.navigationController pushViewController:myWorkView animated:YES];
+            SolnMgtTableView *solnMgtView = [[SolnMgtTableView alloc] init];
+            solnMgtView.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:solnMgtView animated:YES];
         }
             break;
         case 5:
@@ -218,7 +223,7 @@
     SettingModel *model = [items objectAtIndex:row];
     cell.imgIv.image = [UIImage imageNamed:model.img];
     cell.titleLb.text = model.title;
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if ([model.title isEqualToString:@"Log Out"]) {
         cell.titleLb.textAlignment = UITextAlignmentCenter;
         cell.titleLb.textColor = [UIColor redColor];
@@ -251,13 +256,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

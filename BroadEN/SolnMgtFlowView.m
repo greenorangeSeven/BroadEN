@@ -10,8 +10,9 @@
 #import "ImageCollectionCell.h"
 #import "SolnMgt.h"
 #import "HSDatePickerViewController.h"
+#import "MWPhotoBrowser.h"
 
-@interface SolnMgtFlowView ()<UIActionSheetDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,HSDatePickerViewControllerDelegate>
+@interface SolnMgtFlowView ()<UIActionSheetDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,HSDatePickerViewControllerDelegate,MWPhotoBrowserDelegate>
 {
     UserInfo *userinfo;
     SolnMgt *solnMgt;
@@ -29,7 +30,10 @@
     NSString *UserNameEN;
     
     NSDate *serviceDate;
+    
+    NSMutableArray *_photos;
 }
+@property (nonatomic, retain) NSMutableArray *photos;
 
 @end
 
@@ -40,8 +44,11 @@
     
     self.title = @"Soln Mgt";
     
-    UIBarButtonItem *submitBtn = [[UIBarButtonItem alloc] initWithTitle: @"Submit" style:UIBarButtonItemStyleBordered target:self action:@selector(submitAction:)];
-    self.navigationItem.rightBarButtonItem = submitBtn;
+    if(!self.isQuery)
+    {
+        UIBarButtonItem *submitBtn = [[UIBarButtonItem alloc] initWithTitle: @"Submit" style:UIBarButtonItemStyleBordered target:self action:@selector(submitAction:)];
+        self.navigationItem.rightBarButtonItem = submitBtn;
+    }
     
     self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, self.view.frame.size.height);
     
@@ -64,7 +71,10 @@
     //初始化图片区域
     fileArray = [[NSMutableArray alloc] initWithCapacity:9];
     UIImage *addPicImage = [UIImage imageNamed:@"addPic"];
-    [fileArray addObject:addPicImage];
+    if(!self.isQuery)
+    {
+        [fileArray addObject:addPicImage];
+    }
     self.photoCollectionView.delegate = self;
     self.photoCollectionView.dataSource = self;
     [self.photoCollectionView registerClass:[ImageCollectionCell class] forCellWithReuseIdentifier:ImageCollectionCellIdentifier];
@@ -403,7 +413,7 @@
     self.ClResultLB.text = [self CNTOEN:solnMgt.ClResult];
     
     self.InspectorSignEnLB.text = solnMgt.InspectorSignEn;
-//    self.InspectorSignDateLB.text = [Tool DateTimeRemoveTime:solnMgt.InspectorSignDate andSeparated:@" "];
+    //    self.InspectorSignDateLB.text = [Tool DateTimeRemoveTime:solnMgt.InspectorSignDate andSeparated:@" "];
 }
 
 - (NSString *)CNTOEN:(NSString *)CN
@@ -419,7 +429,7 @@
         else if ([CN isEqualToString:@"合格"]) {
             EN = @"Qualified";
         }
-        else if ([CN isEqualToString:@"不合格"]) {
+        else if ([CN isEqualToString:@"不合格"] || [CN isEqualToString:@"超标"]) {
             EN = @"Unqualified";
         }
     }
@@ -474,11 +484,47 @@
     {
         if(alertView.tag == 1)
         {
+            UIImage *picImage = [fileArray objectAtIndex:selectPicIndex];
+            [self.photos removeAllObjects];
+            if ([self.photos count] == 0) {
+                NSMutableArray *photos = [[NSMutableArray alloc] init];
+                MWPhoto * photo = [MWPhoto photoWithImage:picImage];
+                [photos addObject:photo];
+                self.photos = photos;
+            }
+            MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+            browser.displayActionButton = YES;
+            browser.displayNavArrows = NO;//左右分页切换,默认否
+            browser.displaySelectionButtons = NO;//是否显示选择按钮在图片上,默认否
+            browser.alwaysShowControls = YES;//控制条件控件 是否显示,默认否
+            browser.zoomPhotosToFill = NO;//是否全屏,默认是
+            //    browser.wantsFullScreenLayout = YES;//是否全屏
+            [browser setCurrentPhotoIndex:0];
+            self.navigationController.navigationBar.hidden = NO;
+            [self.navigationController pushViewController:browser animated:YES];
+            
+        }
+    }
+    if(buttonIndex == 1)
+    {
+        if(alertView.tag == 1)
+        {
             [fileArray removeObjectAtIndex:selectPicIndex];
             [self reloadPhotoHeight:NO];
             [self.photoCollectionView reloadData];
         }
     }
+}
+
+//MWPhotoBrowserDelegate委托事件
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return _photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photos.count)
+        return [_photos objectAtIndex:index];
+    return nil;
 }
 
 //定义展示的UICollectionViewCell的个数
@@ -542,7 +588,7 @@
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示:" message:@"请选择?" delegate:self cancelButtonTitle:@"删除图片" otherButtonTitles:@"取消", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert:" message:@"Please choose?" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Preview", @"Delete", @"Cancel", nil];
         alert.tag = 1;
         selectPicIndex = row;
         [alert show];
@@ -813,4 +859,17 @@
     }
     [self presentViewController:hsdpvc animated:YES completion:nil];
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,nil]];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"Back";
+    self.navigationItem.backBarButtonItem = backItem;
+}
+
 @end

@@ -13,6 +13,7 @@
 @interface MaintenanceFlowView : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MWPhotoBrowserDelegate,UITextFieldDelegate,UIAlertViewDelegate,HSDatePickerViewControllerDelegate,UIActionSheetDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) NSString *Mark;
+@property BOOL isQuery;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *mainView;
@@ -51,5 +52,6 @@
 
 - (IBAction)selectRatingAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *selectRatingBtn;
+- (IBAction)checkFlowRecord:(id)sender;
 
 @end

@@ -32,13 +32,13 @@
     self.title = self.titleStr;
     
     items = [[NSArray alloc] initWithObjects:
-             [[SettingModel alloc] initWith:@"Basic information" andImg:@"user_bi" andTag:1 andTitle2:nil],
-             [[SettingModel alloc] initWith:@"Unit information" andImg:@"user_ui" andTag:2 andTitle2:nil],
-             [[SettingModel alloc] initWith:@"Maintaining" andImg:@"user_mt" andTag:3 andTitle2:nil],
-             [[SettingModel alloc] initWith:@"Solution management" andImg:@"user_sm" andTag:4 andTitle2:nil],
-             [[SettingModel alloc] initWith:@"Satisfaction Suery" andImg:@"user_ss" andTag:5 andTitle2:nil],
-             [[SettingModel alloc] initWith:@"Correspondace" andImg:@"user_cd" andTag:6 andTitle2:nil],
-             [[SettingModel alloc] initWith:@"Agreement List" andImg:@"user_al" andTag:7 andTitle2:nil],
+             [[SettingModel alloc] initWith:@"Basic information" andImg:@"more_basicinfor" andTag:1 andTitle2:nil],
+             [[SettingModel alloc] initWith:@"Unit information" andImg:@"more_userinfo" andTag:2 andTitle2:nil],
+             [[SettingModel alloc] initWith:@"Maintaining" andImg:@"more_maintaining" andTag:3 andTitle2:nil],
+             [[SettingModel alloc] initWith:@"Solution management" andImg:@"more_solution" andTag:4 andTitle2:nil],
+             [[SettingModel alloc] initWith:@"Satisfaction Suery" andImg:@"more_satisfaction" andTag:5 andTitle2:nil],
+             [[SettingModel alloc] initWith:@"Correspondace" andImg:@"more_corrpdnc" andTag:6 andTitle2:nil],
+             [[SettingModel alloc] initWith:@"Agreement List" andImg:@"more_agreement" andTag:7 andTitle2:nil],
              nil];
     
     self.tableView.delegate = self;

@@ -14,6 +14,7 @@
 #import "SolnMgtTableView.h"
 #import "SatisfaTableView.h"
 #import "MoreListView.h"
+#import "MyWorkTableView.h"
 
 @interface LoginView ()<NSXMLParserDelegate>
 {
@@ -275,6 +276,11 @@
     satisfaPage.tabBarItem.title = @"Satisfaction";
     UINavigationController *satisfaPageNav = [[UINavigationController alloc] initWithRootViewController:satisfaPage];
     
+    MyWorkTableView *myWorkPage = [[MyWorkTableView alloc] initWithNibName:@"MyWorkTableView" bundle:nil];
+    myWorkPage.tabBarItem.image = [UIImage imageNamed:@"tab_MyWork"];
+    myWorkPage.tabBarItem.title = @"My Work";
+    UINavigationController *myWorkPageNav = [[UINavigationController alloc] initWithRootViewController:myWorkPage];
+    
     MoreListView *morePage = [[MoreListView alloc] initWithNibName:@"MoreListView" bundle:nil];
     morePage.tabBarItem.image = [UIImage imageNamed:@"tab_more"];
     morePage.tabBarItem.title = @"more";
@@ -282,15 +288,16 @@
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = [NSArray arrayWithObjects:
+                                        myWorkPageNav,
                                         userPageNav,
                                         siteServPageNav,
-                                        solnMgtPageNav,
+//                                        solnMgtPageNav,
                                         satisfaPageNav,
                                         morePageNav,
                                         nil];
     [[tabBarController tabBar] setSelectedImageTintColor:[Tool getColorForMain]];
     [[tabBarController tabBar] setBackgroundImage:[UIImage imageNamed:@"tabbar_bg"]];
-    
+        
     appdele.window.rootViewController = tabBarController;
     [appdele.window makeKeyAndVisible];
 

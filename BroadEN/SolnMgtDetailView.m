@@ -8,11 +8,19 @@
 
 #import "SolnMgtDetailView.h"
 #import "SolnMgt.h"
+#import "ImageCollectionCell.h"
+#import "Img.h"
+#import "MWPhotoBrowser.h"
 
-@interface SolnMgtDetailView ()
+@interface SolnMgtDetailView ()<UICollectionViewDataSource,UICollectionViewDelegate,MWPhotoBrowserDelegate>
 {
     SolnMgt *solnMgt;
+    
+    NSArray *picArray;
+    NSMutableArray *filePicArray;
+    NSMutableArray *_photos;
 }
+@property (nonatomic, retain) NSMutableArray *photos;
 
 @end
 
@@ -24,6 +32,10 @@
     self.title = @"Solution management";
     
     self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, self.view.frame.size.height);
+    
+    self.photoCollectionView.delegate = self;
+    self.photoCollectionView.dataSource = self;
+    [self.photoCollectionView registerClass:[ImageCollectionCell class] forCellWithReuseIdentifier:ImageCollectionCellIdentifier];
     
     [self getSolnDetailData];
 }
@@ -119,6 +131,200 @@
     
     self.InspectorSignEnLB.text = solnMgt.InspectorSignEn;
     self.InspectorSignDateLB.text = [Tool DateTimeRemoveTime:solnMgt.InspectorSignDate andSeparated:@" "];
+    
+    self.LithiumLb.text = [NSString stringWithFormat:@"%@Kg/t", solnMgt.Lithium];
+    
+    self.HandingDateTF.text = [Tool DateTimeRemoveTime:solnMgt.HandleTime andSeparated:@" "];
+    self.ExplainInfoTV.text = solnMgt.Other;
+    
+    if (solnMgt.allfilename.length > 0) {
+        [self getImg:solnMgt.allfilename andImageIndex:3];
+    }
+}
+
+- (void)getImg:(NSString *)imgurl andImageIndex:(int )imageIndex
+{
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [Tool showHUD:@"请稍后..." andView:self.view andHUD:hud];
+    [[AFOSCClient  sharedClient] postPath:[NSString stringWithFormat:@"%@GetFileUrl",api_base_url] parameters:[NSDictionary dictionaryWithObjectsAndKeys:imgurl,@"fileName", nil] success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         XMLParserUtils *utils = [[XMLParserUtils alloc] init];
+         utils.parserFail = ^()
+         {
+             hud.hidden = YES;
+             [Tool showCustomHUD:@"网络连接错误" andView:self.view andImage:nil andAfterDelay:1.2f];
+             //             [self performSelector:@selector(back) withObject:nil afterDelay:1.2f];
+         };
+         utils.parserOK = ^(NSString *string)
+         {
+             NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+             NSError *error;
+             
+             NSArray *table = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+             picArray = nil;
+             picArray = [Tool readJsonToObjArray:table andObjClass:[Img class]];
+             hud.hidden = YES;
+             if(picArray && picArray.count > 0)
+             {
+                 switch (imageIndex) {
+                     case 3:
+                         filePicArray = [NSMutableArray arrayWithArray:picArray];
+                         [self reloadOtherHeight:YES andIsInit:YES];
+                         [self.photoCollectionView reloadData];
+                         break;
+                     default:
+                         break;
+                 }
+             }
+         };
+         
+         [utils stringFromparserXML:operation.responseString target:@"string"];
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         hud.hidden = YES;
+         [Tool showCustomHUD:@"网络连接错误" andView:self.view andImage:nil andAfterDelay:1.2f];
+     }];
+}
+
+- (void)reloadOtherHeight:(BOOL )addORcutRow andIsInit:(BOOL )ISInit
+{
+    int addRow = 0;
+    if(ISInit)
+    {
+        if ([filePicArray count] % 3 > 0) {
+            addRow = [filePicArray count]/3 + 1 - 1;
+        }
+        else
+        {
+            addRow = [filePicArray count]/3 - 1;
+        }
+    }
+    else
+    {
+        if(addORcutRow)
+        {
+            if ([filePicArray count] % 3 == 1) {
+                addRow = 1;
+            }
+        }
+        else
+        {
+            if ([filePicArray count] % 3 == 0) {
+                addRow = -1;
+            }
+        }
+    }
+    
+    
+    //只允许上传9张图片
+    if ([filePicArray count] == 10) {
+        addRow = 0;
+    }
+    
+    float addHeight = 100.0 * addRow;
+    
+    //计算框架otherCollectionView的高度
+    CGRect photoFrame = self.photoCollectionView.frame;
+    photoFrame.size.height = photoFrame.size.height + addHeight;
+    self.photoCollectionView.frame = photoFrame;
+
+//    //设置photoView下移
+    CGRect photoViewFrame = self.photoView.frame;
+    photoViewFrame.origin.y = photoViewFrame.origin.y + addHeight;
+    self.photoView.frame = photoViewFrame;
+    
+    CGRect explainViewFrame = self.explainView.frame;
+    explainViewFrame.origin.y = explainViewFrame.origin.y + addHeight;
+    self.explainView.frame = explainViewFrame;
+    
+    self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, self.explainView.frame.origin.y + self.explainView.frame.size.height);
+}
+
+//定义展示的UICollectionViewCell的个数
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [filePicArray count];
+}
+
+//定义展示的Section的个数
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+//每个UICollectionView展示的内容
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ImageCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ImageCollectionCellIdentifier forIndexPath:indexPath];
+    if (!cell) {
+        NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"ImageCollectionCell" owner:self options:nil];
+        for (NSObject *o in objects) {
+            if ([o isKindOfClass:[ImageCollectionCell class]]) {
+                cell = (ImageCollectionCell *)o;
+                break;
+            }
+        }
+    }
+    NSUInteger row = [indexPath row];
+    Img *picImage = [filePicArray objectAtIndex:row];
+    [cell.picIV sd_setImageWithURL:[NSURL URLWithString:picImage.Url] placeholderImage:[UIImage imageNamed:@"loadingpic"]];
+    
+    return cell;
+}
+
+#pragma mark --UICollectionViewDelegateFlowLayout
+//定义每个UICollectionView 的大小
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(90, 90);
+}
+
+//定义每个UICollectionView 的 margin
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
+#pragma mark --UICollectionViewDelegate
+//UICollectionView被选中时调用的方法
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.photos removeAllObjects];
+    if ([self.photos count] == 0) {
+        NSMutableArray *photos = [[NSMutableArray alloc] init];
+        for (Img *image in filePicArray) {
+            MWPhoto * photo = [MWPhoto photoWithURL:[NSURL URLWithString:image.Url]];
+            [photos addObject:photo];
+        }
+        self.photos = photos;
+    }
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser.displayActionButton = YES;
+    browser.displayNavArrows = NO;//左右分页切换,默认否
+    browser.displaySelectionButtons = NO;//是否显示选择按钮在图片上,默认否
+    browser.alwaysShowControls = YES;//控制条件控件 是否显示,默认否
+    browser.zoomPhotosToFill = NO;//是否全屏,默认是
+    //    browser.wantsFullScreenLayout = YES;//是否全屏
+    [browser setCurrentPhotoIndex:[indexPath row]];
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
+//返回这个UICollectionView是否可以被选择
+-(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+//MWPhotoBrowserDelegate委托事件
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return _photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photos.count)
+        return [_photos objectAtIndex:index];
+    return nil;
 }
 
 - (NSString *)CNTOEN:(NSString *)CN
@@ -134,7 +340,7 @@
         else if ([CN isEqualToString:@"合格"]) {
             EN = @"Qualified";
         }
-        else if ([CN isEqualToString:@"不合格"]) {
+        else if ([CN isEqualToString:@"不合格"] || [CN isEqualToString:@"超标"]) {
             EN = @"Unqualified";
         }
     }

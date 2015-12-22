@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *DistributorTF;
 @property (weak, nonatomic) IBOutlet UITextField *ChinesenameTF;
 @property (weak, nonatomic) IBOutlet UITextField *ShortnameTF;
-@property (weak, nonatomic) IBOutlet UITextField *FormernameTF;
+@property (weak, nonatomic) IBOutlet UITextView *FormernameTF;
 @property (weak, nonatomic) IBOutlet UITextField *AdressTF;
 @property (weak, nonatomic) IBOutlet UITextField *CountryTF;
 @property (weak, nonatomic) IBOutlet UITextField *CityTF;
@@ -71,10 +71,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *WarmpressureTF;
 @property (weak, nonatomic) IBOutlet UITextField *CoolingpressureTF;
 @property (weak, nonatomic) IBOutlet UITextField *HotpressureTF;
-@property (weak, nonatomic) IBOutlet UITextField *DescribeCWCHTF;
+@property (weak, nonatomic) IBOutlet UITextView *DescribeCWCHTF;
 
 //Others
-@property (weak, nonatomic) IBOutlet UITextField *OthersTF;
+@property (weak, nonatomic) IBOutlet UITextView *OthersTF;
 
 //System Info
 @property (weak, nonatomic) IBOutlet UITextField *Flow1chilledWaterpumpTF;
@@ -101,6 +101,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *F2CoolWPcsTF;
 @property (weak, nonatomic) IBOutlet UITextField *F2CoolWOriginTF;
 
-@property (weak, nonatomic) IBOutlet UITextField *Sys_ElseThingTF;
+@property (weak, nonatomic) IBOutlet UITextView *Sys_ElseThingTF;
 
 @end

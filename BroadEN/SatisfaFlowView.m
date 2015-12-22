@@ -13,13 +13,17 @@
 #import "ImageCollectionCell.h"
 #import "NextWorkFlow.h"
 #import "SGActionView.h"
+#import "FlowRecordView.h"
+#import "MWPhotoBrowser.h"
+#import "Img.h"
 
-@interface SatisfaFlowView ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIAlertViewDelegate>
+@interface SatisfaFlowView ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIAlertViewDelegate,MWPhotoBrowserDelegate>
 {
     Satisfa *satisfa;
     NSArray *units;
     UserInfo *userinfo;
     
+    NSArray *picArray;
     NSMutableArray *fileArray;
     NSUInteger selectPicIndex;
     
@@ -44,7 +48,10 @@
     UIAlertView *reJectDialog;
     BOOL isReject;
     NSString *rejectContent;
+    
+    NSMutableArray *_photos;
 }
+@property (nonatomic, retain) NSMutableArray *photos;
 
 @end
 
@@ -55,8 +62,11 @@
     
     self.title = @"Satisfa";
     
-    UIBarButtonItem *submitBtn = [[UIBarButtonItem alloc] initWithTitle: @"Submit" style:UIBarButtonItemStyleBordered target:self action:@selector(submitAction:)];
-    self.navigationItem.rightBarButtonItem = submitBtn;
+    if(!self.isQuery)
+    {
+        UIBarButtonItem *submitBtn = [[UIBarButtonItem alloc] initWithTitle: @"Submit" style:UIBarButtonItemStyleBordered target:self action:@selector(submitAction:)];
+        self.navigationItem.rightBarButtonItem = submitBtn;
+    }
     
     AppDelegate *app = [[UIApplication sharedApplication] delegate];
     userinfo = app.userinfo;
@@ -79,8 +89,11 @@
     fromCamera = NO;
     //初始化图片区域
     fileArray = [[NSMutableArray alloc] initWithCapacity:9];
-    UIImage *addPicImage = [UIImage imageNamed:@"addPic"];
-    [fileArray addObject:addPicImage];
+    if(!self.isQuery)
+    {
+        UIImage *addPicImage = [UIImage imageNamed:@"addPic"];
+        [fileArray addObject:addPicImage];
+    }
     self.photoCollectionView.delegate = self;
     self.photoCollectionView.dataSource = self;
     [self.photoCollectionView registerClass:[ImageCollectionCell class] forCellWithReuseIdentifier:ImageCollectionCellIdentifier];
@@ -532,19 +545,22 @@
             //流程第2步！ 总部审批      IM角色  AM角色       StepID = 3，
             if(nextWorkFlow.StepID == 3 && ([jiaose isEqualToString:@"IM"] || [jiaose isEqualToString:@"AM"]))
             {
-                //如果是第二步就会有回退按钮
-                UIBarButtonItem *submitBtn = [[UIBarButtonItem alloc] initWithTitle: @"|  Submit" style:UIBarButtonItemStyleBordered target:self action:@selector(submitAction:)];
-                UIBarButtonItem *rollbackBtn = [[UIBarButtonItem alloc] initWithTitle: @"Reject  " style:UIBarButtonItemStyleBordered target:self action:@selector(rejectAction:)];
-                NSArray *buttonArray = [[NSArray alloc] initWithObjects:submitBtn,rollbackBtn , nil];
-                self.navigationItem.rightBarButtonItems = buttonArray;
+                if(!self.isQuery)
+                {
+                    //如果是第二步就会有回退按钮
+                    UIBarButtonItem *submitBtn = [[UIBarButtonItem alloc] initWithTitle: @"|  Submit" style:UIBarButtonItemStyleBordered target:self action:@selector(submitAction:)];
+                    UIBarButtonItem *rollbackBtn = [[UIBarButtonItem alloc] initWithTitle: @"Reject  " style:UIBarButtonItemStyleBordered target:self action:@selector(rejectAction:)];
+                    NSArray *buttonArray = [[NSArray alloc] initWithObjects:submitBtn,rollbackBtn , nil];
+                    self.navigationItem.rightBarButtonItems = buttonArray;
+                    
+                    self.UserHQ_SugstTV.editable = YES;
+                    self.UserHQ_Sign_EnLB.text = UserName;
+                    self.UserHQ_SignDateLB.text = [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"];
+                }
                 
                 self.ServiceBranchView.hidden = YES;
                 self.EngineerView.hidden = YES;
                 self.UserHQConfirmOpinionView.hidden = YES;
-                
-                self.UserHQ_SugstTV.editable = YES;
-                self.UserHQ_Sign_EnLB.text = UserName;
-                self.UserHQ_SignDateLB.text = [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"];
                 
                 CGRect footerFrame = self.footerView.frame;
                 footerFrame.size.height = self.UserHQ_SugstView.frame.origin.y + self.UserHQ_SugstView.frame.size.height;
@@ -556,12 +572,15 @@
             //流程第3步！ 服务部落实    SH角色       StepID = 4（下一步流程），
             if(nextWorkFlow.StepID == 4 && [jiaose isEqualToString:@"SH"])
             {
+                if(!self.isQuery)
+                {
+                    self.Serv_Dept_SugstTV.editable = YES;
+                    self.Serv_Dept_SignLB.text = UserName;
+                    self.Serv_Dept_SignDateLB.text = [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"];
+                }
+                
                 self.EngineerView.hidden = YES;
                 self.UserHQConfirmOpinionView.hidden = YES;
-                
-                self.Serv_Dept_SugstTV.editable = YES;
-                self.Serv_Dept_SignLB.text = UserName;
-                self.Serv_Dept_SignDateLB.text = [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"];
                 
                 CGRect footerFrame = self.footerView.frame;
                 footerFrame.size.height = self.ServiceBranchView.frame.origin.y + self.ServiceBranchView.frame.size.height;
@@ -572,11 +591,14 @@
             //流程第4步！ 工程师落实（办结归档）    SE 或 FJ 角色       StepID = 5（下一步流程），
             if(nextWorkFlow.StepID == 5 && ([jiaose isEqualToString:@"SE"] || [jiaose isEqualToString:@"FJ"]))
             {
-                self.UserHQConfirmOpinionView.hidden = YES;
+                if(!self.isQuery)
+                {
+                    self.Engineer_SugstTV.editable = YES;
+                    self.Engineer_SignLB.text = UserName;
+                    self.Engineer_SignDateLB.text = [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"];
+                }
                 
-                self.Engineer_SugstTV.editable = YES;
-                self.Engineer_SignLB.text = UserName;
-                self.Engineer_SignDateLB.text = [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"];
+                self.UserHQConfirmOpinionView.hidden = YES;
                 
                 CGRect footerFrame = self.footerView.frame;
                 footerFrame.size.height = self.EngineerView.frame.origin.y + self.EngineerView.frame.size.height;
@@ -588,9 +610,12 @@
             //流程第5步！ 总部确认      IM角色     StepID = 6（下一步流程），
             if(nextWorkFlow.StepID == 5 && [jiaose isEqualToString:@"IM"])
             {
-                self.UserHQ_ConfirmTV.editable = YES;
-                self.UserHQ_Confirm_SignLB.text = UserName;
-                self.UserHQ_Confirm_SignDateLB.text = [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"];
+                if(!self.isQuery)
+                {
+                    self.UserHQ_ConfirmTV.editable = YES;
+                    self.UserHQ_Confirm_SignLB.text = UserName;
+                    self.UserHQ_Confirm_SignDateLB.text = [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"];
+                }
                 
                 self.tableView.tableFooterView = self.footerView;
             }
@@ -718,6 +743,56 @@
     self.UserHQ_ConfirmTV.text = satisfa.UserHQ_Confirm;
     self.UserHQ_Confirm_SignLB.text = satisfa.UserHQ_Confirm_Sign;
     self.UserHQ_Confirm_SignDateLB.text = satisfa.UserHQ_Confirm_SignDate;
+    
+    if (self.isQuery) {
+        if (satisfa.allfilename.length > 0) {
+            [self getImg:satisfa.allfilename andImageIndex:3];
+        }
+    }
+}
+
+- (void)getImg:(NSString *)imgurl andImageIndex:(int )imageIndex
+{
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [Tool showHUD:@"请稍后..." andView:self.view andHUD:hud];
+    [[AFOSCClient  sharedClient] postPath:[NSString stringWithFormat:@"%@GetFileUrl",api_base_url] parameters:[NSDictionary dictionaryWithObjectsAndKeys:imgurl,@"fileName", nil] success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         XMLParserUtils *utils = [[XMLParserUtils alloc] init];
+         utils.parserFail = ^()
+         {
+             hud.hidden = YES;
+             [Tool showCustomHUD:@"网络连接错误" andView:self.view andImage:nil andAfterDelay:1.2f];
+             //             [self performSelector:@selector(back) withObject:nil afterDelay:1.2f];
+         };
+         utils.parserOK = ^(NSString *string)
+         {
+             NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+             NSError *error;
+             
+             NSArray *table = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+             picArray = nil;
+             picArray = [Tool readJsonToObjArray:table andObjClass:[Img class]];
+             hud.hidden = YES;
+             if(picArray && picArray.count > 0)
+             {
+                 switch (imageIndex) {
+                     case 3:
+                         fileArray = [NSMutableArray arrayWithArray:picArray];
+                         [self reloadPhotoHeight:YES andIsInit:YES];
+                         [self.photoCollectionView reloadData];
+                         break;
+                     default:
+                         break;
+                 }
+             }
+         };
+         
+         [utils stringFromparserXML:operation.responseString target:@"string"];
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         hud.hidden = YES;
+         [Tool showCustomHUD:@"网络连接错误" andView:self.view andImage:nil andAfterDelay:1.2f];
+     }];
 }
 
 - (void)getStateData
@@ -888,21 +963,34 @@
  }
  */
 
-- (void)reloadPhotoHeight:(BOOL )addORcutRow
+- (void)reloadPhotoHeight:(BOOL )addORcutRow andIsInit:(BOOL )ISInit
 {
     int addRow = 0;
-    if(addORcutRow)
+    if(ISInit)
     {
-        if ([fileArray count] % 3 == 1) {
-            addRow = 1;
+        if ([fileArray count] % 3 > 0) {
+            addRow = [fileArray count]/3 + 1 - 1;
+        }
+        else
+        {
+            addRow = [fileArray count]/3 - 1;
         }
     }
     else
     {
-        if ([fileArray count] <= 6)
+        if(addORcutRow)
         {
-            if ([fileArray count] % 3 == 0) {
-                addRow = -1;
+            if ([fileArray count] % 3 == 1) {
+                addRow = 1;
+            }
+        }
+        else
+        {
+            if ([fileArray count] <= 6)
+            {
+                if ([fileArray count] % 3 == 0) {
+                    addRow = -1;
+                }
             }
         }
     }
@@ -948,9 +1036,24 @@
     {
         if(alertView.tag == 1)
         {
-            [fileArray removeObjectAtIndex:selectPicIndex];
-            [self reloadPhotoHeight:NO];
-            [self.photoCollectionView reloadData];
+            UIImage *picImage = [fileArray objectAtIndex:selectPicIndex];
+            [self.photos removeAllObjects];
+            if ([self.photos count] == 0) {
+                NSMutableArray *photos = [[NSMutableArray alloc] init];
+                MWPhoto * photo = [MWPhoto photoWithImage:picImage];
+                [photos addObject:photo];
+                self.photos = photos;
+            }
+            MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+            browser.displayActionButton = YES;
+            browser.displayNavArrows = NO;//左右分页切换,默认否
+            browser.displaySelectionButtons = NO;//是否显示选择按钮在图片上,默认否
+            browser.alwaysShowControls = YES;//控制条件控件 是否显示,默认否
+            browser.zoomPhotosToFill = NO;//是否全屏,默认是
+            //    browser.wantsFullScreenLayout = YES;//是否全屏
+            [browser setCurrentPhotoIndex:0];
+            self.navigationController.navigationBar.hidden = NO;
+            [self.navigationController pushViewController:browser animated:YES];
         }
         if(alertView.tag == 2)
         {
@@ -968,6 +1071,26 @@
             }
         }
     }
+    if(buttonIndex == 1)
+    {
+        if(alertView.tag == 1)
+        {
+            [fileArray removeObjectAtIndex:selectPicIndex];
+            [self reloadPhotoHeight:NO andIsInit:NO];
+            [self.photoCollectionView reloadData];
+        }
+    }
+}
+
+//MWPhotoBrowserDelegate委托事件
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return _photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photos.count)
+        return [_photos objectAtIndex:index];
+    return nil;
 }
 
 - (void)doReject
@@ -1050,8 +1173,17 @@
         }
     }
     NSUInteger row = [indexPath row];
-    UIImage *picImage = [fileArray objectAtIndex:row];
-    cell.picIV.image = picImage;
+    id image = [fileArray objectAtIndex:row];
+//    UIImage *picImage = [fileArray objectAtIndex:row];
+//    cell.picIV.image = picImage;
+    if ([image isKindOfClass:[UIImage class]]) {
+        cell.picIV.image = (UIImage *)image;
+    }
+    else
+    {
+        Img *picImage = (Img *)image;
+        [cell.picIV sd_setImageWithURL:[NSURL URLWithString:picImage.Url] placeholderImage:[UIImage imageNamed:@"loadingpic"]];
+    }
     
     return cell;
 }
@@ -1073,22 +1205,46 @@
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSUInteger row = [indexPath row];
-    if (row == [fileArray count] -1) {
-        UIActionSheet *cameraSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"取消"
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"拍照", @"从相册中选取", nil];
-        cameraSheet.tag = 0;
-        [cameraSheet showInView:self.view];
+    if (!self.isQuery) {
+        NSUInteger row = [indexPath row];
+        if (row == [fileArray count] -1) {
+            UIActionSheet *cameraSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                     delegate:self
+                                                            cancelButtonTitle:@"取消"
+                                                       destructiveButtonTitle:nil
+                                                            otherButtonTitles:@"拍照", @"从相册中选取", nil];
+            cameraSheet.tag = 0;
+            [cameraSheet showInView:self.view];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert:" message:@"Please choose?" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Preview", @"Delete", @"Cancel", nil];
+            alert.tag = 1;
+            selectPicIndex = row;
+            [alert show];
+        }
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示:" message:@"请选择?" delegate:self cancelButtonTitle:@"删除图片" otherButtonTitles:@"取消", nil];
-        alert.tag = 1;
-        selectPicIndex = row;
-        [alert show];
+        [self.photos removeAllObjects];
+        if ([self.photos count] == 0) {
+            NSMutableArray *photos = [[NSMutableArray alloc] init];
+            for (Img *image in fileArray) {
+                MWPhoto * photo = [MWPhoto photoWithURL:[NSURL URLWithString:image.Url]];
+                [photos addObject:photo];
+            }
+            self.photos = photos;
+        }
+        MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+        browser.displayActionButton = YES;
+        browser.displayNavArrows = NO;//左右分页切换,默认否
+        browser.displaySelectionButtons = NO;//是否显示选择按钮在图片上,默认否
+        browser.alwaysShowControls = YES;//控制条件控件 是否显示,默认否
+        browser.zoomPhotosToFill = NO;//是否全屏,默认是
+        //    browser.wantsFullScreenLayout = YES;//是否全屏
+        [browser setCurrentPhotoIndex:[indexPath row]];
+        self.navigationController.navigationBar.hidden = NO;
+        [self.navigationController pushViewController:browser animated:YES];
     }
 }
 
@@ -1157,7 +1313,7 @@
         UIImage *tImg = [UIImage imageWithData:imageData];
         
         [fileArray insertObject:smallImage atIndex:[fileArray count] -1];
-        [self reloadPhotoHeight:YES];
+        [self reloadPhotoHeight:YES andIsInit:NO];
         [self.photoCollectionView reloadData];
         
     }];
@@ -1310,4 +1466,21 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,nil]];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"Back";
+    self.navigationItem.backBarButtonItem = backItem;
+}
+
+- (IBAction)checkFlowRecord:(id)sender {
+    FlowRecordView *recordView = [[FlowRecordView alloc] init];
+    recordView.Mark = self.Mark;
+    [self.navigationController pushViewController:recordView animated:YES];
+}
 @end

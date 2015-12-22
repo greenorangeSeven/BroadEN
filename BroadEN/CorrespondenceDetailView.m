@@ -350,7 +350,7 @@
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示:" message:@"请选择?" delegate:self cancelButtonTitle:@"删除图片" otherButtonTitles:@"取消", nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert:" message:@"Please choose?" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Preview", @"Delete", @"Cancel", nil];
             alert.tag = 1;
             selectPicIndex = row;
             [alert show];
@@ -621,6 +621,45 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0)
+    {
+        if(alertView.tag == 1)
+        {
+            id img = [filePicArray objectAtIndex:selectPicIndex];
+            if ([img isKindOfClass:[Img class]])
+            {
+                Img *image = (Img *)img;
+                [self.photos removeAllObjects];
+                if ([self.photos count] == 0) {
+                    NSMutableArray *photos = [[NSMutableArray alloc] init];
+                    MWPhoto * photo = [MWPhoto photoWithURL:[NSURL URLWithString:image.Url]];
+                    [photos addObject:photo];
+                    self.photos = photos;
+                }
+            }
+            else if([img isKindOfClass:[UIImage class]])
+            {
+                UIImage *image = (UIImage *)img;
+                [self.photos removeAllObjects];
+                if ([self.photos count] == 0) {
+                    NSMutableArray *photos = [[NSMutableArray alloc] init];
+                    MWPhoto * photo = [MWPhoto photoWithImage:image];
+                    [photos addObject:photo];
+                    self.photos = photos;
+                }
+            }
+            MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+            browser.displayActionButton = YES;
+            browser.displayNavArrows = NO;//左右分页切换,默认否
+            browser.displaySelectionButtons = NO;//是否显示选择按钮在图片上,默认否
+            browser.alwaysShowControls = YES;//控制条件控件 是否显示,默认否
+            browser.zoomPhotosToFill = NO;//是否全屏,默认是
+            //    browser.wantsFullScreenLayout = YES;//是否全屏
+            [browser setCurrentPhotoIndex:0];
+            self.navigationController.navigationBar.hidden = NO;
+            [self.navigationController pushViewController:browser animated:YES];
+        }
+    }
+    if(buttonIndex == 1)
     {
         if(alertView.tag == 1)
         {

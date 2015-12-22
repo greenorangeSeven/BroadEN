@@ -54,17 +54,17 @@
     
     AppDelegate *app = [[UIApplication sharedApplication] delegate];
     userinfo = app.userinfo;
-    
+    gNoRefresh = YES;
     [self reload:YES];
 }
 
 - (void)reload:(BOOL)noRefresh
 {
-    gNoRefresh = noRefresh;
+//    gNoRefresh = noRefresh;
     if (isLoading || isLoadOver) {
         return;
     }
-    if (!noRefresh) {
+    if (!gNoRefresh) {
         allCount = 0;
     }
     
@@ -291,6 +291,7 @@
     if (row >= [satisfas count]) {
         //启动刷新
         if (!isLoading) {
+            gNoRefresh = YES;
             [self performSelector:@selector(reload:)];
         }
     }
@@ -337,6 +338,7 @@
 - (void)egoRefreshTableHeaderDidTriggerToBottom
 {
     if (!isLoading) {
+        gNoRefresh = YES;
         [self performSelector:@selector(reload:)];
     }
 }
@@ -353,6 +355,7 @@
 {
     if ([UserModel Instance].isNetworkRunning) {
         isLoadOver = NO;
+        gNoRefresh = NO;
         [self reload:NO];
     }
 }

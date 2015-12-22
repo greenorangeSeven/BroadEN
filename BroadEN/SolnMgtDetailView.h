@@ -48,5 +48,13 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *InspectorSignEnLB;
 @property (weak, nonatomic) IBOutlet UILabel *InspectorSignDateLB;
+@property (weak, nonatomic) IBOutlet UILabel *LithiumLb;
+
+@property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
+@property (weak, nonatomic) IBOutlet UILabel *HandingDateTF;
+@property (weak, nonatomic) IBOutlet UITextView *ExplainInfoTV;
+
+@property (weak, nonatomic) IBOutlet UIView *photoView;
+@property (weak, nonatomic) IBOutlet UIView *explainView;
 
 @end

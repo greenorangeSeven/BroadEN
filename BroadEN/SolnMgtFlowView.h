@@ -11,6 +11,7 @@
 @interface SolnMgtFlowView : UIViewController
 
 @property (strong, nonatomic) NSString *Mark;
+@property BOOL isQuery;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 

@@ -15,9 +15,10 @@
 @property (copy, nonatomic) NSString *PROJ_Name;
 @property (copy, nonatomic) NSString *CustShortName_CN;
 @property (copy, nonatomic) NSString *Duty_PassEngineer_En;
-@property (copy, nonatomic) NSString *PostalAdd_EN;
+@property (copy, nonatomic) NSString *PostalAdd_CN;
 @property (copy, nonatomic) NSString *Country_EN;
-@property (copy, nonatomic) NSString *City_EN;
+@property (copy, nonatomic) NSString *Country;
+@property (copy, nonatomic) NSString *City_CN;
 @property (copy, nonatomic) NSString *Zip_Cd;
 @property (copy, nonatomic) NSString *Fax;
 
@@ -93,5 +94,8 @@
 @property (copy, nonatomic) NSString *Engineer_Score;
 
 @property (copy, nonatomic) NSString *Sys_ElseThing;
+
+@property (copy, nonatomic) NSString *IsNameChange;
+@property (copy, nonatomic) NSString *yhcym;
 
 @end

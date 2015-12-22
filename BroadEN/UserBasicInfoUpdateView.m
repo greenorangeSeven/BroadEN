@@ -7,9 +7,12 @@
 //
 
 #import "UserBasicInfoUpdateView.h"
+#import "SGActionView.h"
 
 @interface UserBasicInfoUpdateView ()
 {
+    UserInfo *userinfo;
+    
     UIBarButtonItem *saveBtn;
     
     NSString *PROJ_Name_En;
@@ -17,9 +20,9 @@
     NSString *PROJ_Name;
     NSString *CustShortName_CN;
     NSString *Duty_PassEngineer_En;
-    NSString *PostalAdd_EN;
+    NSString *PostalAdd_CN;
     NSString *Country_EN;
-    NSString *City_EN;
+    NSString *City_CN;
     NSString *Zip_Cd;
     NSString *Fax;
     
@@ -96,6 +99,15 @@
     NSString *CoolWater_Brand2;
     
     NSString *Sys_ElseThing;
+    
+    NSMutableArray *CountryENArray;
+    NSMutableArray *CountryCNArray;
+    NSUInteger selectedCountryIndex;
+    NSString *CountryCN;
+    
+    NSString *BeforeProjName_En;
+    NSString *BeforeProjName;
+    
 }
 
 @end
@@ -108,6 +120,9 @@
     saveBtn = [[UIBarButtonItem alloc] initWithTitle: @"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveAction:)];
     self.navigationItem.rightBarButtonItem = saveBtn;
     
+    AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    userinfo = app.userinfo;
+    
     self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, self.view.frame.size.height);
     
     for (UIView *subView in [self.scrollView subviews])
@@ -119,27 +134,126 @@
         }
     }
     [self bindData];
+    
+    selectedCountryIndex = 100;
+    CountryENArray = [[NSMutableArray alloc] init];
+    CountryCNArray = [[NSMutableArray alloc] init];
+    CountryCN = @"";
+    [self getCountry];
+}
+
+- (void)getCountry
+{
+    NSString *sqlStr = [NSString stringWithFormat:@"select e_name,mc from tb_PARA_Country Order by e_name"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@JsonDataInDZDA", api_base_url];
+    
+    NSURL *url = [NSURL URLWithString: urlStr];
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setUseCookiePersistence:NO];
+    [request setTimeOutSeconds:30];
+    [request setPostValue:sqlStr forKey:@"sqlstr"];
+    [request setDelegate:self];
+    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+    [request setDidFailSelector:@selector(requestFailed:)];
+    [request setDidFinishSelector:@selector(requestCountry:)];
+    [request startAsynchronous];
+}
+
+- (void)requestCountry:(ASIHTTPRequest *)request
+{
+    if (request.hud)
+    {
+        [request.hud hide:YES];
+    }
+    [request setUseCookiePersistence:YES];
+    
+    XMLParserUtils *utils = [[XMLParserUtils alloc] init];
+    utils.parserFail = ^()
+    {
+        [Tool showCustomHUD:@"连接失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+    };
+    utils.parserOK = ^(NSString *string)
+    {
+        NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error;
+        NSLog(@"%@", string);
+        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+        if(jsonArray && jsonArray.count > 0)
+        {
+            for (NSDictionary *countryDic in jsonArray) {
+                [CountryENArray addObject:[countryDic objectForKey:@"e_name"]];
+                [CountryCNArray addObject:[countryDic objectForKey:@"mc"]];
+            }
+        }
+    };
+    [utils stringFromparserXML:request.responseString target:@"string"];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    //选择服务类型
+    if(textField.tag == 1)
+    {
+        [SGActionView showSheetWithTitle:@"Choose service type:"
+                              itemTitles:CountryENArray
+                           itemSubTitles:nil
+                           selectedIndex:selectedCountryIndex
+                          selectedHandle:^(NSInteger index){
+                              if (selectedCountryIndex != index) {
+                                  selectedCountryIndex = index;
+                                  self.CountryTF.text = CountryENArray[index];
+                                  CountryCN = CountryCNArray[index];
+                              }
+                          }];
+    }
+    return NO;
 }
 
 - (void)saveAction:(id)sender
 {
-//    NSString *verifyStr = [self verifyData];
+    [self verifyData];
 //    if([Tool isStringExist:verifyStr])
 //    {
 //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"alert:" message:verifyStr delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 //        [alert show];
 //        return;
 //    }
+    NSString *IsNameChange = self.basicInfo.IsNameChange;
+    NSString *yhcym = self.basicInfo.yhcym;
+    
+    if ([BeforeProjName_En isEqualToString:PROJ_Name_En] == NO) {
+        IsNameChange = @"1";
+    }
+    if ([BeforeProjName isEqualToString:PROJ_Name] == NO) {
+        IsNameChange = @"1";
+        
+        if ( yhcym== nil || yhcym.length == 0) {
+            yhcym = [NSString stringWithFormat:@"%@(%@)", PROJ_Name, [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"]];
+        }
+        else
+        {
+            yhcym = [NSString stringWithFormat:@"%@(%@)|%@", PROJ_Name, [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"], yhcym];
+        }
+    }
+    
+    
+    if(CountryCN.length == 0)
+    {
+        CountryCN = self.basicInfo.Country;
+    }
     
     NSMutableString *mutableSQL = [[NSMutableString alloc] initWithString:@"update TB_CUST_ProjInf set"];
     [mutableSQL appendString:[NSString stringWithFormat:@" PROJ_Name_En='%@',", PROJ_Name_En]];
     [mutableSQL appendString:[NSString stringWithFormat:@" Franchiser='%@',", Franchiser]];
     [mutableSQL appendString:[NSString stringWithFormat:@" PROJ_Name='%@',", PROJ_Name]];
     [mutableSQL appendString:[NSString stringWithFormat:@" CustShortName_CN='%@',", CustShortName_CN]];
-    [mutableSQL appendString:[NSString stringWithFormat:@" yhcym='%@',", Duty_PassEngineer_En]];
-    [mutableSQL appendString:[NSString stringWithFormat:@" PostalAdd_CN='%@',", PostalAdd_EN]];
+    [mutableSQL appendString:[NSString stringWithFormat:@" yhcym='%@',", yhcym]];
+    [mutableSQL appendString:[NSString stringWithFormat:@" IsNameChange='%@',", IsNameChange]];
+    [mutableSQL appendString:[NSString stringWithFormat:@" PostalAdd_CN='%@',", PostalAdd_CN]];
     [mutableSQL appendString:[NSString stringWithFormat:@" Country_EN='%@',", Country_EN]];
-    [mutableSQL appendString:[NSString stringWithFormat:@" City_CN='%@',", City_EN]];
+    [mutableSQL appendString:[NSString stringWithFormat:@" Country_CN='%@',", CountryCN]];
+    [mutableSQL appendString:[NSString stringWithFormat:@" City_CN='%@',", City_CN]];
     [mutableSQL appendString:[NSString stringWithFormat:@" Zip_Cd='%@',", Zip_Cd]];
     [mutableSQL appendString:[NSString stringWithFormat:@" Fax='%@',", Fax]];
     [mutableSQL appendString:[NSString stringWithFormat:@" Mgmt_High='%@',", Mgmt_High]];
@@ -208,6 +322,8 @@
     [mutableSQL appendString:[NSString stringWithFormat:@" where ID='%@'", self.basicInfo.ID]];
     
     NSString *sqlStr = [NSString stringWithString:mutableSQL];
+    sqlStr = [sqlStr stringByReplacingOccurrencesOfString:@"(null)" withString:@" "];
+    
     NSString *urlStr = [NSString stringWithFormat:@"%@DoActionInDZDA", api_base_url];
     NSURL *url = [NSURL URLWithString: urlStr];
     
@@ -247,17 +363,45 @@
     };
     utils.parserOK = ^(NSString *string)
     {
-//        NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-//        NSError *error;
-        NSLog(string);
         if([string isEqualToString:@"true"])
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UserBasicInfoReLoad" object:nil];
-            [self.navigationController popViewControllerAnimated:YES];
+            [self writeLog];
+        }
+        else
+        {
+            [Tool showCustomHUD:@"提交失败" andView:self.view andImage:nil andAfterDelay:1.2f];
         }
     };
     NSLog(@"%@",request.responseString);
     [utils stringFromparserXML:request.responseString target:@"string"];
+}
+
+- (void)writeLog
+{
+    //写日志
+    NSString *ip = [Tool getIPAddress:YES];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@DoActionInDZDA",api_base_url]]];
+    [request setUseCookiePersistence:NO];
+    [request setTimeOutSeconds:30];
+    NSString *sql = [NSString stringWithFormat:@"exec sp_executesql N'insert into [ERPRiZhi] (UserName,TimeStr,Operation,Plate,ProjName,DoSomething,IpStr) values (@UserName,@TimeStr,@Operation,@Plate,@ProjName,@DoSomething,@IpStr);select @@IDENTITY',N'@UserName varchar(50),@TimeStr datetime,@Operation varchar(20),@Plate varchar(100),@ProjName varchar(500),@DoSomething varchar(1000),@IpStr varchar(50)',@UserName='%@',@TimeStr='%@',@Operation='修改(英文版)',@Plate='用户基本信息',@ProjName='%@',@DoSomething='修改用户信息(英文IOS APP)',@IpStr='%@'", userinfo.UserName, [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"], PROJ_Name, ip];
+    
+    [request setPostValue:sql forKey:@"sqlstr"];
+    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+    [request startSynchronous];
+    NSError *error = [request error];
+    if (!error)
+    {
+        NSString *response = [request responseString];
+        if([response rangeOfString:@"true"].length > 0)
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UserBasicInfoReLoad" object:nil];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            [Tool showCustomHUD:@"提交失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+        }
+    }
 }
 
 - (NSString *)verifyData
@@ -265,49 +409,14 @@
     NSString *verifyStr = @"";
     
     PROJ_Name_En = self.EnglishNameTF.text;
-    if(![Tool isStringExist:PROJ_Name_En])
-    {
-        verifyStr = @"Please Write English name";
-        return verifyStr;
-    }
     Franchiser = self.DistributorTF.text;
     PROJ_Name = self.ChinesenameTF.text;
-    if(![Tool isStringExist:PROJ_Name])
-    {
-        verifyStr = @"Please Write Chinese name";
-        return verifyStr;
-    }
     CustShortName_CN = self.ShortnameTF.text;
-    if(![Tool isStringExist:CustShortName_CN])
-    {
-        verifyStr = @"Please Write ShortName";
-        return verifyStr;
-    }
     Duty_PassEngineer_En = self.FormernameTF.text;
-    PostalAdd_EN = self.AdressTF.text;
-    if(![Tool isStringExist:PostalAdd_EN])
-    {
-        verifyStr = @"Please Write adress";
-        return verifyStr;
-    }
+    PostalAdd_CN = self.AdressTF.text;
     Country_EN = self.CountryTF.text;
-    if(![Tool isStringExist:Country_EN])
-    {
-        verifyStr = @"Please Write country";
-        return verifyStr;
-    }
-    City_EN = self.CityTF.text;
-    if(![Tool isStringExist:City_EN])
-    {
-        verifyStr = @"Please Write city";
-        return verifyStr;
-    }
+    City_CN = self.CityTF.text;
     Zip_Cd = self.ZipTF.text;
-    if(![Tool isStringExist:Zip_Cd])
-    {
-        verifyStr = @"Please Write zip";
-        return verifyStr;
-    }
     Fax = self.FaxTF.text;
     
     Mgmt_High = self.SLTF.text;
@@ -318,29 +427,10 @@
     
     Mgmt_Midd = self.MLTF.text;
     DeptMgmt_Midd = self.MLDepartmentTF.text;
-    if(![Tool isStringExist:DeptMgmt_Midd])
-    {
-        verifyStr = @"Please Write Middle Department";
-        return verifyStr;
-    }
     DeptMgmt_Midd_Pos = self.MLDutiesTF.text;
-    if(![Tool isStringExist:DeptMgmt_Midd_Pos])
-    {
-        verifyStr = @"Please Write Middle Pos";
-        return verifyStr;
-    }
     DeptMgmt_Midd_Tel = self.MLCellNoTF.text;
-    if(![Tool isStringExist:DeptMgmt_Midd_Tel])
-    {
-        verifyStr = @"Please Write Middle Phone";
-        return verifyStr;
-    }
     DeptMgmt_Midd_EMail = self.MLMailTF.text;
-    if(![Tool isStringExist:DeptMgmt_Midd_EMail])
-    {
-        verifyStr = @"Please Write Middle EMail";
-        return verifyStr;
-    }
+
     
     Mgmt_MachRoom = self.BLTF.text;
     Mgmt_MachRoom_Dept = self.BLDepartmentTF.text;
@@ -354,35 +444,11 @@
     Invest_Unit = self.InvestmentcompanyTF.text;
     
     Building_Height = self.BuildingheightTF.text;
-    if(![Tool isStringExist:Building_Height])
-    {
-        verifyStr = @"Please Write Buildingheight";
-        return verifyStr;
-    }
     Cust_Habitude = self.NatureofindustryTF.text;
-    if(![Tool isStringExist:Cust_Habitude])
-    {
-        verifyStr = @"Please Write Natureofindustry";
-        return verifyStr;
-    }
     Building_Area = self.BuildingareaTF.text;
-    if(![Tool isStringExist:Building_Area])
-    {
-        verifyStr = @"Please Write Buildingarea";
-        return verifyStr;
-    }
     Building_Usage = self.ApplicationsTF.text;
-    if(![Tool isStringExist:Building_Usage])
-    {
-        verifyStr = @"Please Write Applications";
-        return verifyStr;
-    }
     AirCond_Area = self.TotalACareaTF.text;
-    if(![Tool isStringExist:AirCond_Area])
-    {
-        verifyStr = @"Please Write TotalACarea";
-        return verifyStr;
-    }
+
     Load_Refg = self.CoolingloadTF.text;
     Load_Heating = self.HeatingloadTF.text;
     
@@ -404,73 +470,20 @@
     Engineer_Score = self.OthersTF.text;
     
     ColdWater_PumpFlow = self.Flow1chilledWaterpumpTF.text;
-    if(![Tool isStringExist:ColdWater_PumpFlow])
-    {
-        verifyStr = @"Please Write Flow of No.1 chilled w.pum";
-        return verifyStr;
-    }
     ColdWater_PumpLift = self.F1CWHeadTF.text;
-    if(![Tool isStringExist:ColdWater_PumpLift])
-    {
-        verifyStr = @"Please Write Flow of No.1 chilled w.pum Head";
-        return verifyStr;
-    }
     ColdWater_Power = self.F1CWPowerTF.text;
-    if(![Tool isStringExist:ColdWater_Power])
-    {
-        verifyStr = @"Please Write Flow of No.1 chilled w.pum Power";
-        return verifyStr;
-    }
     ColdWater_Num = self.F1CWPcsTF.text;
-    if(![Tool isStringExist:ColdWater_Num])
-    {
-        verifyStr = @"Please Write Flow of No.1 chilled w.pum Pcs";
-        return verifyStr;
-    }
     ColdWater_Brand = self.F1CWOriginTF.text;
-    if(![Tool isStringExist:ColdWater_Brand])
-    {
-        verifyStr = @"Please Write Flow of No.1 chilled w.pum Origin Brand";
-        return verifyStr;
-    }
-    
     ColdWater_PumpFlow2 = self.Flow2chilledWaterpumpTF.text;
     ColdWater_PumpLift2 = self.F2CWHeadTF.text;
     ColdWater_Power2 = self.F2CWPowerTF.text;
     ColdWater_Num2 = self.F2CWPcsTF.text;
     ColdWater_Brand2 = self.F2CWOriginTF.text;
-    
     CoolWater_PumpFlow = self.Flow1coolingWaterpumpTF.text;
-    if(![Tool isStringExist:CoolWater_PumpFlow])
-    {
-        verifyStr = @"Please Write Flow of No.1 cooling w.pum";
-        return verifyStr;
-    }
     CoolWater_PumpLift = self.F1CoolWHeadTF.text;
-    if(![Tool isStringExist:CoolWater_PumpLift])
-    {
-        verifyStr = @"Please Write Flow of No.1 cooling w.pum Head";
-        return verifyStr;
-    }
     CoolWater_Power = self.F1CoolWPowerTF.text;
-    if(![Tool isStringExist:ColdWater_Power])
-    {
-        verifyStr = @"Please Write Flow of No.1 cooling w.pum Power";
-        return verifyStr;
-    }
     CoolWater_Num = self.F1CoolWPcsTF.text;
-    if(![Tool isStringExist:ColdWater_Num])
-    {
-        verifyStr = @"Please Write Flow of No.1 cooling w.pum Pcs";
-        return verifyStr;
-    }
     CoolWater_Brand = self.F1CoolWOriginTF.text;
-    if(![Tool isStringExist:ColdWater_Brand])
-    {
-        verifyStr = @"Please Write Flow of No.1 cooling w.pum Origin Brand";
-        return verifyStr;
-    }
-    
     CoolWater_PumpFlow2 = self.Flow2coolingWaterpumpTF.text;
     CoolWater_PumpLift2 = self.F2CoolWHeadTF.text;
     CoolWater_Power2 = self.F2CoolWPowerTF.text;
@@ -478,6 +491,10 @@
     
     
     Sys_ElseThing = self.Sys_ElseThingTF.text;
+    Sys_ElseThing = [Sys_ElseThing stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+    Engineer_Score = [Engineer_Score stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+    MachRoom_Inf = [MachRoom_Inf stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+    PostalAdd_CN = [PostalAdd_CN stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
     return verifyStr;
 }
 
@@ -488,9 +505,9 @@
     self.ChinesenameTF.text = self.basicInfo.PROJ_Name;
     self.ShortnameTF.text = self.basicInfo.CustShortName_CN;
     self.FormernameTF.text = self.basicInfo.Duty_PassEngineer_En;
-    self.AdressTF.text = self.basicInfo.PostalAdd_EN;
+    self.AdressTF.text = self.basicInfo.PostalAdd_CN;
     self.CountryTF.text = self.basicInfo.Country_EN;
-    self.CityTF.text = self.basicInfo.City_EN;
+    self.CityTF.text = self.basicInfo.City_CN;
     self.ZipTF.text = self.basicInfo.Zip_Cd;
     self.FaxTF.text = self.basicInfo.Fax;
     
@@ -530,14 +547,14 @@
     self.FuelpressureTF.text = [NSString stringWithFormat:@"%@KPa", self.basicInfo.Pressure];
     self.RatedconsumptionTF.text = [NSString stringWithFormat:@"%.1f", [self.basicInfo.RatingFuel_Num doubleValue]];
     self.RuntimeperdayTF.text = [NSString stringWithFormat:@"%@", self.basicInfo.Day_RunTime];
-    self.ChilledpressureTF.text = [NSString stringWithFormat:@"%.1f", [self.basicInfo.ColdWaterIn_Pressure doubleValue]];
-    self.ColdWaterOutPressureTF.text = [NSString stringWithFormat:@"%.1f", [self.basicInfo.ColdWaterOut_Pressure doubleValue]];
-    self.WarmpressureTF.text = [NSString stringWithFormat:@"%.1f", [self.basicInfo.WarmWaterIn_Pressure doubleValue]];
-    self.WarmWaterOutPressureTF.text = [NSString stringWithFormat:@"%.1f", [self.basicInfo.WarmWaterOut_Pressure doubleValue]];
-    self.CoolingpressureTF.text = [NSString stringWithFormat:@"%.1f", [self.basicInfo.CoolWaterIn_Pressure doubleValue]];
-    self.CoolWaterOutPressureTF.text = [NSString stringWithFormat:@"%.1f", [self.basicInfo.CoolWaterOut_Pressure doubleValue]];
-    self.HotpressureTF.text = [NSString stringWithFormat:@"%.1f", [self.basicInfo.HotWaterIn_Pressure doubleValue]];
-    self.HotWaterOutpressureTF.text = [NSString stringWithFormat:@"%.1f", [self.basicInfo.HotWaterOut_Pressure doubleValue]];
+    self.ChilledpressureTF.text = [NSString stringWithFormat:@"%.2f", [self.basicInfo.ColdWaterIn_Pressure doubleValue]];
+    self.ColdWaterOutPressureTF.text = [NSString stringWithFormat:@"%.2f", [self.basicInfo.ColdWaterOut_Pressure doubleValue]];
+    self.WarmpressureTF.text = [NSString stringWithFormat:@"%.2f", [self.basicInfo.WarmWaterIn_Pressure doubleValue]];
+    self.WarmWaterOutPressureTF.text = [NSString stringWithFormat:@"%.2f", [self.basicInfo.WarmWaterOut_Pressure doubleValue]];
+    self.CoolingpressureTF.text = [NSString stringWithFormat:@"%.2f", [self.basicInfo.CoolWaterIn_Pressure doubleValue]];
+    self.CoolWaterOutPressureTF.text = [NSString stringWithFormat:@"%.2f", [self.basicInfo.CoolWaterOut_Pressure doubleValue]];
+    self.HotpressureTF.text = [NSString stringWithFormat:@"%.2f", [self.basicInfo.HotWaterIn_Pressure doubleValue]];
+    self.HotWaterOutpressureTF.text = [NSString stringWithFormat:@"%.2f", [self.basicInfo.HotWaterOut_Pressure doubleValue]];
     self.DescribeCWCHTF.text = self.basicInfo.MachRoom_Inf;
     
     self.OthersTF.text = self.basicInfo.Engineer_Score;
@@ -583,5 +600,20 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)selectCountryAction:(id)sender {
+    [self.view endEditing:YES];
+    [SGActionView showSheetWithTitle:@"Choose service type:"
+                          itemTitles:CountryENArray
+                       itemSubTitles:nil
+                       selectedIndex:selectedCountryIndex
+                      selectedHandle:^(NSInteger index){
+                          if (selectedCountryIndex != index) {
+                              selectedCountryIndex = index;
+                              self.CountryTF.text = CountryENArray[index];
+                              CountryCN = CountryCNArray[index];
+                          }
+                      }];
+}
 
 @end

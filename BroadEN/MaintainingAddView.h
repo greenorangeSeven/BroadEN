@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "HSDatePickerViewController.h"
+#import "MWPhotoBrowser.h"
 
-@interface MaintainingAddView : UIViewController<UIActionSheetDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,HSDatePickerViewControllerDelegate>
+@interface MaintainingAddView : UIViewController<UIActionSheetDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,HSDatePickerViewControllerDelegate,MWPhotoBrowserDelegate>
+{
+    NSMutableArray *_photos;
+}
+@property (nonatomic, retain) NSMutableArray *photos;
 
 @property (strong, nonatomic) NSString *projId;
 

@@ -126,14 +126,16 @@
 
 - (void)bindData
 {
+    basicInfo.yhcym = [basicInfo.yhcym stringByReplacingOccurrencesOfString:@"|" withString:@"\n"];
+    
     self.EnglishNameTF.text = basicInfo.PROJ_Name_En;
     self.DistributorTF.text = basicInfo.Franchiser;
     self.ChinesenameTF.text = basicInfo.PROJ_Name;
     self.ShortnameTF.text = basicInfo.CustShortName_CN;
-    self.FormernameTF.text = basicInfo.Duty_PassEngineer_En;
-    self.AdressTF.text = basicInfo.PostalAdd_EN;
+    self.FormernameTF.text = basicInfo.yhcym;
+    self.AdressTF.text = basicInfo.PostalAdd_CN;
     self.CountryTF.text = basicInfo.Country_EN;
-    self.CityTF.text = basicInfo.City_EN;
+    self.CityTF.text = basicInfo.City_CN;
     self.ZipTF.text = basicInfo.Zip_Cd;
     self.FaxTF.text = basicInfo.Fax;
     
@@ -174,35 +176,35 @@
     self.FuelpressureTF.text = [NSString stringWithFormat:@"%@KPa", basicInfo.Pressure];
     self.RatedconsumptionTF.text = [NSString stringWithFormat:@"%.1fm³/h", [basicInfo.RatingFuel_Num doubleValue]];
     self.RuntimeperdayTF.text = [NSString stringWithFormat:@"%@h", basicInfo.Day_RunTime];
-    self.ChilledpressureTF.text = [NSString stringWithFormat:@"%@/%@MPa", basicInfo.ColdWaterIn_Pressure, basicInfo.ColdWaterOut_Pressure];
-    self.WarmpressureTF.text = [NSString stringWithFormat:@"%@/%@MPa", basicInfo.WarmWaterIn_Pressure, basicInfo.WarmWaterOut_Pressure];
-    self.CoolingpressureTF.text = [NSString stringWithFormat:@"%@/%@MPa", basicInfo.CoolWaterIn_Pressure, basicInfo.CoolWaterOut_Pressure];
-    self.HotpressureTF.text = [NSString stringWithFormat:@"%@/%@MPa", basicInfo.HotWaterIn_Pressure, basicInfo.HotWaterOut_Pressure];
+    self.ChilledpressureTF.text = [NSString stringWithFormat:@"%.2f/%.2fMPa", [basicInfo.ColdWaterIn_Pressure doubleValue], [basicInfo.ColdWaterOut_Pressure doubleValue]];
+    self.WarmpressureTF.text = [NSString stringWithFormat:@"%.2f/%.2fMPa", [basicInfo.WarmWaterIn_Pressure doubleValue], [basicInfo.WarmWaterOut_Pressure doubleValue]];
+    self.CoolingpressureTF.text = [NSString stringWithFormat:@"%.2f/%.2fMPa", [basicInfo.CoolWaterIn_Pressure doubleValue], [basicInfo.CoolWaterOut_Pressure doubleValue]];
+    self.HotpressureTF.text = [NSString stringWithFormat:@"%.2f/%.2fMPa", [basicInfo.HotWaterIn_Pressure doubleValue], [basicInfo.HotWaterOut_Pressure doubleValue]];
     self.DescribeCWCHTF.text = basicInfo.MachRoom_Inf;
     
     self.OthersTF.text = basicInfo.Engineer_Score;
     
-    self.Flow1chilledWaterpumpTF.text = [NSString stringWithFormat:@"%@m³", basicInfo.ColdWater_PumpFlow];
-    self.F1CWHeadTF.text = [NSString stringWithFormat:@"%@m", basicInfo.ColdWater_PumpLift];
-    self.F1CWPowerTF.text = [NSString stringWithFormat:@"%@kw", basicInfo.ColdWater_Power];
+    self.Flow1chilledWaterpumpTF.text = [NSString stringWithFormat:@"%dm³", [basicInfo.ColdWater_PumpFlow intValue]];
+    self.F1CWHeadTF.text = [NSString stringWithFormat:@"%dm", [basicInfo.ColdWater_PumpLift intValue]];
+    self.F1CWPowerTF.text = [NSString stringWithFormat:@"%.1fkw", [basicInfo.ColdWater_Power doubleValue]];
     self.F1CWPcsTF.text = [NSString stringWithFormat:@"%i", [basicInfo.ColdWater_Num intValue]];
     self.F1CWOriginTF.text = basicInfo.ColdWater_Brand;
     
-    self.Flow2chilledWaterpumpTF.text = [NSString stringWithFormat:@"%@m³", basicInfo.ColdWater_PumpFlow2];
-    self.F2CWHeadTF.text = [NSString stringWithFormat:@"%@m", basicInfo.ColdWater_PumpLift2];
-    self.F2CWPowerTF.text = [NSString stringWithFormat:@"%@kw", basicInfo.ColdWater_Power2];
+    self.Flow2chilledWaterpumpTF.text = [NSString stringWithFormat:@"%dm³", [basicInfo.ColdWater_PumpFlow2 intValue]];
+    self.F2CWHeadTF.text = [NSString stringWithFormat:@"%dm", [basicInfo.ColdWater_PumpLift2 intValue]];
+    self.F2CWPowerTF.text = [NSString stringWithFormat:@"%.1fkw", [basicInfo.ColdWater_Power2 doubleValue]];
     self.F2CWPcsTF.text = [NSString stringWithFormat:@"%i", [basicInfo.ColdWater_Num2 intValue]];
     self.F2CWOriginTF.text = basicInfo.ColdWater_Brand2;
     
-    self.Flow1coolingWaterpumpTF.text = [NSString stringWithFormat:@"%@m³", basicInfo.CoolWater_PumpFlow];
-    self.F1CoolWHeadTF.text = [NSString stringWithFormat:@"%@m", basicInfo.CoolWater_PumpFlow];
-    self.F1CoolWPowerTF.text = [NSString stringWithFormat:@"%@kw", basicInfo.CoolWater_Power];
+    self.Flow1coolingWaterpumpTF.text = [NSString stringWithFormat:@"%dm³", [basicInfo.CoolWater_PumpFlow intValue]];
+    self.F1CoolWHeadTF.text = [NSString stringWithFormat:@"%dm", [basicInfo.CoolWater_PumpFlow intValue]];
+    self.F1CoolWPowerTF.text = [NSString stringWithFormat:@"%.1fkw", [basicInfo.CoolWater_Power doubleValue]];
     self.F1CoolWPcsTF.text = [NSString stringWithFormat:@"%i", [basicInfo.CoolWater_Num intValue]];
     self.F1CoolWOriginTF.text = basicInfo.CoolWater_Brand;
     
-    self.Flow2coolingWaterpumpTF.text = [NSString stringWithFormat:@"%@m³", basicInfo.CoolWater_PumpFlow2];
-    self.F2CoolWHeadTF.text = [NSString stringWithFormat:@"%@m", basicInfo.CoolWater_PumpFlow2];
-    self.F2CoolWPowerTF.text = [NSString stringWithFormat:@"%@kw", basicInfo.CoolWater_Power2];
+    self.Flow2coolingWaterpumpTF.text = [NSString stringWithFormat:@"%dm³", [basicInfo.CoolWater_PumpFlow2 intValue]];
+    self.F2CoolWHeadTF.text = [NSString stringWithFormat:@"%dm", [basicInfo.CoolWater_PumpFlow2 intValue]];
+    self.F2CoolWPowerTF.text = [NSString stringWithFormat:@"%.1fkw", [basicInfo.CoolWater_Power2 doubleValue]];
     self.F2CoolWPcsTF.text = [NSString stringWithFormat:@"%i", [basicInfo.CoolWater_Num2 intValue]];
     self.F2CoolWOriginTF.text = basicInfo.CoolWater_Brand2;
     
