@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Satisfa List";
+    self.title = @"Satisfation Survey List";
     self.tabBarItem.title = @"Satisfaction";
     
     //适配iOS7uinavigationbar遮挡的问题
@@ -94,7 +94,7 @@
     [request setDidFinishSelector:@selector(requestOK:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:request.hud];
     isLoading = YES;
 }
 
@@ -144,7 +144,7 @@
         allCount = [satisfas count];
         NSDictionary *dic1 = table1[0];
         NSString *counts = dic1[@"Column1"];
-        self.title = [NSString stringWithFormat:@"Satisfa List(%@)",counts];
+        self.title = [NSString stringWithFormat:@"Satisfation Survey List(%@)",counts];
         self.tabBarItem.title = @"Satisfa";
         [self.tableView reloadData];
         [self doneLoadingTableViewData];

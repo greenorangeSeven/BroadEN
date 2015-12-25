@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Solution management";
+    self.title = @"Solution Management";
     
     self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, self.view.frame.size.height);
     
@@ -57,7 +57,7 @@
     [request setDidFinishSelector:@selector(requestOK:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"加载中..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Loading..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -145,7 +145,7 @@
 - (void)getImg:(NSString *)imgurl andImageIndex:(int )imageIndex
 {
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:hud];
     [[AFOSCClient  sharedClient] postPath:[NSString stringWithFormat:@"%@GetFileUrl",api_base_url] parameters:[NSDictionary dictionaryWithObjectsAndKeys:imgurl,@"fileName", nil] success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          XMLParserUtils *utils = [[XMLParserUtils alloc] init];

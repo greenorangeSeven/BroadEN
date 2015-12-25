@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Unit Info";
+    self.title = @"Unit Information";
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -49,7 +49,7 @@
     [request setDidFinishSelector:@selector(requestOK:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request

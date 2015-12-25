@@ -107,7 +107,7 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
     
     hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:hud];
     
     NSDateComponents *datec = [Tool getCurrentYear_Month_Day];
     NSInteger year = [datec year];
@@ -300,7 +300,7 @@
                 NSString *response = [request responseString];
                 if([response rangeOfString:@"true"].length > 0)
                 {
-                    [Tool showCustomHUD:@"提交成功" andView:self.view andImage:nil andAfterDelay:1.2f];
+                    [Tool showCustomHUD:@"Submit success" andView:self.view andImage:nil andAfterDelay:1.2f];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_CorrespondenceListReLoad" object:nil];
                     [self performSelector:@selector(back) withObject:nil afterDelay:1.2f];
                 }
@@ -308,7 +308,7 @@
         }
         else
         {
-            [Tool showCustomHUD:@"提交失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Submit failure" andView:self.view andImage:nil andAfterDelay:1.2f];
             self.navigationItem.rightBarButtonItem.enabled = YES;
         }
     }
@@ -461,9 +461,9 @@
     if (row == [fileArray count] -1) {
         UIActionSheet *cameraSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
-                                                        cancelButtonTitle:@"取消"
+                                                        cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"拍照", @"从相册中选取", nil];
+                                                        otherButtonTitles:@"Take Photo", @"Choose from Photos", nil];
         cameraSheet.tag = 0;
         [cameraSheet showInView:self.view];
     }

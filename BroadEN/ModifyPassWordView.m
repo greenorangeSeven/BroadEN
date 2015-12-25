@@ -88,7 +88,7 @@
     [request setDidFinishSelector:@selector(requestOK:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"加载中..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Loading..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -139,13 +139,13 @@
         NSString *response = [request responseString];
         if([response rangeOfString:@"true"].length > 0)
         {
-            [Tool showCustomHUD:@"提交成功" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Submit success" andView:self.view andImage:nil andAfterDelay:1.2f];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_MyWorkListReLoad" object:nil];
             [self performSelector:@selector(back) withObject:nil afterDelay:1.2f];
         }
         else
         {
-            [Tool showCustomHUD:@"提交失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Submit failure" andView:self.view andImage:nil andAfterDelay:1.2f];
             self.navigationItem.rightBarButtonItem.enabled = YES;
         }
     }

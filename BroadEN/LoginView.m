@@ -64,12 +64,12 @@
     NSString *pwd = self.pwdField.text;
     if(username.length == 0)
     {
-        [Tool showCustomHUD:@"请输入用户名" andView:self.view andImage:nil andAfterDelay:1.2f];
+        [Tool showCustomHUD:@"Please input user name" andView:self.view andImage:nil andAfterDelay:1.2f];
         return;
     }
     if(pwd.length == 0)
     {
-        [Tool showCustomHUD:@"请输入密码" andView:self.view andImage:nil andAfterDelay:1.2f];
+        [Tool showCustomHUD:@"Please input password" andView:self.view andImage:nil andAfterDelay:1.2f];
         return;
     }
     
@@ -90,7 +90,7 @@
     [request setDidFinishSelector:@selector(requestOK:)];
     [request startAsynchronous];
     hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:hud];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -115,7 +115,7 @@
     utils.parserFail = ^()
     {
         hud.hidden = YES;
-        [Tool showCustomHUD:@"Login Failure" andView:self.view andImage:nil andAfterDelay:1.2f];
+        [Tool showCustomHUD:@"Login failure" andView:self.view andImage:nil andAfterDelay:1.2f];
     };
     utils.parserOK = ^(NSString *string)
     {
@@ -152,13 +152,13 @@
             else
             {
                 hud.hidden = YES;
-                [Tool showCustomHUD:@"Login Failure" andView:self.view andImage:nil andAfterDelay:1.2f];
+                [Tool showCustomHUD:@"Login failure" andView:self.view andImage:nil andAfterDelay:1.2f];
             }
         }
         else
         {
             hud.hidden = YES;
-            [Tool showCustomHUD:@"Login Succeed" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Login succeed" andView:self.view andImage:nil andAfterDelay:1.2f];
         }
     };
     
@@ -206,7 +206,7 @@
     hud.hidden = YES;
     utils.parserFail = ^()
     {
-        [Tool showCustomHUD:@"Login Failure" andView:self.view andImage:nil andAfterDelay:1.2f];
+        [Tool showCustomHUD:@"Login failure" andView:self.view andImage:nil andAfterDelay:1.2f];
     };
     utils.parserOK = ^(NSString *string)
     {
@@ -218,18 +218,14 @@
         if(perArray && perArray.count > 0)
         {
             userinfo.permissions = perArray;
-            NSUserDefaults *preference = [NSUserDefaults standardUserDefaults];
-            [preference setObject:self.usernameField.text forKey:@"username"];
-            [preference setObject:self.pwdField.text forKey:@"pwd"];
-            AppDelegate *app = [[UIApplication sharedApplication] delegate];
-            app.userinfo = userinfo;
-            [Tool showCustomHUD:@"Login Succeed" andView:self.view andImage:nil andAfterDelay:1.2f];
-            [self performSelector:@selector(goNext) withObject:nil afterDelay:1.3f];
         }
-        else
-        {
-            [Tool showCustomHUD:@"Login Failure" andView:self.view andImage:nil andAfterDelay:1.2f];
-        }
+        NSUserDefaults *preference = [NSUserDefaults standardUserDefaults];
+        [preference setObject:self.usernameField.text forKey:@"username"];
+        [preference setObject:self.pwdField.text forKey:@"pwd"];
+        AppDelegate *app = [[UIApplication sharedApplication] delegate];
+        app.userinfo = userinfo;
+        [Tool showCustomHUD:@"Login succeed" andView:self.view andImage:nil andAfterDelay:1.2f];
+        [self performSelector:@selector(goNext) withObject:nil afterDelay:1.3f];
     };
     
     [utils stringFromparserXML:request.responseString target:@"string"];
@@ -283,7 +279,7 @@
     
     MoreListView *morePage = [[MoreListView alloc] initWithNibName:@"MoreListView" bundle:nil];
     morePage.tabBarItem.image = [UIImage imageNamed:@"tab_more"];
-    morePage.tabBarItem.title = @"more";
+    morePage.tabBarItem.title = @"More";
     UINavigationController *morePageNav = [[UINavigationController alloc] initWithRootViewController:morePage];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];

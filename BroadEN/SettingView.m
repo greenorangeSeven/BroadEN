@@ -29,8 +29,8 @@
     self.title = @"Settings";
     
     items = [[NSMutableArray alloc] initWithObjects:
-             [[SettingModel alloc] initWith:@"modify password" andImg:nil andTag:1 andTitle2:nil],
-             [[SettingModel alloc] initWith:@"personal information" andImg:nil andTag:2 andTitle2:nil],
+             [[SettingModel alloc] initWith:@"Modify password" andImg:@"more_password" andTag:1 andTitle2:nil],
+             [[SettingModel alloc] initWith:@"Personal information" andImg:@"more_persona" andTag:2 andTitle2:nil],
 //             [[SettingModel alloc] initWith:@"logout" andImg:nil andTag:3 andTitle2:nil],
              nil];
     

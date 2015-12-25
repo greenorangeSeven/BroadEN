@@ -119,8 +119,8 @@
 		[dateFormatter setDateStyle:NSDateFormatterShortStyle];
 		[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
         
-        //		_lastUpdatedLabel.text = [NSString stringWithFormat:@"Last Updated: %@", [dateFormatter stringFromDate:date]];
-        _lastUpdatedLabel.text = [NSString stringWithFormat:@"最后更新: %@", [dateFormatter stringFromDate:date]];
+        _lastUpdatedLabel.text = [NSString stringWithFormat:@"Last Updated: %@", [dateFormatter stringFromDate:date]];
+//        _lastUpdatedLabel.text = [NSString stringWithFormat:@"最后更新: %@", [dateFormatter stringFromDate:date]];
 		[[NSUserDefaults standardUserDefaults] setObject:_lastUpdatedLabel.text forKey:@"EGORefreshTableView_LastRefresh"];
 		[[NSUserDefaults standardUserDefaults] synchronize];
 		
@@ -138,7 +138,8 @@
 		case EGOOPullRefreshPulling:
 			
             //			_statusLabel.text = NSLocalizedString(@"Release to refresh...", @"Release to refresh status");
-            _statusLabel.text = @"松开即可刷新";
+//            _statusLabel.text = @"松开即可刷新";
+            _statusLabel.text = @"Refresh";
 			[CATransaction begin];
 			[CATransaction setAnimationDuration:FLIP_ANIMATION_DURATION];
 			_arrowImage.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180.0f, 0.0f, 0.0f, 1.0f);
@@ -155,7 +156,8 @@
 			}
 			
             //			_statusLabel.text = NSLocalizedString(@"Pull down to refresh...", @"Pull down to refresh status");
-            _statusLabel.text = @"下拉可以刷新";
+//            _statusLabel.text = @"下拉可以刷新";
+            _statusLabel.text = @"Pull down";
 			[_activityView stopAnimating];
 			[CATransaction begin];
 			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
@@ -169,7 +171,8 @@
 		case EGOOPullRefreshLoading:
 			
             //			_statusLabel.text = NSLocalizedString(@"Loading...", @"Loading Status");
-            _statusLabel.text = @"加载中";
+//            _statusLabel.text = @"加载中";
+            _statusLabel.text = @"Loading";
 			[_activityView startAnimating];
 			[CATransaction begin];
 			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];

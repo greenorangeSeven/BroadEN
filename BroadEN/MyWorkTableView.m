@@ -69,7 +69,7 @@
     [request setDidFinishSelector:@selector(requestSer:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"加载中..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Loading..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestSer:(ASIHTTPRequest *)request
@@ -145,7 +145,7 @@
     [request setDidFinishSelector:@selector(requestToDoWork:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -206,7 +206,7 @@
     [request setDidFinishSelector:@selector(requestUncompletedWork:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestUncompletedWork:(ASIHTTPRequest *)request
@@ -259,7 +259,7 @@
     [request setDidFinishSelector:@selector(requestToCheckWork:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestToCheckWork:(ASIHTTPRequest *)request
@@ -511,10 +511,10 @@
             EN = @"Solution Management Filling";
         }
         else if ([CN isEqualToString:@"服务部月调试保养汇总(英文版)"]) {
-            EN = @"MaintenanceCollect";
+            EN = @"Maintenace Collect";
         }
         else if ([CN isEqualToString:@"服务部月未满保修期明细(英文版)"]) {
-            EN = @"UnderGuarantee";
+            EN = @"Under Guarantee";
         }
     }
     return EN;

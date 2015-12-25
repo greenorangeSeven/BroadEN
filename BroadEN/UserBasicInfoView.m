@@ -81,7 +81,7 @@
     [request setDidFinishSelector:@selector(requestOK:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"加载中..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Loading..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request

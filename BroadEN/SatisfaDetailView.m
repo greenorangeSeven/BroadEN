@@ -10,12 +10,22 @@
 #import "Satisfa.h"
 #import "UnitInfo.h"
 #import "SatisfaUnitTableCell.h"
+#import "MWPhotoBrowser.h"
+#import "Img.h"
+#import "ImageCollectionCell.h"
 
-@interface SatisfaDetailView ()<UITableViewDelegate,UITableViewDataSource>
+@interface SatisfaDetailView ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegateFlowLayout,UIAlertViewDelegate,MWPhotoBrowserDelegate>
 {
     Satisfa *satisfa;
     NSArray *units;
+    
+    NSArray *picArray;
+    NSMutableArray *fileArray;
+    NSUInteger selectPicIndex;
+    
+    NSMutableArray *_photos;
 }
+@property (nonatomic, retain) NSMutableArray *photos;
 
 @end
 
@@ -24,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Satisfa Message";
+    self.title = @"Satisfaction Survey";
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -33,6 +43,12 @@
     self.tableView.tableFooterView = self.footerView;
     //    设置无分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    //初始化图片区域
+    fileArray = [[NSMutableArray alloc] initWithCapacity:9];
+    self.photoCollectionView.delegate = self;
+    self.photoCollectionView.dataSource = self;
+    [self.photoCollectionView registerClass:[ImageCollectionCell class] forCellWithReuseIdentifier:ImageCollectionCellIdentifier];
     
     [self getSatisfaDetailData];
 }
@@ -54,7 +70,7 @@
     [request setDidFinishSelector:@selector(requestOK:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"加载中..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Loading..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -138,6 +154,53 @@
     self.UserHQ_ConfirmTV.text = satisfa.UserHQ_Confirm;
     self.UserHQ_Confirm_SignLB.text = satisfa.UserHQ_Confirm_Sign;
     self.UserHQ_Confirm_SignDateLB.text = satisfa.UserHQ_Confirm_SignDate;
+    
+//    if (satisfa.allfilename.length > 0) {
+//        [self getImg:satisfa.allfilename andImageIndex:3];
+//    }
+}
+
+- (void)getImg:(NSString *)imgurl andImageIndex:(int )imageIndex
+{
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:hud];
+    [[AFOSCClient  sharedClient] postPath:[NSString stringWithFormat:@"%@GetFileUrl",api_base_url] parameters:[NSDictionary dictionaryWithObjectsAndKeys:imgurl,@"fileName", nil] success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         XMLParserUtils *utils = [[XMLParserUtils alloc] init];
+         utils.parserFail = ^()
+         {
+             hud.hidden = YES;
+             [Tool showCustomHUD:@"网络连接错误" andView:self.view andImage:nil andAfterDelay:1.2f];
+         };
+         utils.parserOK = ^(NSString *string)
+         {
+             NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+             NSError *error;
+             
+             NSArray *table = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+             picArray = nil;
+             picArray = [Tool readJsonToObjArray:table andObjClass:[Img class]];
+             hud.hidden = YES;
+             if(picArray && picArray.count > 0)
+             {
+                 switch (imageIndex) {
+                     case 3:
+                         fileArray = [NSMutableArray arrayWithArray:picArray];
+                         [self reloadPhotoHeight:YES andIsInit:YES];
+                         [self.photoCollectionView reloadData];
+                         break;
+                     default:
+                         break;
+                 }
+             }
+         };
+         
+         [utils stringFromparserXML:operation.responseString target:@"string"];
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         hud.hidden = YES;
+         [Tool showCustomHUD:@"网络连接错误" andView:self.view andImage:nil andAfterDelay:1.2f];
+     }];
 }
 
 - (void)getStateData
@@ -270,6 +333,93 @@
     // Dispose of any resources that can be recreated.
 }
 
+//定义展示的UICollectionViewCell的个数
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [fileArray count];
+}
+
+//定义展示的Section的个数
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+//每个UICollectionView展示的内容
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ImageCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ImageCollectionCellIdentifier forIndexPath:indexPath];
+    if (!cell) {
+        NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"ImageCollectionCell" owner:self options:nil];
+        for (NSObject *o in objects) {
+            if ([o isKindOfClass:[ImageCollectionCell class]]) {
+                cell = (ImageCollectionCell *)o;
+                break;
+            }
+        }
+    }
+    NSUInteger row = [indexPath row];
+    id image = [fileArray objectAtIndex:row];
+    //    UIImage *picImage = [fileArray objectAtIndex:row];
+    //    cell.picIV.image = picImage;
+    if ([image isKindOfClass:[UIImage class]]) {
+        cell.picIV.image = (UIImage *)image;
+    }
+    else
+    {
+        Img *picImage = (Img *)image;
+        [cell.picIV sd_setImageWithURL:[NSURL URLWithString:picImage.Url] placeholderImage:[UIImage imageNamed:@"loadingpic"]];
+    }
+    
+    return cell;
+}
+
+#pragma mark --UICollectionViewDelegateFlowLayout
+//定义每个UICollectionView 的大小
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(90, 90);
+}
+
+//定义每个UICollectionView 的 margin
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
+#pragma mark --UICollectionViewDelegate
+//UICollectionView被选中时调用的方法
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+        [self.photos removeAllObjects];
+        if ([self.photos count] == 0) {
+            NSMutableArray *photos = [[NSMutableArray alloc] init];
+            for (Img *image in fileArray) {
+                MWPhoto * photo = [MWPhoto photoWithURL:[NSURL URLWithString:image.Url]];
+                [photos addObject:photo];
+            }
+            self.photos = photos;
+        }
+        MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+        browser.displayActionButton = YES;
+        browser.displayNavArrows = NO;//左右分页切换,默认否
+        browser.displaySelectionButtons = NO;//是否显示选择按钮在图片上,默认否
+        browser.alwaysShowControls = YES;//控制条件控件 是否显示,默认否
+        browser.zoomPhotosToFill = NO;//是否全屏,默认是
+        //    browser.wantsFullScreenLayout = YES;//是否全屏
+        [browser setCurrentPhotoIndex:[indexPath row]];
+        self.navigationController.navigationBar.hidden = NO;
+        [self.navigationController pushViewController:browser animated:YES];
+    
+}
+
+//返回这个UICollectionView是否可以被选择
+-(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
 - (NSString *)CNTOEN:(NSString *)CN
 {
     NSString *EN = @"";
@@ -291,6 +441,84 @@
         }
     }
     return EN;
+}
+
+- (void)reloadPhotoHeight:(BOOL )addORcutRow andIsInit:(BOOL )ISInit
+{
+    int addRow = 0;
+    if(ISInit)
+    {
+        if ([fileArray count] % 3 > 0) {
+            addRow = [fileArray count]/3 + 1 - 1;
+        }
+        else
+        {
+            addRow = [fileArray count]/3 - 1;
+        }
+    }
+    else
+    {
+        if(addORcutRow)
+        {
+            if ([fileArray count] % 3 == 1) {
+                addRow = 1;
+            }
+        }
+        else
+        {
+            if ([fileArray count] <= 6)
+            {
+                if ([fileArray count] % 3 == 0) {
+                    addRow = -1;
+                }
+            }
+        }
+    }
+    
+    //只允许上传9张图片
+    if ([fileArray count] == 10) {
+        addRow = 0;
+    }
+    
+    float addHeight = 100.0 * addRow;
+    if (addHeight == 0) {
+        return;
+    }
+    
+    //计算框架otherCollectionView的高度
+    CGRect photoFrame = self.photoCollectionView.frame;
+    photoFrame.size.height = photoFrame.size.height + addHeight;
+    self.photoCollectionView.frame = photoFrame;
+    
+    CGRect engineerViewrame = self.EngineerView.frame;
+    engineerViewrame.size.height = engineerViewrame.size.height + addHeight;
+    self.EngineerView.frame = engineerViewrame;
+    
+    CGRect footerViewFrame = self.footerView.frame;
+    footerViewFrame.size.height = footerViewFrame.size.height + addHeight;
+    self.footerView.frame = footerViewFrame;
+    
+    CGRect engineerBottomViewFrame = self.EngineerBottomView.frame;
+    engineerBottomViewFrame.size.height = engineerBottomViewFrame.size.height + addHeight;
+    engineerBottomViewFrame.origin.y = engineerBottomViewFrame.origin.y + addHeight;
+    self.EngineerBottomView.frame = engineerBottomViewFrame;
+    
+    CGRect userHQConfirmOpinionViewFrame = self.UserHQConfirmOpinionView.frame;
+    userHQConfirmOpinionViewFrame.origin.y = userHQConfirmOpinionViewFrame.origin.y + addHeight;
+    self.UserHQConfirmOpinionView.frame = userHQConfirmOpinionViewFrame;
+    
+    self.tableView.tableFooterView = self.footerView;
+}
+
+//MWPhotoBrowserDelegate委托事件
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return _photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photos.count)
+        return [_photos objectAtIndex:index];
+    return nil;
 }
 
 /*

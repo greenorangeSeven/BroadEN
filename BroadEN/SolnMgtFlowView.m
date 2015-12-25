@@ -42,7 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Soln Mgt";
+    self.title = @"Solution Management";
     
     if(!self.isQuery)
     {
@@ -92,7 +92,7 @@
     }
     self.navigationItem.rightBarButtonItem.enabled = NO;
     hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:hud];
     
     NSString *sql = [NSString stringWithFormat:@"Select OwnerUserName From FlowActionTrace Where SubmitTime is null and InstanceID=(Select ID From FlowInstance Where Mark='%@')", self.Mark];
     
@@ -260,7 +260,7 @@
         }
         else
         {
-            [Tool showCustomHUD:@"提交失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Submit failure" andView:self.view andImage:nil andAfterDelay:1.2f];
             self.navigationItem.rightBarButtonItem.enabled = YES;
         }
     }
@@ -287,7 +287,7 @@
         }
         else
         {
-            [Tool showCustomHUD:@"提交失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Submit failure" andView:self.view andImage:nil andAfterDelay:1.2f];
             self.navigationItem.rightBarButtonItem.enabled = YES;
         }
     }
@@ -311,13 +311,13 @@
         NSString *response = [request responseString];
         if([response rangeOfString:@"true"].length > 0)
         {
-            [Tool showCustomHUD:@"提交成功" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Submit success" andView:self.view andImage:nil andAfterDelay:1.2f];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_MyWorkListReLoad" object:nil];
             [self performSelector:@selector(back) withObject:nil afterDelay:1.2f];
         }
         else
         {
-            [Tool showCustomHUD:@"提交失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Submit failure" andView:self.view andImage:nil andAfterDelay:1.2f];
             self.navigationItem.rightBarButtonItem.enabled = YES;
         }
     }
@@ -340,7 +340,7 @@
     [request setDidFinishSelector:@selector(requestOK:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"加载中..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Loading..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -580,9 +580,9 @@
     if (row == [fileArray count] -1) {
         UIActionSheet *cameraSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
-                                                        cancelButtonTitle:@"取消"
+                                                        cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"拍照", @"从相册中选取", nil];
+                                                        otherButtonTitles:@"Take Photo", @"Choose from Photos", nil];
         cameraSheet.tag = 0;
         [cameraSheet showInView:self.view];
     }

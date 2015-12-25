@@ -53,7 +53,7 @@
     [request setDidFinishSelector:@selector(requestFlowRecord:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestFlowRecord:(ASIHTTPRequest *)request

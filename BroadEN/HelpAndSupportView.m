@@ -47,7 +47,7 @@
 }
 
 - (IBAction)mailAction:(id)sender {
-    NSURL *mailURL = [NSURL URLWithString:@"mailto://wuzheng@broad.net"];
+    NSURL *mailURL = [NSURL URLWithString:@"mailto://international@broad.net"];
     if ( !phoneCallWebView ) {
         phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     }

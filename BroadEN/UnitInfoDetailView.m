@@ -119,12 +119,12 @@
 - (void)saveAction:(id )sender
 {
     if (!doChange) {
-        [Tool showCustomHUD:@"您没做任何修改" andView:self.view andImage:nil andAfterDelay:1.2f];
+        [Tool showCustomHUD:@"NO Change" andView:self.view andImage:nil andAfterDelay:1.2f];
         return;
     }
 
     hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:hud];
     
     self.navigationItem.rightBarButtonItem.enabled = NO;
     //异步请求启动文件上传及后续写库操作！SQL无意义，只为启动提示稍后
@@ -339,13 +339,13 @@
         NSString *response = [request responseString];
         if([response rangeOfString:@"true"].length > 0)
         {
-            [Tool showCustomHUD:@"提交成功" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Submit success" andView:self.view andImage:nil andAfterDelay:1.2f];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_MyWorkListReLoad" object:nil];
             [self performSelector:@selector(back) withObject:nil afterDelay:1.2f];
         }
         else
         {
-            [Tool showCustomHUD:@"提交失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Submit failure" andView:self.view andImage:nil andAfterDelay:1.2f];
             self.navigationItem.rightBarButtonItem.enabled = YES;
         }
     }
@@ -405,7 +405,7 @@
     [request setDidFinishSelector:@selector(requestBasic:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -485,7 +485,7 @@
     [request setDidFinishSelector:@selector(requestShipping:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestShipping:(ASIHTTPRequest *)request
@@ -535,7 +535,7 @@
     [request setDidFinishSelector:@selector(requestCommiss:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestCommiss:(ASIHTTPRequest *)request
@@ -877,9 +877,9 @@
                                   currentImg.fileType = selectFileTypeDic;
                                   UIActionSheet *cameraSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                                            delegate:self
-                                                                                  cancelButtonTitle:@"取消"
+                                                                                  cancelButtonTitle:@"Cancel"
                                                                              destructiveButtonTitle:nil
-                                                                                  otherButtonTitles:@"拍照", @"从相册中选取", nil];
+                                                                                  otherButtonTitles:@"Take Photo", @"Choose from Photos", nil];
                                   cameraSheet.tag = 0;
                                   [cameraSheet showInView:self.view];
                               }

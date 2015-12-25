@@ -369,7 +369,7 @@
         }
         else
         {
-            [Tool showCustomHUD:@"提交失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Submit failure" andView:self.view andImage:nil andAfterDelay:1.2f];
         }
     };
     NSLog(@"%@",request.responseString);
@@ -399,7 +399,7 @@
         }
         else
         {
-            [Tool showCustomHUD:@"提交失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Submit failure" andView:self.view andImage:nil andAfterDelay:1.2f];
         }
     }
 }

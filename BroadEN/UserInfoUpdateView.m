@@ -72,7 +72,7 @@
 - (void)update
 {
     hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:hud];
     
     JSValue *function = context[@"commit"];
     [function callWithArguments:nil];

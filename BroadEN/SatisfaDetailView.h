@@ -46,6 +46,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *Serv_Dept_SignLB;
 @property (weak, nonatomic) IBOutlet UILabel *Serv_Dept_SignDateLB;
 
+@property (weak, nonatomic) IBOutlet UIView *EngineerView;
+@property (weak, nonatomic) IBOutlet UIView *EngineerBottomView;
+@property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 @property (weak, nonatomic) IBOutlet UITextView *Engineer_SugstTV;
 @property (weak, nonatomic) IBOutlet UILabel *Engineer_SignLB;
 @property (weak, nonatomic) IBOutlet UILabel *Engineer_SignDateLB;

@@ -39,9 +39,9 @@
     userinfo = app.userinfo;
     
     items = [[NSMutableArray alloc] initWithObjects:
-             [[SettingModel alloc] initWith:@"Unit Info" andImg:@"more_userinfo" andTag:1 andTitle2:nil],
+             [[SettingModel alloc] initWith:@"Unit Information" andImg:@"more_userinfo" andTag:1 andTitle2:nil],
              //             [[SettingModel alloc] initWith:@"My Work" andImg:@"more_mywork" andTag:4 andTitle2:nil],
-             [[SettingModel alloc] initWith:@"Soln Mgt" andImg:@"tab_SolnMgt" andTag:4 andTitle2:nil],
+             [[SettingModel alloc] initWith:@"Solution Management" andImg:@"tab_SolnMgt" andTag:4 andTitle2:nil],
              [[SettingModel alloc] initWith:@"Settings" andImg:@"more_setting" andTag:5 andTitle2:nil],
              [[SettingModel alloc] initWith:@"Help and Support" andImg:@"more_help" andTag:6 andTitle2:nil],
              [[SettingModel alloc] initWith:@"Log Out" andImg:nil andTag:7 andTitle2:nil],
@@ -73,7 +73,7 @@
     [request setDidFinishSelector:@selector(requestSecurity:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"加载中..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Loading..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -114,8 +114,8 @@
             }
         }
         
-        SettingModel *agreement = [[SettingModel alloc] initWith:@"Agreement Mgt" andImg:@"more_agreement" andTag:2 andTitle2:nil];
-        SettingModel *corrpdnc = [[SettingModel alloc] initWith:@"Corrpdnc Mails" andImg:@"more_corrpdnc" andTag:3 andTitle2:nil];
+        SettingModel *agreement = [[SettingModel alloc] initWith:@"Agreement Management" andImg:@"more_agreement" andTag:2 andTitle2:nil];
+        SettingModel *corrpdnc = [[SettingModel alloc] initWith:@"Correspondance" andImg:@"more_corrpdnc" andTag:3 andTitle2:nil];
         
         if (haveQueryAgreement) {
             [items insertObject:agreement atIndex:1];

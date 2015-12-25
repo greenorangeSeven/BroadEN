@@ -60,7 +60,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Satisfa";
+    self.title = @"Satisfation Survey";
     
     if(!self.isQuery)
     {
@@ -169,7 +169,7 @@
     
     self.navigationItem.rightBarButtonItem.enabled = NO;
     hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:hud];
     
     NSString *sql = [NSString stringWithFormat:@"Select OwnerUserName From FlowActionTrace Where SubmitTime is null and InstanceID=(Select ID From FlowInstance Where Mark='%@')", self.Mark];
     
@@ -366,7 +366,7 @@
         }
         else
         {
-            [Tool showCustomHUD:@"提交失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Submit failure" andView:self.view andImage:nil andAfterDelay:1.2f];
             self.navigationItem.rightBarButtonItem.enabled = YES;
         }
     }
@@ -445,7 +445,7 @@
     [request setDidFinishSelector:@selector(requestStartNext:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestStartNext:(ASIHTTPRequest *)request
@@ -488,13 +488,13 @@
         NSString *response = [request responseString];
         if([response rangeOfString:@"true"].length > 0)
         {
-            [Tool showCustomHUD:@"提交成功" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Submit success" andView:self.view andImage:nil andAfterDelay:1.2f];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_MyWorkListReLoad" object:nil];
             [self performSelector:@selector(back) withObject:nil afterDelay:1.2f];
         }
         else
         {
-            [Tool showCustomHUD:@"提交失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+            [Tool showCustomHUD:@"Submit failure" andView:self.view andImage:nil andAfterDelay:1.2f];
             self.navigationItem.rightBarButtonItem.enabled = YES;
         }
     }
@@ -641,7 +641,7 @@
     [request setDidFinishSelector:@selector(requestOK:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"加载中..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"Loading..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -744,17 +744,17 @@
     self.UserHQ_Confirm_SignLB.text = satisfa.UserHQ_Confirm_Sign;
     self.UserHQ_Confirm_SignDateLB.text = satisfa.UserHQ_Confirm_SignDate;
     
-    if (self.isQuery) {
-        if (satisfa.allfilename.length > 0) {
-            [self getImg:satisfa.allfilename andImageIndex:3];
-        }
-    }
+//    if (self.isQuery) {
+//        if (satisfa.allfilename.length > 0) {
+//            [self getImg:satisfa.allfilename andImageIndex:3];
+//        }
+//    }
 }
 
 - (void)getImg:(NSString *)imgurl andImageIndex:(int )imageIndex
 {
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"请稍后..." andView:self.view andHUD:hud];
+    [Tool showHUD:@"Waiting..." andView:self.view andHUD:hud];
     [[AFOSCClient  sharedClient] postPath:[NSString stringWithFormat:@"%@GetFileUrl",api_base_url] parameters:[NSDictionary dictionaryWithObjectsAndKeys:imgurl,@"fileName", nil] success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          XMLParserUtils *utils = [[XMLParserUtils alloc] init];
@@ -762,7 +762,6 @@
          {
              hud.hidden = YES;
              [Tool showCustomHUD:@"网络连接错误" andView:self.view andImage:nil andAfterDelay:1.2f];
-             //             [self performSelector:@selector(back) withObject:nil afterDelay:1.2f];
          };
          utils.parserOK = ^(NSString *string)
          {
@@ -1210,9 +1209,9 @@
         if (row == [fileArray count] -1) {
             UIActionSheet *cameraSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                      delegate:self
-                                                            cancelButtonTitle:@"取消"
+                                                            cancelButtonTitle:@"Cancel"
                                                        destructiveButtonTitle:nil
-                                                            otherButtonTitles:@"拍照", @"从相册中选取", nil];
+                                                            otherButtonTitles:@"Take Photo", @"Choose from Photos", nil];
             cameraSheet.tag = 0;
             [cameraSheet showInView:self.view];
         }

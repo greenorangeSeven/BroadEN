@@ -80,8 +80,8 @@
 //每页数量
 #define page_count 5
 
-#define api_base_url @"http://61.187.123.138:150/JkzxService.asmx/"
-//#define api_base_url @"http://61.187.123.138:6888/JkzxService.asmx/"
+//#define api_base_url @"http://61.187.123.138:150/JkzxService.asmx/"
+#define api_base_url @"http://61.187.123.138:6888/JkzxService.asmx/"
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
@@ -95,8 +95,8 @@
 
 #define ALERT(msg) {UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示:" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];[alert show];}
 
-#define loadNext20Tip @"点击加载更多 . . ."
-#define loadingTip @"正在加载 . . ."
+#define loadNext20Tip @"Load more"
+#define loadingTip @"Loading"
 #define networkError @"网络无连接"
 #define noNetworkTip @"网络无连接"
 
@@ -107,8 +107,8 @@
 
 #define HTML_Bottom @"<div style='margin-bottom:60px'/>"
 
-#define AppVersion @"1.0.9"
-#define AppVersionCode @"9"
+#define AppVersion @"1.1.2"
+#define AppVersionCode @"12"
 
 #define noConnect @"noConnect"
 #define wifi @"wifi"

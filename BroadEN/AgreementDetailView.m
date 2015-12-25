@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Agreement Mgt Message";
+    self.title = @"Agreement Management";
     if(self.agreement.CN_Name == nil || self.agreement.CN_Name.length == 0)
     {
         self.CN_NameLb.text = self.agreement.PROJ_Name_En;
