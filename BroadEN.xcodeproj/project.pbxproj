@@ -63,6 +63,10 @@
 		140BAE161C0205660047AF57 /* UserInfoTypeTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140BAE141C0205660047AF57 /* UserInfoTypeTableView.xib */; };
 		141096701C0DDDFC00D08169 /* SolnMgtDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410966E1C0DDDFC00D08169 /* SolnMgtDetailView.m */; };
 		141096711C0DDDFC00D08169 /* SolnMgtDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1410966F1C0DDDFC00D08169 /* SolnMgtDetailView.xib */; };
+		14190DC91C30293200F396D9 /* UserBasicInfoModifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14190DC71C30293200F396D9 /* UserBasicInfoModifyView.m */; };
+		14190DCA1C30293200F396D9 /* UserBasicInfoModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14190DC81C30293200F396D9 /* UserBasicInfoModifyView.xib */; };
+		14190DCF1C304EF500F396D9 /* UserBasicInfoModifyFoldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14190DCD1C304EF500F396D9 /* UserBasicInfoModifyFoldView.m */; };
+		14190DD01C304EF500F396D9 /* UserBasicInfoModifyFoldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14190DCE1C304EF500F396D9 /* UserBasicInfoModifyFoldView.xib */; };
 		141E1A291C18FACB0086B39E /* HelpAndSupportView.m in Sources */ = {isa = PBXBuildFile; fileRef = 141E1A271C18FACB0086B39E /* HelpAndSupportView.m */; };
 		141E1A2A1C18FACB0086B39E /* HelpAndSupportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141E1A281C18FACB0086B39E /* HelpAndSupportView.xib */; };
 		141E1A2F1C1901210086B39E /* SettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 141E1A2D1C1901210086B39E /* SettingView.m */; };
@@ -444,6 +448,12 @@
 		1410966D1C0DDDFC00D08169 /* SolnMgtDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolnMgtDetailView.h; sourceTree = "<group>"; };
 		1410966E1C0DDDFC00D08169 /* SolnMgtDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolnMgtDetailView.m; sourceTree = "<group>"; };
 		1410966F1C0DDDFC00D08169 /* SolnMgtDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SolnMgtDetailView.xib; sourceTree = "<group>"; };
+		14190DC61C30293200F396D9 /* UserBasicInfoModifyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserBasicInfoModifyView.h; sourceTree = "<group>"; };
+		14190DC71C30293200F396D9 /* UserBasicInfoModifyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserBasicInfoModifyView.m; sourceTree = "<group>"; };
+		14190DC81C30293200F396D9 /* UserBasicInfoModifyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserBasicInfoModifyView.xib; sourceTree = "<group>"; };
+		14190DCC1C304EF500F396D9 /* UserBasicInfoModifyFoldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserBasicInfoModifyFoldView.h; sourceTree = "<group>"; };
+		14190DCD1C304EF500F396D9 /* UserBasicInfoModifyFoldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserBasicInfoModifyFoldView.m; sourceTree = "<group>"; };
+		14190DCE1C304EF500F396D9 /* UserBasicInfoModifyFoldView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserBasicInfoModifyFoldView.xib; sourceTree = "<group>"; };
 		141E1A261C18FACB0086B39E /* HelpAndSupportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpAndSupportView.h; sourceTree = "<group>"; };
 		141E1A271C18FACB0086B39E /* HelpAndSupportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpAndSupportView.m; sourceTree = "<group>"; };
 		141E1A281C18FACB0086B39E /* HelpAndSupportView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpAndSupportView.xib; sourceTree = "<group>"; };
@@ -1458,6 +1468,12 @@
 				1437FE771C03E9AE003126D3 /* UserBasicInfoUpdateView.h */,
 				1437FE781C03E9AE003126D3 /* UserBasicInfoUpdateView.m */,
 				1437FE791C03E9AE003126D3 /* UserBasicInfoUpdateView.xib */,
+				14190DC61C30293200F396D9 /* UserBasicInfoModifyView.h */,
+				14190DC71C30293200F396D9 /* UserBasicInfoModifyView.m */,
+				14190DC81C30293200F396D9 /* UserBasicInfoModifyView.xib */,
+				14190DCC1C304EF500F396D9 /* UserBasicInfoModifyFoldView.h */,
+				14190DCD1C304EF500F396D9 /* UserBasicInfoModifyFoldView.m */,
+				14190DCE1C304EF500F396D9 /* UserBasicInfoModifyFoldView.xib */,
 			);
 			name = UserBasicInfo;
 			sourceTree = "<group>";
@@ -2394,6 +2410,7 @@
 				142CF2E61C0156BC009FAE0A /* UsersTableView.xib in Resources */,
 				141096711C0DDDFC00D08169 /* SolnMgtDetailView.xib in Resources */,
 				14BACCCD1C134407007566BF /* MoreCorrpdncTableView.xib in Resources */,
+				14190DD01C304EF500F396D9 /* UserBasicInfoModifyFoldView.xib in Resources */,
 				142CF3151C017F0D009FAE0A /* SolnMgtTableView.xib in Resources */,
 				1492009B1C062EBD00007D95 /* UnitInfoBasicOneCell.xib in Resources */,
 				142CF3101C017EEE009FAE0A /* SiteServTableView.xib in Resources */,
@@ -2414,6 +2431,7 @@
 				14AD6DA91C0F363100A1C8AB /* CorrespondenceCell.xib in Resources */,
 				142CF31A1C017F2F009FAE0A /* SatisfaTableView.xib in Resources */,
 				14E215C01C1DC8DB00EBC3FF /* AllInOneSearchView.xib in Resources */,
+				14190DCA1C30293200F396D9 /* UserBasicInfoModifyView.xib in Resources */,
 				B719FC911B96E3B200206227 /* userdetails.html in Resources */,
 				1402B6871C1137AE003E940D /* AgreementTabelView.xib in Resources */,
 				14AD6DB41C0F5B8F00A1C8AB /* FileType.plist in Resources */,
@@ -2489,6 +2507,7 @@
 				14BACCCC1C134407007566BF /* MoreCorrpdncTableView.m in Sources */,
 				B798ED221B930B8800AE40F2 /* ASIWebPageRequest.m in Sources */,
 				143D71931C07558100E08308 /* UserSecurity.m in Sources */,
+				14190DCF1C304EF500F396D9 /* UserBasicInfoModifyFoldView.m in Sources */,
 				142CF32F1C01986E009FAE0A /* SolnMgt.m in Sources */,
 				B798ED491B930B8800AE40F2 /* PrintObject.m in Sources */,
 				04E90AE21AAD3E80005409D8 /* AppDelegate.m in Sources */,
@@ -2558,6 +2577,7 @@
 				B798ED631B930B8800AE40F2 /* PSTGridLayoutSection.m in Sources */,
 				B798ED1E1B930B8800AE40F2 /* AFURLConnectionOperation.m in Sources */,
 				B7D415DB1B9996EA00462F0C /* SGAlertMenu.m in Sources */,
+				14190DC91C30293200F396D9 /* UserBasicInfoModifyView.m in Sources */,
 				142CF3031C015B5F009FAE0A /* NdUncaughtExceptionHandler.m in Sources */,
 				B798ED231B930B8800AE40F2 /* ASIAuthenticationDialog.m in Sources */,
 				141E1A2F1C1901210086B39E /* SettingView.m in Sources */,

@@ -40,11 +40,11 @@
     
     items = [[NSMutableArray alloc] initWithObjects:
              [[SettingModel alloc] initWith:@"Unit Information" andImg:@"more_userinfo" andTag:1 andTitle2:nil],
-             //             [[SettingModel alloc] initWith:@"My Work" andImg:@"more_mywork" andTag:4 andTitle2:nil],
              [[SettingModel alloc] initWith:@"Solution Management" andImg:@"tab_SolnMgt" andTag:4 andTitle2:nil],
+             [[SettingModel alloc] initWith:@"Internet Monitor" andImg:@"more_Internet" andTag:8 andTitle2:nil],
              [[SettingModel alloc] initWith:@"Settings" andImg:@"more_setting" andTag:5 andTitle2:nil],
              [[SettingModel alloc] initWith:@"Help and Support" andImg:@"more_help" andTag:6 andTitle2:nil],
-             [[SettingModel alloc] initWith:@"Log Out" andImg:nil andTag:7 andTitle2:nil],
+             [[SettingModel alloc] initWith:@"Log Out" andImg:@"more_logout" andTag:7 andTitle2:nil],
              nil];
     
     self.tableView.delegate = self;
@@ -190,7 +190,11 @@
             appdele.window.rootViewController = loginView;
         }
             break;
-            
+        case 8:
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://61.187.123.138/password_new_eng.asp"]];
+        }
+            break;
         default:
             break;
     }
@@ -224,15 +228,15 @@
     cell.imgIv.image = [UIImage imageNamed:model.img];
     cell.titleLb.text = model.title;
     //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if ([model.title isEqualToString:@"Log Out"]) {
-        cell.titleLb.textAlignment = UITextAlignmentCenter;
-        cell.titleLb.textColor = [UIColor redColor];
-    }
-    else
-    {
-        cell.titleLb.textAlignment = UITextAlignmentLeft;
-        cell.titleLb.textColor = [Tool getColorForMain];
-    }
+//    if ([model.title isEqualToString:@"Log Out"]) {
+//        cell.titleLb.textAlignment = UITextAlignmentCenter;
+//        cell.titleLb.textColor = [UIColor redColor];
+//    }
+//    else
+//    {
+//        cell.titleLb.textAlignment = UITextAlignmentLeft;
+//        cell.titleLb.textColor = [Tool getColorForMain];
+//    }
     
     return cell;
 }

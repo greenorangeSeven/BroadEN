@@ -8,7 +8,7 @@
 
 #import "UserBasicInfoView.h"
 #import "UserBasicInfo.h"
-#import "UserBasicInfoUpdateView.h"
+#import "UserBasicInfoModifyFoldView.h"
 
 @interface UserBasicInfoView ()
 {
@@ -53,10 +53,10 @@
 
 - (void)modifyAction:(id)sender
 {
-    UserBasicInfoUpdateView *basicInfoUpdateView = [[UserBasicInfoUpdateView alloc] init];
-    basicInfoUpdateView.basicInfo = basicInfo;
-    basicInfoUpdateView.title = self.titleStr;
-    [self.navigationController pushViewController:basicInfoUpdateView animated:YES];
+    UserBasicInfoModifyFoldView *basicInfoModifyView = [[UserBasicInfoModifyFoldView alloc] init];
+    basicInfoModifyView.basicInfo = basicInfo;
+    basicInfoModifyView.title = self.titleStr;
+    [self.navigationController pushViewController:basicInfoModifyView animated:YES];
 }
 
 - (void)saveAction:(id)sender
