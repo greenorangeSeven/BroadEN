@@ -21,6 +21,8 @@
     [super viewDidLoad];
     
     self.title = @"Help and Support";
+    
+    self.versionInfoLb.text = [NSString stringWithFormat:@"Version :%@", AppVersion];
 }
 
 - (void)didReceiveMemoryWarning {

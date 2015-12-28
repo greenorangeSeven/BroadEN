@@ -13,5 +13,6 @@
 - (IBAction)telAction:(id)sender;
 - (IBAction)mailAction:(id)sender;
 - (IBAction)webActon:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *versionInfoLb;
 
 @end

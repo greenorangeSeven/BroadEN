@@ -9,12 +9,16 @@
 #import "UserBasicInfoView.h"
 #import "UserBasicInfo.h"
 #import "UserBasicInfoModifyFoldView.h"
+#import "UserSecurity.h"
 
 @interface UserBasicInfoView ()
 {
     UIBarButtonItem *modifyBtn;
     UIBarButtonItem *saveBtn;
     UserBasicInfo *basicInfo;
+    
+    UserInfo *userinfo;
+    NSString *jiaose;
 }
 
 @end
@@ -26,10 +30,9 @@
     
     self.title = self.titleStr;
     
-    modifyBtn = [[UIBarButtonItem alloc] initWithTitle: @"Modify" style:UIBarButtonItemStyleBordered target:self action:@selector(modifyAction:)];
-    self.navigationItem.rightBarButtonItem = modifyBtn;
-    
-    saveBtn = [[UIBarButtonItem alloc] initWithTitle: @"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveAction:)];
+    AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    userinfo = app.userinfo;
+    jiaose = userinfo.JiaoSe;
     
     self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, self.view.frame.size.height);
     
@@ -43,6 +46,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataReload) name:@"Notification_UserBasicInfoReLoad" object:nil];
     
+    [self getSecurity];
     [self getData];
 }
 
@@ -51,17 +55,71 @@
     [self getData];
 }
 
+- (void)getSecurity
+{
+    //%%为转义%
+    NSString *sqlStr = [NSString stringWithFormat:@"Sp_GetPermissionByRoleNameInModuleLike_En '%@','DA01%%'", userinfo.JiaoSe];
+    NSString *urlStr = [NSString stringWithFormat:@"%@JsonDataInDZDA", api_base_url];
+    
+    NSURL *url = [NSURL URLWithString: urlStr];
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setUseCookiePersistence:NO];
+    [request setTimeOutSeconds:30];
+    [request setPostValue:sqlStr forKey:@"sqlstr"];
+    [request setDelegate:self];
+    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+    [request setDidFailSelector:@selector(requestFailed:)];
+    [request setDidFinishSelector:@selector(requestSecurity:)];
+    [request startAsynchronous];
+    request.hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [Tool showHUD:@"Loading..." andView:self.view andHUD:request.hud];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    if (request.hud)
+    {
+        [request.hud hide:NO];
+    }
+}
+
+- (void)requestSecurity:(ASIHTTPRequest *)request
+{
+    if (request.hud)
+    {
+        [request.hud hide:YES];
+    }
+    [request setUseCookiePersistence:YES];
+    
+    XMLParserUtils *utils = [[XMLParserUtils alloc] init];
+    utils.parserFail = ^()
+    {
+        [Tool showCustomHUD:@"连接失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+    };
+    utils.parserOK = ^(NSString *string)
+    {
+        NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error;
+        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+        NSArray *securityList = [Tool readJsonToObjArray:jsonArray andObjClass:[UserSecurity class]];
+        for (UserSecurity *s in securityList) {
+            if ([s.ModuleCode isEqualToString:@"DA01"] && [s.PermissionName isEqualToString:@"修改"]) {
+                modifyBtn = [[UIBarButtonItem alloc] initWithTitle: @"Modify" style:UIBarButtonItemStyleBordered target:self action:@selector(modifyAction:)];
+                self.navigationItem.rightBarButtonItem = modifyBtn;
+                break;
+            }
+        }
+    };
+    [utils stringFromparserXML:request.responseString target:@"string"];
+}
+
 - (void)modifyAction:(id)sender
 {
     UserBasicInfoModifyFoldView *basicInfoModifyView = [[UserBasicInfoModifyFoldView alloc] init];
     basicInfoModifyView.basicInfo = basicInfo;
     basicInfoModifyView.title = self.titleStr;
     [self.navigationController pushViewController:basicInfoModifyView animated:YES];
-}
-
-- (void)saveAction:(id)sender
-{
-    
 }
 
 - (void)getData
@@ -82,14 +140,6 @@
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
     [Tool showHUD:@"Loading..." andView:self.view andHUD:request.hud];
-}
-
-- (void)requestFailed:(ASIHTTPRequest *)request
-{
-    if (request.hud)
-    {
-        [request.hud hide:NO];
-    }
 }
 
 - (void)requestOK:(ASIHTTPRequest *)request

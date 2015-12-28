@@ -15,10 +15,12 @@
                 <outlet property="BLMailTF" destination="asa-8d-cCl" id="DBK-qZ-kzv"/>
                 <outlet property="BLTF" destination="YRu-z0-8he" id="SgT-2U-aTn"/>
                 <outlet property="BuildingInfoCView" destination="z55-iw-9XF" id="Aqr-47-6LH"/>
+                <outlet property="BuildingInfoStateIv" destination="5O7-mq-1lV" id="Cil-mv-V4J"/>
                 <outlet property="BuildingInfoView" destination="8Rl-AP-B17" id="LUB-0X-5Wj"/>
                 <outlet property="BuildingareaTF" destination="2hZ-UB-J32" id="4ux-N8-idu"/>
                 <outlet property="BuildingheightTF" destination="9xS-U4-y3s" id="IfX-aY-q2l"/>
                 <outlet property="BusinessInfoCView" destination="6eM-vo-H78" id="ApG-7y-3cF"/>
+                <outlet property="BusinessInfoStateIv" destination="9DL-dL-9Qs" id="1Ef-OK-1f7"/>
                 <outlet property="BusinessInfoView" destination="hHN-DX-ffz" id="8uX-F1-s4M"/>
                 <outlet property="CalorificvalueTF" destination="lw3-UI-lnR" id="RaP-zR-hBf"/>
                 <outlet property="ChilledpressureTF" destination="SjU-yU-QGy" id="5QT-wd-SqB"/>
@@ -26,6 +28,7 @@
                 <outlet property="CityTF" destination="g0C-ho-v8V" id="5ba-q5-Rnv"/>
                 <outlet property="ColdWaterOutPressureTF" destination="BvQ-NI-ViR" id="BDt-Y8-tRY"/>
                 <outlet property="ContactsCView" destination="ze8-hR-BlE" id="Gzt-fS-wd8"/>
+                <outlet property="ContactsStateIv" destination="JEw-MU-1S9" id="czw-kR-nWv"/>
                 <outlet property="ContactsView" destination="BVm-ma-3dF" id="OVc-n7-sQ7"/>
                 <outlet property="ContractNoTF" destination="3Cs-xp-eIV" id="egO-gt-v2k"/>
                 <outlet property="ContractmanagerTF" destination="fkC-9c-anb" id="15z-py-QLU"/>
@@ -68,6 +71,7 @@
                 <outlet property="MLMailTF" destination="46S-5b-4MA" id="kXu-sy-PoT"/>
                 <outlet property="MLTF" destination="9Xc-sg-aoq" id="J5j-r5-XO8"/>
                 <outlet property="NameAddressCView" destination="NXC-bc-eJO" id="GX6-Yz-8oc"/>
+                <outlet property="NameAddressStateIv" destination="qZF-rI-zAa" id="eCU-Dd-q8d"/>
                 <outlet property="NameAddressView" destination="OnM-cG-txD" id="Psp-Lg-ufb"/>
                 <outlet property="NatureofindustryTF" destination="9eO-QC-F8Z" id="WbP-Ow-6NY"/>
                 <outlet property="OthersTF" destination="Qhm-Rf-fLE" id="nw9-fz-ZmI"/>
@@ -82,11 +86,14 @@
                 <outlet property="SigningDateTF" destination="Uwz-Ka-tJ4" id="WsG-rV-VcI"/>
                 <outlet property="Sys_ElseThingTF" destination="SWa-IP-TR0" id="Nlv-TM-HGo"/>
                 <outlet property="SystemInfoCView" destination="UGl-Kh-7yk" id="W30-GU-gcb"/>
+                <outlet property="SystemInfoStateIv" destination="yg3-1h-nk7" id="NTS-Mo-meo"/>
                 <outlet property="SystemInfoView" destination="r4R-Tf-1cl" id="itp-ow-mx6"/>
                 <outlet property="TotalACareaTF" destination="7bh-X9-ky7" id="QnW-96-Smc"/>
                 <outlet property="UnitInfoCView" destination="CKJ-sb-Slo" id="cFl-nh-yLc"/>
+                <outlet property="UnitInfoStateIv" destination="hli-hK-pzH" id="3bv-UR-y7J"/>
                 <outlet property="UnitInfoView" destination="GrT-tr-1Jv" id="kq4-B2-KID"/>
                 <outlet property="UserBackgroundCView" destination="Qn6-YH-0Ow" id="AfO-0h-Zff"/>
+                <outlet property="UserBackgroundStateIv" destination="P4M-wc-qaC" id="jdr-HD-FWB"/>
                 <outlet property="UserBackgroundView" destination="AVl-Ds-Y0y" id="PkL-ne-DvU"/>
                 <outlet property="VarietiesoffuelTF" destination="P7y-oy-UxS" id="shs-17-Ocg"/>
                 <outlet property="WarmWaterOutPressureTF" destination="AJX-4C-wgt" id="rxG-W8-zww"/>
@@ -125,6 +132,10 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="expand" id="qZF-rI-zAa">
+                                    <rect key="frame" x="8" y="15" width="16" height="16"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kBv-3n-1Cj">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -350,6 +361,10 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="expand" id="JEw-MU-1S9">
+                                    <rect key="frame" x="8" y="15" width="16" height="16"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="l4c-eD-TzO">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -694,6 +709,10 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="expand" id="9DL-dL-9Qs">
+                                    <rect key="frame" x="8" y="15" width="16" height="16"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TZK-C7-lw0">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -807,6 +826,10 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="expand" id="5O7-mq-1lV">
+                                    <rect key="frame" x="8" y="15" width="16" height="16"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9tH-Af-sZL">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -1018,6 +1041,10 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="expand" id="hli-hK-pzH">
+                                    <rect key="frame" x="8" y="15" width="16" height="16"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pmI-RR-ZDF">
                                     <rect key="frame" x="-1" y="0.0" width="320" height="45"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -1433,6 +1460,10 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="expand" id="yg3-1h-nk7">
+                                    <rect key="frame" x="8" y="15" width="16" height="16"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WZs-KU-nL7">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -1995,6 +2026,10 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="expand" id="P4M-wc-qaC">
+                                    <rect key="frame" x="8" y="15" width="16" height="16"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5Zc-p4-uRT">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -2049,4 +2084,7 @@
             <point key="canvasLocation" x="483" y="308"/>
         </view>
     </objects>
+    <resources>
+        <image name="expand" width="16" height="16"/>
+    </resources>
 </document>

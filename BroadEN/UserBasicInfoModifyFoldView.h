@@ -18,6 +18,7 @@
 //Name Adress
 @property (weak, nonatomic) IBOutlet UIView *NameAddressView;
 @property (weak, nonatomic) IBOutlet UIView *NameAddressCView;
+@property (weak, nonatomic) IBOutlet UIImageView *NameAddressStateIv;
 
 @property (weak, nonatomic) IBOutlet UITextField *EnglishNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *DistributorTF;
@@ -33,6 +34,7 @@
 //Contacts
 @property (weak, nonatomic) IBOutlet UIView *ContactsView;
 @property (weak, nonatomic) IBOutlet UIView *ContactsCView;
+@property (weak, nonatomic) IBOutlet UIImageView *ContactsStateIv;
 
 @property (weak, nonatomic) IBOutlet UITextField *SLTF;
 @property (weak, nonatomic) IBOutlet UITextField *SLDepartmentTF;
@@ -55,6 +57,7 @@
 //BusinessInfo
 @property (weak, nonatomic) IBOutlet UIView *BusinessInfoView;
 @property (weak, nonatomic) IBOutlet UIView *BusinessInfoCView;
+@property (weak, nonatomic) IBOutlet UIImageView *BusinessInfoStateIv;
 
 @property (weak, nonatomic) IBOutlet UITextField *ContractNoTF;
 @property (weak, nonatomic) IBOutlet UITextField *ContractmanagerTF;
@@ -64,6 +67,7 @@
 //BuildingInfoZ
 @property (weak, nonatomic) IBOutlet UIView *BuildingInfoView;
 @property (weak, nonatomic) IBOutlet UIView *BuildingInfoCView;
+@property (weak, nonatomic) IBOutlet UIImageView *BuildingInfoStateIv;
 
 @property (weak, nonatomic) IBOutlet UITextField *BuildingheightTF;
 @property (weak, nonatomic) IBOutlet UITextField *NatureofindustryTF;
@@ -76,6 +80,7 @@
 //Unit Info
 @property (weak, nonatomic) IBOutlet UIView *UnitInfoView;
 @property (weak, nonatomic) IBOutlet UIView *UnitInfoCView;
+@property (weak, nonatomic) IBOutlet UIImageView *UnitInfoStateIv;
 
 @property (weak, nonatomic) IBOutlet UITextField *VarietiesoffuelTF;
 @property (weak, nonatomic) IBOutlet UITextField *CalorificvalueTF;
@@ -100,6 +105,7 @@
 //System Info
 @property (weak, nonatomic) IBOutlet UIView *SystemInfoView;
 @property (weak, nonatomic) IBOutlet UIView *SystemInfoCView;
+@property (weak, nonatomic) IBOutlet UIImageView *SystemInfoStateIv;
 
 @property (weak, nonatomic) IBOutlet UITextField *Flow1chilledWaterpumpTF;
 @property (weak, nonatomic) IBOutlet UITextField *F1CWHeadTF;
@@ -130,6 +136,7 @@
 //UserBackground
 @property (weak, nonatomic) IBOutlet UIView *UserBackgroundView;
 @property (weak, nonatomic) IBOutlet UIView *UserBackgroundCView;
+@property (weak, nonatomic) IBOutlet UIImageView *UserBackgroundStateIv;
 
 @property (weak, nonatomic) IBOutlet UITextView *OthersTF;
 

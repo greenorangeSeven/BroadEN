@@ -19,6 +19,7 @@
 #import "ZeroHeightTableCell.h"
 #import "SGActionView.h"
 #import "Img.h"
+#import "UserSecurity.h"
 
 @interface UnitInfoDetailView ()
 {
@@ -27,6 +28,7 @@
     UnitInfoBasicOne *u1;
     
     UserInfo *userinfo;
+    NSString *jiaose;
     
     UnitInfoBasicOne *basicOne;
     UnitInfoBasicTwo *basicTwo;
@@ -62,11 +64,9 @@
     
     self.title = @"Unit Info Detail";
     
-    UIBarButtonItem *modifyBtn = [[UIBarButtonItem alloc] initWithTitle: @"Modify" style:UIBarButtonItemStyleBordered target:self action:@selector(modifyAction:)];
-    self.navigationItem.rightBarButtonItem = modifyBtn;
-    
     AppDelegate *app = [[UIApplication sharedApplication] delegate];
     userinfo = app.userinfo;
+    jiaose = userinfo.JiaoSe;
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -95,7 +95,59 @@
         [fileTypeENArray addObject:[typeDic objectForKey:@"typeEN"]];
     }
     
+    [self getSecurity];
     [self getBasicInfoData];
+}
+
+- (void)getSecurity
+{
+    //%%为转义%
+    NSString *sqlStr = [NSString stringWithFormat:@"Sp_GetPermissionByRoleNameInModuleLike_En '%@','DA0205%%'", userinfo.JiaoSe];
+    NSString *urlStr = [NSString stringWithFormat:@"%@JsonDataInDZDA", api_base_url];
+    
+    NSURL *url = [NSURL URLWithString: urlStr];
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setUseCookiePersistence:NO];
+    [request setTimeOutSeconds:30];
+    [request setPostValue:sqlStr forKey:@"sqlstr"];
+    [request setDelegate:self];
+    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+    [request setDidFailSelector:@selector(requestFailed:)];
+    [request setDidFinishSelector:@selector(requestSecurity:)];
+    [request startAsynchronous];
+    request.hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [Tool showHUD:@"Loading..." andView:self.view andHUD:request.hud];
+}
+
+- (void)requestSecurity:(ASIHTTPRequest *)request
+{
+    if (request.hud)
+    {
+        [request.hud hide:YES];
+    }
+    [request setUseCookiePersistence:YES];
+    
+    XMLParserUtils *utils = [[XMLParserUtils alloc] init];
+    utils.parserFail = ^()
+    {
+        [Tool showCustomHUD:@"连接失败" andView:self.view andImage:nil andAfterDelay:1.2f];
+    };
+    utils.parserOK = ^(NSString *string)
+    {
+        NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error;
+        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+        NSArray *securityList = [Tool readJsonToObjArray:jsonArray andObjClass:[UserSecurity class]];
+        for (UserSecurity *s in securityList) {
+            if ([s.ModuleCode isEqualToString:@"DA0205"] && [s.PermissionName isEqualToString:@"修改"]) {
+                UIBarButtonItem *modifyBtn = [[UIBarButtonItem alloc] initWithTitle: @"Modify" style:UIBarButtonItemStyleBordered target:self action:@selector(modifyAction:)];
+                self.navigationItem.rightBarButtonItem = modifyBtn;
+                break;
+            }
+        }
+    };
+    [utils stringFromparserXML:request.responseString target:@"string"];
 }
 
 - (void)modifyAction:(id )sender
@@ -122,7 +174,7 @@
         [Tool showCustomHUD:@"NO Change" andView:self.view andImage:nil andAfterDelay:1.2f];
         return;
     }
-
+    
     hud = [[MBProgressHUD alloc] initWithView:self.view];
     [Tool showHUD:@"Waiting..." andView:self.view andHUD:hud];
     
@@ -276,14 +328,14 @@
                     NSString *response2 = [tworequest responseString];
                     if([response2 rangeOfString:@"true"].length > 0)
                     {
-//                        isOK = YES;
-//                        
-//                        if(allfilename == nil || [allfilename isEqualToString:@"null"])
-//                        {
-//                            allfilename = @"";
-//                        }
-//                        allfilename = [NSString stringWithFormat:@"%@|%@",allfilename,fileName];
-//                        allfilename = [allfilename stringByReplacingOccurrencesOfString:@"null" withString:@""];
+                        //                        isOK = YES;
+                        //
+                        //                        if(allfilename == nil || [allfilename isEqualToString:@"null"])
+                        //                        {
+                        //                            allfilename = @"";
+                        //                        }
+                        //                        allfilename = [NSString stringWithFormat:@"%@|%@",allfilename,fileName];
+                        //                        allfilename = [allfilename stringByReplacingOccurrencesOfString:@"null" withString:@""];
                         NSString *sql2 = [NSString stringWithFormat:@"Insert into TB_CUST_ProjInf_DebugTakeOver(Proj_ID,Exec_Man,Exec_Date,Type,Project,Project_En,AirCondUnit_Mode,OutFact_Num,allfilename) values ('%@','%@','%@','调试交接','%@','%@','%@','%@','%@')", self.PROJ_ID, userinfo.TrueName, [Tool getCurrentTimeStr:@"yyyy-MM-dd HH:mm"], [typeDic objectForKey:@"typeCN"], [typeDic objectForKey:@"typeEN"],u1.AirCondUnit_Mode,u1.OutFact_Num, fileName];
                         ASIFormDataRequest *tworequest2 = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@DoActionInDZDA",api_base_url]]];
                         [tworequest2 setUseCookiePersistence:NO];
@@ -301,12 +353,12 @@
                             {
                                 isOK = YES;
                                 
-//                                if(allfilename == nil || [allfilename isEqualToString:@"null"])
-//                                {
-//                                    allfilename = @"";
-//                                }
-//                                allfilename = [NSString stringWithFormat:@"%@|%@",allfilename,fileName];
-//                                allfilename = [allfilename stringByReplacingOccurrencesOfString:@"null" withString:@""];
+                                //                                if(allfilename == nil || [allfilename isEqualToString:@"null"])
+                                //                                {
+                                //                                    allfilename = @"";
+                                //                                }
+                                //                                allfilename = [NSString stringWithFormat:@"%@|%@",allfilename,fileName];
+                                //                                allfilename = [allfilename stringByReplacingOccurrencesOfString:@"null" withString:@""];
                             }
                         }
                     }
@@ -460,8 +512,8 @@
             basicTwo = [Tool readJsonDicToObj:jsonDic andObjClass:[UnitInfoBasicTwo class]];
             
             [unitInforItems addObject:basicOne];
-            [self getShippingInfoData];
         }
+        [self getShippingInfoData];
     };
     NSLog(@"%@",request.responseString);
     [utils stringFromparserXML:request.responseString target:@"string"];
@@ -512,8 +564,8 @@
             shippings = [Tool readJsonToObjArray:jsonArray andObjClass:[UnitInfoShipping class]];
             [unitInforItems addObjectsFromArray:shippings];
             [unitInforItems addObject:basicTwo];
-            [self getCommissInfoData];
         }
+        [self getCommissInfoData];
     };
     NSLog(@"%@",request.responseString);
     [utils stringFromparserXML:request.responseString target:@"string"];
@@ -581,6 +633,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     NSInteger row = [indexPath row];
     NSObject *item = [unitInforItems objectAtIndex:row];
     if ([item isKindOfClass:[UnitInfoBasicOne class]])
@@ -610,6 +663,7 @@
 //列表数据渲染
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     NSInteger row = [indexPath row];
     NSObject *item = [unitInforItems objectAtIndex:row];
     if ([item isKindOfClass:[UnitInfoBasicOne class]])
@@ -722,7 +776,7 @@
         NSObject *item = [unitInforItems objectAtIndex:row];
         if ([item isKindOfClass:[UnitInfoCommiss class]])
         {
-//            UnitInfoCommiss *uc = (UnitInfoCommiss *)item;
+            //            UnitInfoCommiss *uc = (UnitInfoCommiss *)item;
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert:" message:@"delete the file?" delegate:self cancelButtonTitle:@"Sure" otherButtonTitles:@"Cannel", nil];
             alert.tag = 0;
             delIndex = row;
@@ -736,7 +790,7 @@
     UIButton *tap = (UIButton *)sender;
     if (tap) {
         NSString *fileUrl = nil;
-//        NSObject *topic = [unitInforItems objectAtIndex:tap.tag];
+        //        NSObject *topic = [unitInforItems objectAtIndex:tap.tag];
         NSObject *item = [unitInforItems objectAtIndex:tap.tag];
         if ([item isKindOfClass:[UnitInfoShipping class]])
         {
@@ -840,7 +894,7 @@
         Img *img = (Img *)image;
         cell.picIV.image = img.img;
     }
-
+    
     
     return cell;
 }
@@ -872,7 +926,7 @@
                               if (selectedFileTypeIndex != index) {
                                   selectedFileTypeIndex = index;
                                   selectFileTypeDic = [fileTypeDicArray objectAtIndex:index];
-//                                  self.TypeEnLB.text = [fileTypeENArray objectAtIndex:index];
+                                  //                                  self.TypeEnLB.text = [fileTypeENArray objectAtIndex:index];
                                   currentImg = [[Img alloc] init];
                                   currentImg.fileType = selectFileTypeDic;
                                   UIActionSheet *cameraSheet = [[UIActionSheet alloc] initWithTitle:nil

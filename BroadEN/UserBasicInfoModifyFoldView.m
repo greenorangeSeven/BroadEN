@@ -152,6 +152,28 @@
             ((UITextField *)subView).enabled = YES;
             ((UITextField *)subView).background = [UIImage imageNamed:@"textfieldbg"];
         }
+        else
+        {
+            for (UIView *sub2View in [subView subviews])
+            {
+                if ([sub2View isKindOfClass:[UITextField class]])
+                {
+                    ((UITextField *)sub2View).enabled = YES;
+                    ((UITextField *)sub2View).background = [UIImage imageNamed:@"textfieldbg"];
+                }
+                else
+                {
+                    for (UIView *sub3View in [sub2View subviews])
+                    {
+                        if ([sub3View isKindOfClass:[UITextField class]])
+                        {
+                            ((UITextField *)sub3View).enabled = YES;
+                            ((UITextField *)sub3View).background = [UIImage imageNamed:@"textfieldbg"];
+                        }
+                    }
+                }
+            }
+        }
     }
     [self bindData];
     
@@ -661,6 +683,7 @@
     if(NameAddressIsExpand)
     {
         self.NameAddressCView.hidden = NO;
+        [self.NameAddressStateIv setImage:[UIImage imageNamed:@"expand"]];
         
         CGRect NameAddressFrame = self.NameAddressView.frame;
         NameAddressFrame.size.height = ITEM_HEADER_HEIGHT + NameAddressControlHeight;
@@ -693,6 +716,7 @@
     else
     {
         self.NameAddressCView.hidden = YES;
+        [self.NameAddressStateIv setImage:[UIImage imageNamed:@"fold"]];
         
         CGRect NameAddressFrame = self.NameAddressView.frame;
         NameAddressFrame.size.height = ITEM_HEADER_HEIGHT;
@@ -732,6 +756,7 @@
     if(ContactsIsExpand)
     {
         self.ContactsCView.hidden = NO;
+        [self.ContactsStateIv setImage:[UIImage imageNamed:@"expand"]];
         
         CGRect ContactsFrame = self.ContactsView.frame;
         ContactsFrame.size.height = ITEM_HEADER_HEIGHT + ContactsControlHeight;
@@ -760,6 +785,7 @@
     else
     {
         self.ContactsCView.hidden = YES;
+        [self.ContactsStateIv setImage:[UIImage imageNamed:@"fold"]];
         
         CGRect ContactsFrame = self.ContactsView.frame;
         ContactsFrame.size.height = ITEM_HEADER_HEIGHT;
@@ -795,6 +821,7 @@
     if(BusinessInfoIsExpand)
     {
         self.BusinessInfoCView.hidden = NO;
+        [self.BusinessInfoStateIv setImage:[UIImage imageNamed:@"expand"]];
         
         CGRect BusinessInfoFrame = self.BusinessInfoView.frame;
         BusinessInfoFrame.size.height = ITEM_HEADER_HEIGHT + BusinessInfoControlHeight;
@@ -819,6 +846,7 @@
     else
     {
         self.BusinessInfoCView.hidden = YES;
+        [self.BusinessInfoStateIv setImage:[UIImage imageNamed:@"fold"]];
         
         CGRect BusinessInfoFrame = self.BusinessInfoView.frame;
         BusinessInfoFrame.size.height = ITEM_HEADER_HEIGHT;
@@ -850,6 +878,7 @@
     if(BuildingInfoIsExpand)
     {
         self.BuildingInfoCView.hidden = NO;
+        [self.BuildingInfoStateIv setImage:[UIImage imageNamed:@"expand"]];
         
         CGRect BuildingInfoFrame = self.BuildingInfoView.frame;
         BuildingInfoFrame.size.height = ITEM_HEADER_HEIGHT + BuildingInfoControlHeight;
@@ -870,6 +899,7 @@
     else
     {
         self.BuildingInfoCView.hidden = YES;
+        [self.BuildingInfoStateIv setImage:[UIImage imageNamed:@"fold"]];
         
         CGRect BuildingInfoFrame = self.BuildingInfoView.frame;
         BuildingInfoFrame.size.height =  ITEM_HEADER_HEIGHT;
@@ -897,6 +927,7 @@
     if(UnitInfoIsExpand)
     {
         self.UnitInfoCView.hidden = NO;
+        [self.UnitInfoStateIv setImage:[UIImage imageNamed:@"expand"]];
         
         CGRect UnitInfoFrame = self.UnitInfoView.frame;
         UnitInfoFrame.size.height = ITEM_HEADER_HEIGHT + UnitInfoControlHeight;
@@ -913,6 +944,7 @@
     else
     {
         self.UnitInfoCView.hidden = YES;
+        [self.UnitInfoStateIv setImage:[UIImage imageNamed:@"fold"]];
         
         CGRect UnitInfoFrame = self.UnitInfoView.frame;
         UnitInfoFrame.size.height =  ITEM_HEADER_HEIGHT;
@@ -936,6 +968,7 @@
     if(SystemInfoIsExpand)
     {
         self.SystemInfoCView.hidden = NO;
+        [self.SystemInfoStateIv setImage:[UIImage imageNamed:@"expand"]];
         
         CGRect SystemInfoFrame = self.SystemInfoView.frame;
         SystemInfoFrame.size.height = ITEM_HEADER_HEIGHT + SystemInfoControlHeight;
@@ -948,6 +981,7 @@
     else
     {
         self.SystemInfoCView.hidden = YES;
+        [self.SystemInfoStateIv setImage:[UIImage imageNamed:@"fold"]];
         
         CGRect SystemInfoFrame = self.SystemInfoView.frame;
         SystemInfoFrame.size.height =  ITEM_HEADER_HEIGHT;
@@ -967,6 +1001,7 @@
     if(UserBackgroundIsExpand)
     {
         self.UserBackgroundCView.hidden = NO;
+        [self.UserBackgroundStateIv setImage:[UIImage imageNamed:@"expand"]];
         
         CGRect UserBackgroundFrame = self.UserBackgroundView.frame;
         UserBackgroundFrame.size.height = ITEM_HEADER_HEIGHT + UserBackgroundControlHeight;
@@ -975,6 +1010,7 @@
     else
     {
         self.UserBackgroundCView.hidden = YES;
+        [self.UserBackgroundStateIv setImage:[UIImage imageNamed:@"fold"]];
         
         CGRect UserBackgroundFrame = self.UserBackgroundView.frame;
         UserBackgroundFrame.size.height = ITEM_HEADER_HEIGHT;
