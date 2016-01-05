@@ -9,7 +9,7 @@
 #import "UserInfoTypeTableView.h"
 #import "ItemTableCell.h"
 #import "SettingModel.h"
-#import "UserBasicInfoView.h"
+#import "UserBasicFoldView.h"
 #import "UnitInfoTableView.h"
 #import "MaintainingTableView.h"
 #import "UserSolnTableView.h"
@@ -56,7 +56,7 @@
     switch (action.tag) {
         case 1:
         {
-            UserBasicInfoView *basicInfoView = [[UserBasicInfoView alloc] init];
+            UserBasicFoldView *basicInfoView = [[UserBasicFoldView alloc] init];
             basicInfoView.titleStr = self.titleStr;
             basicInfoView.ID = self.userId;
             [self.navigationController pushViewController:basicInfoView animated:YES];

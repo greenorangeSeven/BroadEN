@@ -566,6 +566,7 @@
     self.ChinesenameTF.text = self.basicInfo.PROJ_Name;
     self.ShortnameTF.text = self.basicInfo.CustShortName_CN;
     self.FormernameTF.text = self.basicInfo.Duty_PassEngineer_En;
+    self.UsercodeLB.text = self.basicInfo.CUST_Code;
     self.AdressTF.text = self.basicInfo.PostalAdd_CN;
     self.CountryTF.text = self.basicInfo.Country_EN;
     self.CityTF.text = self.basicInfo.City_CN;

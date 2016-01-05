@@ -125,7 +125,6 @@
     
     //初始化选择区域
     [self getEngineer];
-    [self getUnits];
     
     serviceTypeDicArray = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ServiceType.plist" ofType:nil]];
     serviceTypeENArray = [[NSMutableArray alloc] init];
@@ -377,6 +376,7 @@
             self.EngineerTF.text = Engineer;
             self.UploadManTF.text = Engineer;
         }
+        [self getUnits];
     };
     [utils stringFromparserXML:request.responseString target:@"string"];
 }
@@ -1040,7 +1040,12 @@
             NSString *response = [request responseString];
             if([response rangeOfString:@"UploadFile"].length > 0)
             {
-                NSString *string = [NSString stringWithFormat:@"/UploadFile/%@/", [Tool getCurrentTimeStr:@"yyyyMMdd"]];
+                NSRange range = [response rangeOfString:@"/UploadFile"];//匹配得到的下标
+                range.length = range.length + 10;
+                NSString *string = [response substringWithRange:range];//截取范围类的字符串
+                NSLog(@"截取的值为：%@",response);
+                
+                //                NSString *string = [NSString stringWithFormat:@"/UploadFile/%@/", [Tool getCurrentTimeStr:@"yyyyMMdd"]];
                 img = nil;
                 base64Encoded = nil;
                 

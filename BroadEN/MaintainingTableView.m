@@ -114,6 +114,7 @@
             [Tool showCustomHUD:@"您无查看权限" andView:self.view andImage:nil andAfterDelay:1.2f];
         }
     };
+    NSLog(request.responseString);
     [utils stringFromparserXML:request.responseString target:@"string"];
 }
 

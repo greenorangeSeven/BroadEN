@@ -97,5 +97,6 @@
 
 @property (copy, nonatomic) NSString *IsNameChange;
 @property (copy, nonatomic) NSString *yhcym;
+@property (copy, nonatomic) NSString *CUST_Code;
 
 @end

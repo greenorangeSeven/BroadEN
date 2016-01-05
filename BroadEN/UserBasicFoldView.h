@@ -1,5 +1,5 @@
 //
-//  UserBasicInfoModifyFoldView.h
+//  UserBasicFoldView.h
 //  BroadEN
 //
 //  Created by Seven on 15/12/28.
@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UserBasicInfo.h"
 
-@interface UserBasicInfoModifyFoldView : UIViewController
+@interface UserBasicFoldView : UIViewController
 
-@property (strong, nonatomic) UserBasicInfo *basicInfo;
+@property (strong, nonatomic) NSString *titleStr;
+@property (strong, nonatomic) NSString *ID;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -19,13 +19,13 @@
 @property (weak, nonatomic) IBOutlet UIView *NameAddressView;
 @property (weak, nonatomic) IBOutlet UIView *NameAddressCView;
 @property (weak, nonatomic) IBOutlet UIImageView *NameAddressStateIv;
-
+@property (weak, nonatomic) IBOutlet UITextField *UserCodeTF;
 @property (weak, nonatomic) IBOutlet UITextField *EnglishNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *DistributorTF;
 @property (weak, nonatomic) IBOutlet UITextField *ChinesenameTF;
 @property (weak, nonatomic) IBOutlet UITextField *ShortnameTF;
-@property (weak, nonatomic) IBOutlet UITextField *FormernameTF;
-@property (weak, nonatomic) IBOutlet UILabel *UsercodeLB;
+@property (weak, nonatomic) IBOutlet UITextView *FormernameTF;
+
 @property (weak, nonatomic) IBOutlet UITextField *AdressTF;
 @property (weak, nonatomic) IBOutlet UITextField *CountryTF;
 @property (weak, nonatomic) IBOutlet UITextField *CityTF;
@@ -55,7 +55,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *BLCellNoTF;
 @property (weak, nonatomic) IBOutlet UITextField *BLMailTF;
 
-//BusinessInfo
+//Business Info
 @property (weak, nonatomic) IBOutlet UIView *BusinessInfoView;
 @property (weak, nonatomic) IBOutlet UIView *BusinessInfoCView;
 @property (weak, nonatomic) IBOutlet UIImageView *BusinessInfoStateIv;
@@ -65,7 +65,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *SigningDateTF;
 @property (weak, nonatomic) IBOutlet UITextField *InvestmentcompanyTF;
 
-//BuildingInfoZ
+//Building Info
 @property (weak, nonatomic) IBOutlet UIView *BuildingInfoView;
 @property (weak, nonatomic) IBOutlet UIView *BuildingInfoCView;
 @property (weak, nonatomic) IBOutlet UIImageView *BuildingInfoStateIv;
@@ -88,19 +88,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *FuelpressureTF;
 @property (weak, nonatomic) IBOutlet UITextField *RatedconsumptionTF;
 @property (weak, nonatomic) IBOutlet UITextField *RuntimeperdayTF;
-
 @property (weak, nonatomic) IBOutlet UITextField *ChilledpressureTF;
-@property (weak, nonatomic) IBOutlet UITextField *ColdWaterOutPressureTF;
-
 @property (weak, nonatomic) IBOutlet UITextField *WarmpressureTF;
-@property (weak, nonatomic) IBOutlet UITextField *WarmWaterOutPressureTF;
-
 @property (weak, nonatomic) IBOutlet UITextField *CoolingpressureTF;
-@property (weak, nonatomic) IBOutlet UITextField *CoolWaterOutPressureTF;
-
 @property (weak, nonatomic) IBOutlet UITextField *HotpressureTF;
-@property (weak, nonatomic) IBOutlet UITextField *HotWaterOutpressureTF;
-
 @property (weak, nonatomic) IBOutlet UITextView *DescribeCWCHTF;
 
 //System Info
@@ -134,14 +125,12 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *Sys_ElseThingTF;
 
-//UserBackground
+//User's Background
 @property (weak, nonatomic) IBOutlet UIView *UserBackgroundView;
 @property (weak, nonatomic) IBOutlet UIView *UserBackgroundCView;
 @property (weak, nonatomic) IBOutlet UIImageView *UserBackgroundStateIv;
 
 @property (weak, nonatomic) IBOutlet UITextView *OthersTF;
-
-- (IBAction)selectCountryAction:(id)sender;
 
 - (IBAction)NameAddressControl:(id)sender;
 - (IBAction)ContactsControl:(id)sender;
