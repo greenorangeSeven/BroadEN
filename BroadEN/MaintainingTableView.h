@@ -11,6 +11,7 @@
 @interface MaintainingTableView : UIViewController<UITableViewDelegate,UITableViewDataSource,MBProgressHUDDelegate>
 
 @property (strong, nonatomic) NSString *projId;
+@property (strong, nonatomic) NSString *PROJ_Name_En;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

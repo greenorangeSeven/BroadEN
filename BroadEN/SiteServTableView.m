@@ -258,6 +258,9 @@
         SiteServ *s = [servs objectAtIndex:row];
         MaintauningDetailView *detailView = [[MaintauningDetailView alloc] init];
         detailView.ID = s.ID;
+        detailView.PROJ_Name = s.PROJ_Name;
+        detailView.PROJ_Name_En = s.PROJ_Name_En;
+        detailView.userid = s.userid;
         detailView.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:detailView animated:YES];
     }

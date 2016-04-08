@@ -73,6 +73,7 @@
         {
             MaintainingTableView *maintainingView = [[MaintainingTableView alloc] init];
             maintainingView.projId = self.projId;
+            maintainingView.PROJ_Name_En = self.titleStr;
             [self.navigationController pushViewController:maintainingView animated:YES];
         }
             break;

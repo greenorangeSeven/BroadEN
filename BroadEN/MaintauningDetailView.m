@@ -12,6 +12,7 @@
 #import "Img.h"
 #import "UIImageView+WebCache.h"
 #import "MWPhotoBrowser.h"
+#import "UserInfoTypeTableView.h"
 
 @interface MaintauningDetailView ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MWPhotoBrowserDelegate>
 {
@@ -162,6 +163,7 @@
 {
     if(maintaining)
     {
+        self.PROJNameEnTF.text = self.PROJ_Name_En;
         self.EngineerTF.text = maintaining.Exec_Man_En;
         self.UploadManTF.text = maintaining.Uploader_En;
         self.UploadDateTF.text = maintaining.UploadTime;
@@ -435,5 +437,32 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)goUserInfoAction:(id)sender {
+    if(self.userid)
+    {
+        UserInfoTypeTableView *infoTypeView = [[UserInfoTypeTableView alloc] init];
+        infoTypeView.PROJ_Name = self.PROJ_Name;
+        infoTypeView.titleStr = self.PROJ_Name_En;
+        infoTypeView.userId = self.userid;
+        infoTypeView.projId = maintaining.Proj_ID;
+        infoTypeView.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:infoTypeView animated:YES];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,nil]];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"Back";
+    self.navigationItem.backBarButtonItem = backItem;
+}
 
 @end

@@ -964,10 +964,10 @@
             switch ([key intValue])
             {
                 case 1:
-                    picFirstName = @"SnecePhoto";
+                    picFirstName = @"ServiceForm";
                     break;
                 case 2:
-                    picFirstName = @"ServiceForm";
+                    picFirstName = @"ScenePhoto";
                     break;
                 case 3:
                     picFirstName = @"TouchSencePhoto";

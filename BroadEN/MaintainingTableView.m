@@ -219,6 +219,7 @@
     Maintaining *m = [maintains objectAtIndex:row];
     MaintauningDetailView *detailView = [[MaintauningDetailView alloc] init];
     detailView.ID = m.ID;
+    detailView.PROJ_Name_En = self.PROJ_Name_En;
     [self.navigationController pushViewController:detailView animated:YES];
 }
 

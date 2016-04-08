@@ -26,5 +26,6 @@
 
 @property (copy, nonatomic) NSString *Type;
 @property (copy, nonatomic) NSString *Type_En;
+@property (copy, nonatomic) NSString *userid;
 
 @end

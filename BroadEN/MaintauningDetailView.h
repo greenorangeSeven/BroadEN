@@ -11,12 +11,16 @@
 @interface MaintauningDetailView : UIViewController
 
 @property (strong, nonatomic) NSString *ID;
+@property (strong, nonatomic) NSString *PROJ_Name_En;
+@property (strong, nonatomic) NSString *PROJ_Name;
+@property (strong, nonatomic) NSString *userid;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *otherCollectionView;
 @property (weak, nonatomic) IBOutlet UIView *attachmentView;
+@property (weak, nonatomic) IBOutlet UITextField *PROJNameEnTF;
 @property (weak, nonatomic) IBOutlet UITextField *EngineerTF;
 @property (weak, nonatomic) IBOutlet UITextField *UploadManTF;
 @property (weak, nonatomic) IBOutlet UITextField *UploadDateTF;
@@ -48,5 +52,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *EngineerFeedbackTV;
 @property (weak, nonatomic) IBOutlet UILabel *EngineerFeedbackSignLB;
 @property (weak, nonatomic) IBOutlet UILabel *EngineerFeedbackSignDateLB;
+
+- (IBAction)goUserInfoAction:(id)sender;
 
 @end

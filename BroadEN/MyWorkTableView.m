@@ -106,7 +106,7 @@
         }
         
         NSString *Franchiser = @"All";
-        if ([userinfo.js isEqualToString:@"GJJXS"]) {
+        if ([userinfo.JiaoSe isEqualToString:@"GJJXS"]) {
             Franchiser = userinfo.UserName;
         }
         
